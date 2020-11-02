@@ -33,6 +33,32 @@ namespace THITRACNGHIEM
             {
                 frmDangNhap f = new frmDangNhap();
                 f.MdiParent = this;
+                f.f = this;
+                f.Show();
+            }
+        }
+
+        public void hienThiMenu()
+        {
+            lblMa.Text = "Mã GV: " + Program.username;
+            lblTen.Text = "Tên GV: " + Program.mHoten;
+            lblNhom.Text = "Nhóm: " + Program.mGroup;
+        }
+
+        private void btnSinhVien_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if(Program.mHoten.Equals("") || Program.mGroup.Equals(""))
+            {
+                MessageBox.Show("Vui lòng đăng nhập trước!", "Lỗi!", MessageBoxButtons.OK);
+                return;
+            }
+            Form frm = this.CheckExists(typeof(frmSinhVien));
+            if (frm != null)
+                frm.Activate();
+            else
+            {
+                frmSinhVien f = new frmSinhVien();
+                f.MdiParent = this;
                 f.Show();
             }
         }

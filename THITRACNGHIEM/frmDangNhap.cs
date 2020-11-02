@@ -12,6 +12,7 @@ namespace THITRACNGHIEM
 {
     public partial class frmDangNhap : Form
     {
+        public frmMain f;
         public frmDangNhap()
         {
             InitializeComponent();
@@ -41,7 +42,7 @@ namespace THITRACNGHIEM
             cmbCoSo.DataSource = dt;
             cmbCoSo.DisplayMember = "TENCN";
             cmbCoSo.ValueMember = "TEN_SERVER";
-            cmbCoSo.SelectedIndex = -1;
+            cmbCoSo.SelectedIndex = 0;
         }
 
         private void btnDangNhap_Click_1(object sender, EventArgs e)
@@ -75,8 +76,9 @@ namespace THITRACNGHIEM
             Program.mGroup = Program.myReader.GetString(2);
             Program.myReader.Close();
             Program.conn.Close();
-            //Program.frmChinh.MANV.Text = "";
-            MessageBox.Show("Nhan vien - Nhom : " + Program.mHoten + " - " + Program.mGroup, "", MessageBoxButtons.OK);
+            //Program.frmMain.MANV.Text = "";
+            MessageBox.Show("Nhân viên - Nhóm : " + Program.mHoten + " - " + Program.mGroup, "", MessageBoxButtons.OK);
+            f.hienThiMenu();
         }
 
         private void cmbCoSo_SelectedIndexChanged_1(object sender, EventArgs e)

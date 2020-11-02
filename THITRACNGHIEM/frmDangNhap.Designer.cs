@@ -35,26 +35,37 @@
             this.cOSOTableAdapter = new THITRACNGHIEM.DSTableAdapters.COSOTableAdapter();
             this.tableAdapterManager = new THITRACNGHIEM.DSTableAdapters.TableAdapterManager();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.cmbCoSo = new System.Windows.Forms.ComboBox();
+            this.v_DS_PHANMANHBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dS_DSPHANMANH = new THITRACNGHIEM.DS_DSPHANMANH();
             this.btnDangNhap = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.txtPassword = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.txtLogin = new DevExpress.XtraEditors.TextEdit();
-            this.dS_DSPHANMANH = new THITRACNGHIEM.DS_DSPHANMANH();
-            this.v_DS_PHANMANHBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.v_DS_PHANMANHTableAdapter = new THITRACNGHIEM.DS_DSPHANMANHTableAdapters.v_DS_PHANMANHTableAdapter();
             this.tableAdapterManager1 = new THITRACNGHIEM.DS_DSPHANMANHTableAdapters.TableAdapterManager();
-            this.cmbCoSo = new System.Windows.Forms.ComboBox();
             tENCNLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cOSOBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.v_DS_PHANMANHBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dS_DSPHANMANH)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLogin.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dS_DSPHANMANH)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.v_DS_PHANMANHBindingSource)).BeginInit();
             this.SuspendLayout();
+            // 
+            // tENCNLabel
+            // 
+            tENCNLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            tENCNLabel.AutoSize = true;
+            tENCNLabel.Font = new System.Drawing.Font("Times New Roman", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            tENCNLabel.Location = new System.Drawing.Point(204, 150);
+            tENCNLabel.Name = "tENCNLabel";
+            tENCNLabel.Size = new System.Drawing.Size(85, 21);
+            tENCNLabel.TabIndex = 13;
+            tENCNLabel.Text = "Chi nhánh";
             // 
             // dS
             // 
@@ -99,6 +110,31 @@
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Size = new System.Drawing.Size(714, 412);
             this.groupControl1.TabIndex = 0;
+            // 
+            // cmbCoSo
+            // 
+            this.cmbCoSo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cmbCoSo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.v_DS_PHANMANHBindingSource, "TENCN", true));
+            this.cmbCoSo.DataSource = this.v_DS_PHANMANHBindingSource;
+            this.cmbCoSo.DisplayMember = "TENCN";
+            this.cmbCoSo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCoSo.FormattingEnabled = true;
+            this.cmbCoSo.Location = new System.Drawing.Point(297, 147);
+            this.cmbCoSo.Name = "cmbCoSo";
+            this.cmbCoSo.Size = new System.Drawing.Size(156, 24);
+            this.cmbCoSo.TabIndex = 14;
+            this.cmbCoSo.ValueMember = "TEN_SERVER";
+            this.cmbCoSo.SelectedIndexChanged += new System.EventHandler(this.cmbCoSo_SelectedIndexChanged_1);
+            // 
+            // v_DS_PHANMANHBindingSource
+            // 
+            this.v_DS_PHANMANHBindingSource.DataMember = "v_DS_PHANMANH";
+            this.v_DS_PHANMANHBindingSource.DataSource = this.dS_DSPHANMANH;
+            // 
+            // dS_DSPHANMANH
+            // 
+            this.dS_DSPHANMANH.DataSetName = "DS_DSPHANMANH";
+            this.dS_DSPHANMANH.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // btnDangNhap
             // 
@@ -151,16 +187,6 @@
             this.txtLogin.Size = new System.Drawing.Size(156, 22);
             this.txtLogin.TabIndex = 9;
             // 
-            // dS_DSPHANMANH
-            // 
-            this.dS_DSPHANMANH.DataSetName = "DS_DSPHANMANH";
-            this.dS_DSPHANMANH.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // v_DS_PHANMANHBindingSource
-            // 
-            this.v_DS_PHANMANHBindingSource.DataMember = "v_DS_PHANMANH";
-            this.v_DS_PHANMANHBindingSource.DataSource = this.dS_DSPHANMANH;
-            // 
             // v_DS_PHANMANHTableAdapter
             // 
             this.v_DS_PHANMANHTableAdapter.ClearBeforeFill = true;
@@ -171,31 +197,6 @@
             this.tableAdapterManager1.Connection = null;
             this.tableAdapterManager1.UpdateOrder = THITRACNGHIEM.DS_DSPHANMANHTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-            // tENCNLabel
-            // 
-            tENCNLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            tENCNLabel.AutoSize = true;
-            tENCNLabel.Font = new System.Drawing.Font("Times New Roman", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            tENCNLabel.Location = new System.Drawing.Point(205, 150);
-            tENCNLabel.Name = "tENCNLabel";
-            tENCNLabel.Size = new System.Drawing.Size(85, 21);
-            tENCNLabel.TabIndex = 13;
-            tENCNLabel.Text = "Chi nhánh";
-            // 
-            // cmbCoSo
-            // 
-            this.cmbCoSo.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cmbCoSo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.v_DS_PHANMANHBindingSource, "TENCN", true));
-            this.cmbCoSo.DataSource = this.v_DS_PHANMANHBindingSource;
-            this.cmbCoSo.DisplayMember = "TENCN";
-            this.cmbCoSo.FormattingEnabled = true;
-            this.cmbCoSo.Location = new System.Drawing.Point(297, 147);
-            this.cmbCoSo.Name = "cmbCoSo";
-            this.cmbCoSo.Size = new System.Drawing.Size(156, 24);
-            this.cmbCoSo.TabIndex = 14;
-            this.cmbCoSo.ValueMember = "TEN_SERVER";
-            this.cmbCoSo.SelectedIndexChanged += new System.EventHandler(this.cmbCoSo_SelectedIndexChanged_1);
-            // 
             // frmDangNhap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
@@ -203,9 +204,9 @@
             this.ClientSize = new System.Drawing.Size(714, 412);
             this.Controls.Add(this.groupControl1);
             this.Font = new System.Drawing.Font("Times New Roman", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmDangNhap";
-            this.Text = "frmDangNhap";
+            this.Text = "Đăng nhập";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmDangNhap_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dS)).EndInit();
@@ -213,10 +214,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.v_DS_PHANMANHBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dS_DSPHANMANH)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLogin.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dS_DSPHANMANH)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.v_DS_PHANMANHBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
