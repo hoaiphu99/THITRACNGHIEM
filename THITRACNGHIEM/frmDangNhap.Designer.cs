@@ -63,9 +63,9 @@
             tENCNLabel.Font = new System.Drawing.Font("Times New Roman", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             tENCNLabel.Location = new System.Drawing.Point(204, 150);
             tENCNLabel.Name = "tENCNLabel";
-            tENCNLabel.Size = new System.Drawing.Size(85, 21);
+            tENCNLabel.Size = new System.Drawing.Size(56, 21);
             tENCNLabel.TabIndex = 13;
-            tENCNLabel.Text = "Chi nhánh";
+            tENCNLabel.Text = "Cơ sở";
             // 
             // dS
             // 

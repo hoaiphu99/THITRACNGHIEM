@@ -86,6 +86,16 @@ namespace THITRACNGHIEM
             return dt;
         }
 
+        public static DS.SINHVIENDataTable ExecSqlDataTable1(String cmd)
+        {
+            DS.SINHVIENDataTable dt = new DS.SINHVIENDataTable();
+            if (Program.conn.State == ConnectionState.Closed) Program.conn.Open();
+            SqlDataAdapter da = new SqlDataAdapter(cmd, conn);
+            da.Fill(dt);
+            conn.Close();
+            return dt;
+        }
+
         [STAThread]
         static void Main()
         {
