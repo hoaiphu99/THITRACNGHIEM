@@ -62,5 +62,28 @@ namespace THITRACNGHIEM
                 f.Show();
             }
         }
+
+        private void btnLogout_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if(Program.mHoten.Trim().Length == 0 || Program.mGroup.Trim().Length == 0)
+            {
+                MessageBox.Show("Bạn chưa đăng nhập!", "Lỗi", MessageBoxButtons.OK);
+                return;
+            }
+            Form frmSV = this.CheckExists(typeof(frmSinhVien));
+            if (frmSV != null)
+                frmSV.Close();
+            Program.myReader = null;
+            Program.username = "";
+            Program.mlogin = "";
+            Program.password = "";
+            Program.mloginDN = "";
+            Program.passwordDN = "";
+            Program.mGroup = "";
+            Program.mHoten = "";
+            Program.mCoso = 0;
+            MessageBox.Show("Đăng xuất thành công!", "Thông báo", MessageBoxButtons.OK);
+            return;
+        }
     }
 }

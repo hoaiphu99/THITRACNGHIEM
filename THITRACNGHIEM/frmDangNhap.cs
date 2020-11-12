@@ -52,7 +52,8 @@ namespace THITRACNGHIEM
                 MessageBox.Show("Login name và mật mã không được trống", "", MessageBoxButtons.OK);
                 return;
             }
-            Program.mlogin = txtLogin.Text; Program.password = txtPassword.Text;
+            Program.mlogin = txtLogin.Text; 
+            Program.password = txtPassword.Text;
             if (Program.KetNoi() == 0) return;
 
             Program.mCoso = cmbCoSo.SelectedIndex;
@@ -64,7 +65,6 @@ namespace THITRACNGHIEM
             Program.myReader = Program.ExecSqlDataReader(strLenh);
             if (Program.myReader == null) return;
             Program.myReader.Read();
-
 
             Program.username = Program.myReader.GetString(0);     // Lay user name
             if (Convert.IsDBNull(Program.username))

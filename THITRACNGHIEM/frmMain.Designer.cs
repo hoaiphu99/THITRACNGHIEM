@@ -40,9 +40,9 @@
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
             this.sttTrangThai = new System.Windows.Forms.StatusStrip();
+            this.lblMa = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblTen = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblNhom = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblMa = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             this.sttTrangThai.SuspendLayout();
@@ -80,6 +80,7 @@
             this.btnLogout.Id = 2;
             this.btnLogout.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnLogout.ImageOptions.SvgImage")));
             this.btnLogout.Name = "btnLogout";
+            this.btnLogout.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnLogout_ItemClick);
             // 
             // btnSinhVien
             // 
@@ -131,6 +132,12 @@
             this.sttTrangThai.TabIndex = 2;
             this.sttTrangThai.Text = "statusStrip1";
             // 
+            // lblMa
+            // 
+            this.lblMa.Name = "lblMa";
+            this.lblMa.Size = new System.Drawing.Size(151, 20);
+            this.lblMa.Text = "toolStripStatusLabel1";
+            // 
             // lblTen
             // 
             this.lblTen.Name = "lblTen";
@@ -142,12 +149,6 @@
             this.lblNhom.Name = "lblNhom";
             this.lblNhom.Size = new System.Drawing.Size(151, 20);
             this.lblNhom.Text = "toolStripStatusLabel1";
-            // 
-            // lblMa
-            // 
-            this.lblMa.Name = "lblMa";
-            this.lblMa.Size = new System.Drawing.Size(151, 20);
-            this.lblMa.Text = "toolStripStatusLabel1";
             // 
             // frmMain
             // 
