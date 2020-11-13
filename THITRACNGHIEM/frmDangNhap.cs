@@ -86,7 +86,6 @@ namespace THITRACNGHIEM
             try
             {
                 Program.servername = cmbCoSo.SelectedValue.ToString();
-
             }
             catch (Exception)
             {
