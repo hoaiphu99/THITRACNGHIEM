@@ -82,6 +82,11 @@ namespace THITRACNGHIEM
 
         private void btnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (Program.mGroup == "TRUONG" || Program.mGroup == "GIAOVIEN")
+            {
+                MessageBox.Show("Bạn không có quyền này!", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
             gcEdit.Enabled = true;
             bdsLop.AddNew();
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
@@ -91,6 +96,8 @@ namespace THITRACNGHIEM
         private void btnHuy_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             bdsLop.RemoveCurrent();
+            this.lOPTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.lOPTableAdapter.Fill(this.dS.LOP);
             gcEdit.Enabled = false;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = true;
             btnGhi.Enabled = btnHuy.Enabled = false;
@@ -136,9 +143,9 @@ namespace THITRACNGHIEM
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             String maLop = "";
-            if (Program.mGroup == "TRUONG")
+            if (Program.mGroup == "TRUONG" || Program.mGroup == "GIAOVIEN")
             {
-                MessageBox.Show("Bạn không được phép xóa!", "Thông báo", MessageBoxButtons.OK);
+                MessageBox.Show("Bạn không có quyền này!", "Thông báo", MessageBoxButtons.OK);
                 return;
             }
             if (MessageBox.Show("Bạn có thật sự muốn xóa lớp này?", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
@@ -164,6 +171,11 @@ namespace THITRACNGHIEM
 
         private void btnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (Program.mGroup == "TRUONG" || Program.mGroup == "GIAOVIEN")
+            {
+                MessageBox.Show("Bạn không có quyền này!", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
             gcEdit.Enabled = true;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
             btnGhi.Enabled = btnHuy.Enabled = true;

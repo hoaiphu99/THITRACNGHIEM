@@ -31,7 +31,7 @@ namespace THITRACNGHIEM
             // TODO: This line of code loads data into the 'dS.KHOA' table. You can move, or remove it, as needed.
             this.kHOATableAdapter.Connection.ConnectionString = Program.connstr;
             this.kHOATableAdapter.Fill(this.dS.KHOA);
-
+            
             BindingSource bdsCoSo = new BindingSource();
             DataTable dt = new DataTable();
             dt = Program.ExecSqlDataTable("SELECT MACS, TENCS FROM COSO");
@@ -82,6 +82,11 @@ namespace THITRACNGHIEM
 
         private void btnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (Program.mGroup == "TRUONG" || Program.mGroup == "GIAOVIEN")
+            {
+                MessageBox.Show("Bạn không có quyền này!", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
             gc2.Enabled = true;
             bdsKhoa.AddNew();
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
@@ -120,6 +125,8 @@ namespace THITRACNGHIEM
         private void btnHuy_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             bdsKhoa.RemoveCurrent();
+            this.kHOATableAdapter.Connection.ConnectionString = Program.connstr;
+            this.kHOATableAdapter.Fill(this.dS.KHOA);
             gc2.Enabled = false;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = true;
             btnGhi.Enabled = btnHuy.Enabled = false;
@@ -159,6 +166,11 @@ namespace THITRACNGHIEM
 
         private void btnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (Program.mGroup == "TRUONG" || Program.mGroup == "GIAOVIEN")
+            {
+                MessageBox.Show("Bạn không có quyền này!", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
             gc2.Enabled = true;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
             btnGhi.Enabled = btnHuy.Enabled = true;

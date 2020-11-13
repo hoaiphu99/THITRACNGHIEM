@@ -88,9 +88,9 @@ namespace THITRACNGHIEM
             return dt;
         }
 
-        public static DS.SINHVIENDataTable ExecSqlDataTable1(String cmd)
+        public static DS.GIAOVIENDataTable ExecSqlDataTable1(String cmd)
         {
-            DS.SINHVIENDataTable dt = new DS.SINHVIENDataTable();
+            DS.GIAOVIENDataTable dt = new DS.GIAOVIENDataTable();
             if (Program.conn.State == ConnectionState.Closed) Program.conn.Open();
             SqlDataAdapter da = new SqlDataAdapter(cmd, conn);
             da.Fill(dt);
