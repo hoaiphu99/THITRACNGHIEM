@@ -71,6 +71,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DS.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DS_DSKHOA.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DS_DSKHOA.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DS_DSPHANMANH.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -81,6 +86,12 @@
     </Compile>
     <Compile Include="frmDangNhap.Designer.cs">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmGiaoVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGiaoVien.Designer.cs">
+      <DependentUpon>frmGiaoVien.cs</DependentUpon>
     </Compile>
     <Compile Include="frmKhoa.cs">
       <SubType>Form</SubType>
@@ -110,6 +121,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmDangNhap.resx">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGiaoVien.resx">
+      <DependentUpon>frmGiaoVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmKhoa.resx">
       <DependentUpon>frmKhoa.cs</DependentUpon>
@@ -144,6 +158,17 @@
     </None>
     <None Include="DS.xss">
       <DependentUpon>DS.xsd</DependentUpon>
+    </None>
+    <None Include="DS_DSKHOA.xsc">
+      <DependentUpon>DS_DSKHOA.xsd</DependentUpon>
+    </None>
+    <None Include="DS_DSKHOA.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DS_DSKHOA.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DS_DSKHOA.xss">
+      <DependentUpon>DS_DSKHOA.xsd</DependentUpon>
     </None>
     <None Include="DS_DSPHANMANH.xsc">
       <DependentUpon>DS_DSPHANMANH.xsd</DependentUpon>

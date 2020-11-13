@@ -70,7 +70,11 @@ namespace THITRACNGHIEM
 
         private void btnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            
+            if (Program.mGroup == "TRUONG" || Program.mGroup == "GIAOVIEN")
+            {
+                MessageBox.Show("Bạn không có quyền này!", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
             vitri = bdsSinhVien.Position;
             groupControl2.Enabled = true;
             bdsSinhVien.AddNew();
@@ -110,8 +114,9 @@ namespace THITRACNGHIEM
 
         private void btnHuy_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            
             bdsSinhVien.RemoveCurrent();
+            this.sINHVIENTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.sINHVIENTableAdapter.Fill(this.dS.SINHVIEN);
             groupControl2.Enabled = false;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = true;
             btnGhi.Enabled = btnPhuchoi.Enabled = btnHuy.Enabled = false;
@@ -171,9 +176,9 @@ namespace THITRACNGHIEM
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             Int32 maSV = 0;
-            if(Program.mGroup == "TRUONG")
+            if (Program.mGroup == "TRUONG" || Program.mGroup == "GIAOVIEN")
             {
-                MessageBox.Show("Bạn không được phép xóa!", "Thông báo", MessageBoxButtons.OK);
+                MessageBox.Show("Bạn không có quyền này!", "Thông báo", MessageBoxButtons.OK);
                 return;
             }
             if (MessageBox.Show("Bạn có thật sự muốn xóa sinh viên này?", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
@@ -199,6 +204,11 @@ namespace THITRACNGHIEM
 
         private void btnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (Program.mGroup == "TRUONG" || Program.mGroup == "GIAOVIEN")
+            {
+                MessageBox.Show("Bạn không có quyền này!", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
             groupControl2.Enabled = true;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
             btnGhi.Enabled = btnPhuchoi.Enabled = btnHuy.Enabled = true;

@@ -79,6 +79,9 @@ namespace THITRACNGHIEM
             Form frmKhoa = this.CheckExists(typeof(frmKhoa));
             if (frmKhoa != null)
                 frmKhoa.Close();
+            Form frmGV = this.CheckExists(typeof(frmGiaoVien));
+            if (frmGV != null)
+                frmGV.Close();
 
             Program.myReader = null;
             Program.username = "";
@@ -124,6 +127,24 @@ namespace THITRACNGHIEM
             else
             {
                 frmKhoa f = new frmKhoa();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        private void btnGiaoVien_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (Program.mHoten.Equals("") || Program.mGroup.Equals(""))
+            {
+                MessageBox.Show("Vui lòng đăng nhập trước!", "Lỗi!", MessageBoxButtons.OK);
+                return;
+            }
+            Form frm = this.CheckExists(typeof(frmGiaoVien));
+            if (frm != null)
+                frm.Activate();
+            else
+            {
+                frmGiaoVien f = new frmGiaoVien();
                 f.MdiParent = this;
                 f.Show();
             }

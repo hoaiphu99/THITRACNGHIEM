@@ -35,6 +35,8 @@
             this.btnLogout = new DevExpress.XtraBars.BarButtonItem();
             this.btnSinhVien = new DevExpress.XtraBars.BarButtonItem();
             this.btnKhoaLop = new DevExpress.XtraBars.BarButtonItem();
+            this.btnKhoa = new DevExpress.XtraBars.BarButtonItem();
+            this.btnGiaoVien = new DevExpress.XtraBars.BarButtonItem();
             this.rbbHeThong = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rbbDanhMuc = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -45,7 +47,6 @@
             this.lblMa = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblTen = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblNhom = new System.Windows.Forms.ToolStripStatusLabel();
-            this.btnKhoa = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             this.sttTrangThai.SuspendLayout();
@@ -61,10 +62,11 @@
             this.btnLogout,
             this.btnSinhVien,
             this.btnKhoaLop,
-            this.btnKhoa});
+            this.btnKhoa,
+            this.btnGiaoVien});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ribbonControl1.MaxItemId = 6;
+            this.ribbonControl1.MaxItemId = 7;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rbbHeThong,
@@ -103,6 +105,22 @@
             this.btnKhoaLop.Name = "btnKhoaLop";
             this.btnKhoaLop.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnKhoaLop_ItemClick);
             // 
+            // btnKhoa
+            // 
+            this.btnKhoa.Caption = "Khoa";
+            this.btnKhoa.Id = 5;
+            this.btnKhoa.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnKhoa.ImageOptions.SvgImage")));
+            this.btnKhoa.Name = "btnKhoa";
+            this.btnKhoa.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnKhoa_ItemClick);
+            // 
+            // btnGiaoVien
+            // 
+            this.btnGiaoVien.Caption = "Giáo viên";
+            this.btnGiaoVien.Id = 6;
+            this.btnGiaoVien.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnGiaoVien.ImageOptions.SvgImage")));
+            this.btnGiaoVien.Name = "btnGiaoVien";
+            this.btnGiaoVien.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnGiaoVien_ItemClick);
+            // 
             // rbbHeThong
             // 
             this.rbbHeThong.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -129,6 +147,7 @@
             this.ribbonPageGroup2.ItemLinks.Add(this.btnSinhVien);
             this.ribbonPageGroup2.ItemLinks.Add(this.btnKhoaLop);
             this.ribbonPageGroup2.ItemLinks.Add(this.btnKhoa);
+            this.ribbonPageGroup2.ItemLinks.Add(this.btnGiaoVien);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             // 
             // ribbonPageGroup3
@@ -169,14 +188,6 @@
             this.lblNhom.Name = "lblNhom";
             this.lblNhom.Size = new System.Drawing.Size(151, 20);
             this.lblNhom.Text = "toolStripStatusLabel1";
-            // 
-            // btnKhoa
-            // 
-            this.btnKhoa.Caption = "Khoa";
-            this.btnKhoa.Id = 5;
-            this.btnKhoa.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
-            this.btnKhoa.Name = "btnKhoa";
-            this.btnKhoa.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnKhoa_ItemClick);
             // 
             // frmMain
             // 
@@ -220,6 +231,7 @@
         private DevExpress.XtraBars.BarButtonItem btnKhoaLop;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
         private DevExpress.XtraBars.BarButtonItem btnKhoa;
+        private DevExpress.XtraBars.BarButtonItem btnGiaoVien;
     }
 }
 
