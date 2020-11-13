@@ -73,6 +73,13 @@ namespace THITRACNGHIEM
             Form frmSV = this.CheckExists(typeof(frmSinhVien));
             if (frmSV != null)
                 frmSV.Close();
+            Form frmLop = this.CheckExists(typeof(frmLop));
+            if (frmLop != null)
+                frmLop.Close();
+            Form frmKhoa = this.CheckExists(typeof(frmKhoa));
+            if (frmKhoa != null)
+                frmKhoa.Close();
+
             Program.myReader = null;
             Program.username = "";
             Program.mlogin = "";
@@ -84,6 +91,42 @@ namespace THITRACNGHIEM
             Program.mCoso = 0;
             MessageBox.Show("Đăng xuất thành công!", "Thông báo", MessageBoxButtons.OK);
             return;
+        }
+
+        private void btnKhoaLop_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (Program.mHoten.Equals("") || Program.mGroup.Equals(""))
+            {
+                MessageBox.Show("Vui lòng đăng nhập trước!", "Lỗi!", MessageBoxButtons.OK);
+                return;
+            }
+            Form frm = this.CheckExists(typeof(frmLop));
+            if (frm != null)
+                frm.Activate();
+            else
+            {
+                frmLop f = new frmLop();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        private void btnKhoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (Program.mHoten.Equals("") || Program.mGroup.Equals(""))
+            {
+                MessageBox.Show("Vui lòng đăng nhập trước!", "Lỗi!", MessageBoxButtons.OK);
+                return;
+            }
+            Form frm = this.CheckExists(typeof(frmKhoa));
+            if (frm != null)
+                frm.Activate();
+            else
+            {
+                frmKhoa f = new frmKhoa();
+                f.MdiParent = this;
+                f.Show();
+            }
         }
     }
 }

@@ -16,7 +16,7 @@ namespace THITRACNGHIEM
         string maCS = "";
         string maLop = "";
         int vitri;
-        BindingSource bdsLop = new BindingSource();
+        
         public frmSinhVien()
         {
             InitializeComponent();
@@ -43,6 +43,7 @@ namespace THITRACNGHIEM
             this.bANGDIEMTableAdapter.Connection.ConnectionString = Program.connstr;
             this.bANGDIEMTableAdapter.Fill(this.dS.BANGDIEM);
 
+            BindingSource bdsLop = new BindingSource();
             DataTable dt = new DataTable();
             dt = Program.ExecSqlDataTable("SELECT MALOP, TENLOP FROM LOP");
             bdsLop.DataSource = dt;
@@ -77,7 +78,7 @@ namespace THITRACNGHIEM
 
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
             btnGhi.Enabled = btnPhuchoi.Enabled = btnHuy.Enabled = true;
-            gcSinhVien.Enabled = false;
+            //gcSinhVien.Enabled = false;
         }
 
         private void cmbCoSo_SelectedIndexChanged(object sender, EventArgs e)
@@ -109,8 +110,8 @@ namespace THITRACNGHIEM
 
         private void btnHuy_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (gcSinhVien.Enabled == false)
-                bdsSinhVien.RemoveCurrent();
+            
+            bdsSinhVien.RemoveCurrent();
             groupControl2.Enabled = false;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = true;
             btnGhi.Enabled = btnPhuchoi.Enabled = btnHuy.Enabled = false;
@@ -149,6 +150,7 @@ namespace THITRACNGHIEM
                 dtpNgaySinh.Focus();
                 return;
             }
+            cmbMaLop.Text = cmbMaLop.SelectedIndex.ToString();
             try
             {
                 bdsSinhVien.EndEdit();
@@ -162,7 +164,7 @@ namespace THITRACNGHIEM
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi ghi nhân viên\n" + ex.Message, "Lỗi", MessageBoxButtons.OK);
+                MessageBox.Show("Lỗi ghi sinh viên\n" + ex.Message, "Lỗi", MessageBoxButtons.OK);
             }
         }
 
@@ -193,6 +195,13 @@ namespace THITRACNGHIEM
             }
             if (bdsSinhVien.Count == 0)
                 btnXoa.Enabled = false;
+        }
+
+        private void btnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            groupControl2.Enabled = true;
+            btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
+            btnGhi.Enabled = btnPhuchoi.Enabled = btnHuy.Enabled = true;
         }
     }
 }
