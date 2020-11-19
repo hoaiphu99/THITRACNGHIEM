@@ -57,7 +57,7 @@ namespace THITRACNGHIEM
                 return 0;
             }
         }
-
+        //trả về data chỉ cho xem, nếu có nhiều dòng chỉ cho đi xuống, dùng cho in báo cáo là hợp lý
         public static SqlDataReader ExecSqlDataReader(String strLenh)
         {
             SqlDataReader myreader;
@@ -77,7 +77,7 @@ namespace THITRACNGHIEM
                 return null;
             }
         }
-
+        //khi muốn tải dữ liệu về rồi sửa rồi update db
         public static DataTable ExecSqlDataTable(String cmd)
         {
             DataTable dt = new DataTable();
@@ -87,15 +87,27 @@ namespace THITRACNGHIEM
             conn.Close();
             return dt;
         }
-
-        public static DS.GIAOVIENDataTable ExecSqlDataTable1(String cmd)
+        //sử dụng để thi hành sp, view, câu lệnh nhưng ko cần data trả về, chỉ cần mã lỗi thôi
+        public static int ExecSqlNonQuery(String strlenh)
         {
-            DS.GIAOVIENDataTable dt = new DS.GIAOVIENDataTable();
-            if (Program.conn.State == ConnectionState.Closed) Program.conn.Open();
-            SqlDataAdapter da = new SqlDataAdapter(cmd, conn);
-            da.Fill(dt);
-            conn.Close();
-            return dt;
+            SqlCommand Sqlcmd = new SqlCommand(strlenh, conn);
+            Sqlcmd.CommandType = CommandType.Text;
+            Sqlcmd.CommandTimeout = 600;// 10 phut 
+            if (conn.State == ConnectionState.Closed) conn.Open();
+            try
+            {
+                Sqlcmd.ExecuteNonQuery(); 
+                conn.Close();
+                return 0;
+            }
+            catch (SqlException ex)
+            {
+                if (ex.Message.Contains("Error converting data type varchar to int"))
+                    MessageBox.Show("Bạn format Cell lại cột \"Ngày Thi\" qua kiểu Number hoặc mở File Excel.");
+                else MessageBox.Show(ex.Message);
+                conn.Close();
+                return ex.State; // trang thai lỗi gởi từ RAISERROR trong SQL Server qua
+            }
         }
 
         [STAThread]
