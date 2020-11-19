@@ -29,6 +29,7 @@ namespace THITRACNGHIEM
         {
             dS.EnforceConstraints = false;
             // TODO: This line of code loads data into the 'dS.GIAOVIEN' table. You can move, or remove it, as needed.
+ 
             this.gIAOVIENTableAdapter.Connection.ConnectionString = Program.connstr;
             this.gIAOVIENTableAdapter.Fill(this.dS.GIAOVIEN);
 
@@ -41,6 +42,7 @@ namespace THITRACNGHIEM
             cmbMaKhoa.ValueMember = "MAKH";
             cmbMaKhoa.SelectedIndex = 0;
 
+
             gc1.Enabled = false;
             btnGhi.Enabled = btnHuy.Enabled = btnPhucHoi.Enabled = false;
         }
@@ -52,6 +54,9 @@ namespace THITRACNGHIEM
                 MessageBox.Show("Bạn không có quyền này!", "Thông báo", MessageBoxButtons.OK);
                 return;
             }
+
+            cmbMaKhoa.SelectedIndex = 0; cmbMaKhoa.SelectedIndex = 1;
+            cmbMaKhoa.Text = cmbMaKhoa.SelectedIndex.ToString();
             gc1.Enabled = true;
             bdsGiaoVien.AddNew();
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
@@ -84,9 +89,10 @@ namespace THITRACNGHIEM
                 txtHo.Focus();
                 return;
             }
-            cmbMaKhoa.Text = cmbMaKhoa.SelectedIndex.ToString();
+            
             try
             {
+                cmbMaKhoa.Text = cmbMaKhoa.SelectedIndex.ToString();
 
                 bdsGiaoVien.EndEdit();
                 bdsGiaoVien.ResetCurrentItem();
@@ -105,16 +111,28 @@ namespace THITRACNGHIEM
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             String maGV = "";
+            String maKH = "";
             if (Program.mGroup == "TRUONG")
             {
                 MessageBox.Show("Bạn không được phép xóa!", "Thông báo", MessageBoxButtons.OK);
                 return;
             }
+            // kiểm tra mã khoa thuộc cơ sở khác
+            //try
+            //{
+                
+
+            //}
+            //catch (Exception ex)
+            //{
+
+            //}
             if (MessageBox.Show("Bạn có thật sự muốn xóa giáo viên này?", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 try
                 {
                     maGV = ((DataRowView)bdsGiaoVien[bdsGiaoVien.Position])["MAGV"].ToString();
+                    
                     bdsGiaoVien.RemoveCurrent();
                     this.gIAOVIENTableAdapter.Connection.ConnectionString = Program.connstr;
                     this.gIAOVIENTableAdapter.Update(this.dS.GIAOVIEN);
@@ -152,5 +170,12 @@ namespace THITRACNGHIEM
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = true;
             btnGhi.Enabled = btnHuy.Enabled = btnPhucHoi.Enabled = false;
         }
+
+        private void cmbMaKhoa_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+       
     }
 }

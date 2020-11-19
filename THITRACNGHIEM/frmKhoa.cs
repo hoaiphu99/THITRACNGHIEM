@@ -125,6 +125,7 @@ namespace THITRACNGHIEM
         private void btnHuy_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             bdsKhoa.RemoveCurrent();
+            //bdsKhoa.CancelEdit();
             this.kHOATableAdapter.Connection.ConnectionString = Program.connstr;
             this.kHOATableAdapter.Fill(this.dS.KHOA);
             gc2.Enabled = false;
