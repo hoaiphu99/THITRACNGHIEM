@@ -82,6 +82,12 @@ namespace THITRACNGHIEM
             Form frmGV = this.CheckExists(typeof(frmGiaoVien));
             if (frmGV != null)
                 frmGV.Close();
+            Form frmMH = this.CheckExists(typeof(frmMonHoc));
+            if (frmMH != null)
+                frmMH.Close();
+            Form frmBD = this.CheckExists(typeof(frmBoDe));
+            if (frmBD != null)
+                frmBD.Close();
 
             Program.myReader = null;
             Program.username = "";
@@ -145,6 +151,42 @@ namespace THITRACNGHIEM
             else
             {
                 frmGiaoVien f = new frmGiaoVien();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        private void btnMonHoc_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (Program.mHoten.Equals("") || Program.mGroup.Equals(""))
+            {
+                MessageBox.Show("Vui lòng đăng nhập trước!", "Lỗi!", MessageBoxButtons.OK);
+                return;
+            }
+            Form frm = this.CheckExists(typeof(frmMonHoc));
+            if (frm != null)
+                frm.Activate();
+            else
+            {
+                frmMonHoc f = new frmMonHoc();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        private void btnBoDe_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (Program.mHoten.Equals("") || Program.mGroup.Equals(""))
+            {
+                MessageBox.Show("Vui lòng đăng nhập trước!", "Lỗi!", MessageBoxButtons.OK);
+                return;
+            }
+            Form frm = this.CheckExists(typeof(frmBoDe));
+            if (frm != null)
+                frm.Activate();
+            else
+            {
+                frmBoDe f = new frmBoDe();
                 f.MdiParent = this;
                 f.Show();
             }
