@@ -29,18 +29,18 @@ namespace THITRACNGHIEM
         private void frmDangNhap_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'dS_DSPHANMANH.v_DS_PHANMANH' table. You can move, or remove it, as needed.
-            this.v_DS_PHANMANHTableAdapter.Fill(this.dS_DSPHANMANH.v_DS_PHANMANH);
-            // TODO: This line of code loads data into the 'dS.COSO' table. You can move, or remove it, as needed.
+            this.v_DS_PHANMANHTableAdapter.Fill(this.dS_DSPHANMANH.V_DS_PHANMANH);
+            /*// TODO: This line of code loads data into the 'dS.COSO' table. You can move, or remove it, as needed.
             this.cOSOTableAdapter.Fill(this.dS.COSO);
-            //cmbCoSo.SelectedIndex = 1; cmbCoSo.SelectedIndex = 0;
+            //cmbCoSo.SelectedIndex = 1; cmbCoSo.SelectedIndex = 0;*/
             string chuoiketnoi = "Data Source=HOAIPHU-PC;Initial Catalog=TN_CSDLPT;Integrated Security=True";
             Program.conn.ConnectionString = chuoiketnoi;
             Program.conn.Open();
             DataTable dt = new DataTable();
-            dt = Program.ExecSqlDataTable("SELECT * FROM v_DS_PHANMANH");
+            dt = Program.ExecSqlDataTable("SELECT * FROM V_DS_PHANMANH");
             Program.bds_dspm.DataSource = dt;
             cmbCoSo.DataSource = dt;
-            cmbCoSo.DisplayMember = "TENCN";
+            cmbCoSo.DisplayMember = "TEN_COSO";
             cmbCoSo.ValueMember = "TEN_SERVER";
             cmbCoSo.SelectedIndex = 0;
         }

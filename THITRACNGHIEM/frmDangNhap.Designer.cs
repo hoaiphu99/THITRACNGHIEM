@@ -36,24 +36,24 @@
             this.tableAdapterManager = new THITRACNGHIEM.DSTableAdapters.TableAdapterManager();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.cmbCoSo = new System.Windows.Forms.ComboBox();
-            this.v_DS_PHANMANHBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dS_DSPHANMANH = new THITRACNGHIEM.DS_DSPHANMANH();
             this.btnDangNhap = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.txtPassword = new DevExpress.XtraEditors.TextEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.txtLogin = new DevExpress.XtraEditors.TextEdit();
-            this.v_DS_PHANMANHTableAdapter = new THITRACNGHIEM.DS_DSPHANMANHTableAdapters.v_DS_PHANMANHTableAdapter();
             this.tableAdapterManager1 = new THITRACNGHIEM.DS_DSPHANMANHTableAdapters.TableAdapterManager();
+            this.dS_DSPHANMANH = new THITRACNGHIEM.DS_DSPHANMANH();
+            this.v_DS_PHANMANHBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.v_DS_PHANMANHTableAdapter = new THITRACNGHIEM.DS_DSPHANMANHTableAdapters.V_DS_PHANMANHTableAdapter();
             tENCNLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cOSOBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.v_DS_PHANMANHBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dS_DSPHANMANH)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLogin.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dS_DSPHANMANH)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.v_DS_PHANMANHBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tENCNLabel
@@ -61,7 +61,7 @@
             tENCNLabel.Anchor = System.Windows.Forms.AnchorStyles.Top;
             tENCNLabel.AutoSize = true;
             tENCNLabel.Font = new System.Drawing.Font("Times New Roman", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            tENCNLabel.Location = new System.Drawing.Point(204, 150);
+            tENCNLabel.Location = new System.Drawing.Point(313, 150);
             tENCNLabel.Name = "tENCNLabel";
             tENCNLabel.Size = new System.Drawing.Size(56, 21);
             tENCNLabel.TabIndex = 13;
@@ -108,38 +108,27 @@
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl1.Location = new System.Drawing.Point(0, 0);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(714, 412);
+            this.groupControl1.Size = new System.Drawing.Size(932, 563);
             this.groupControl1.TabIndex = 0;
             // 
             // cmbCoSo
             // 
             this.cmbCoSo.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.cmbCoSo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.v_DS_PHANMANHBindingSource, "TENCN", true));
             this.cmbCoSo.DataSource = this.v_DS_PHANMANHBindingSource;
-            this.cmbCoSo.DisplayMember = "TENCN";
+            this.cmbCoSo.DisplayMember = "TEN_COSO";
             this.cmbCoSo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCoSo.FormattingEnabled = true;
-            this.cmbCoSo.Location = new System.Drawing.Point(297, 147);
+            this.cmbCoSo.Location = new System.Drawing.Point(406, 147);
             this.cmbCoSo.Name = "cmbCoSo";
             this.cmbCoSo.Size = new System.Drawing.Size(156, 24);
             this.cmbCoSo.TabIndex = 14;
             this.cmbCoSo.ValueMember = "TEN_SERVER";
             this.cmbCoSo.SelectedIndexChanged += new System.EventHandler(this.cmbCoSo_SelectedIndexChanged_1);
             // 
-            // v_DS_PHANMANHBindingSource
-            // 
-            this.v_DS_PHANMANHBindingSource.DataMember = "v_DS_PHANMANH";
-            this.v_DS_PHANMANHBindingSource.DataSource = this.dS_DSPHANMANH;
-            // 
-            // dS_DSPHANMANH
-            // 
-            this.dS_DSPHANMANH.DataSetName = "DS_DSPHANMANH";
-            this.dS_DSPHANMANH.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // btnDangNhap
             // 
             this.btnDangNhap.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnDangNhap.Location = new System.Drawing.Point(328, 237);
+            this.btnDangNhap.Location = new System.Drawing.Point(437, 237);
             this.btnDangNhap.Name = "btnDangNhap";
             this.btnDangNhap.Size = new System.Drawing.Size(94, 29);
             this.btnDangNhap.TabIndex = 13;
@@ -151,7 +140,7 @@
             this.labelControl2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Times New Roman", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(208, 207);
+            this.labelControl2.Location = new System.Drawing.Point(317, 207);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(70, 20);
             this.labelControl2.TabIndex = 12;
@@ -160,7 +149,7 @@
             // txtPassword
             // 
             this.txtPassword.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtPassword.Location = new System.Drawing.Point(297, 208);
+            this.txtPassword.Location = new System.Drawing.Point(406, 208);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Properties.UseSystemPasswordChar = true;
@@ -172,7 +161,7 @@
             this.labelControl1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Times New Roman", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(208, 177);
+            this.labelControl1.Location = new System.Drawing.Point(317, 177);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(41, 20);
             this.labelControl1.TabIndex = 10;
@@ -181,15 +170,11 @@
             // txtLogin
             // 
             this.txtLogin.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtLogin.Location = new System.Drawing.Point(297, 178);
+            this.txtLogin.Location = new System.Drawing.Point(406, 178);
             this.txtLogin.Margin = new System.Windows.Forms.Padding(4);
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Size = new System.Drawing.Size(156, 22);
             this.txtLogin.TabIndex = 9;
-            // 
-            // v_DS_PHANMANHTableAdapter
-            // 
-            this.v_DS_PHANMANHTableAdapter.ClearBeforeFill = true;
             // 
             // tableAdapterManager1
             // 
@@ -197,11 +182,25 @@
             this.tableAdapterManager1.Connection = null;
             this.tableAdapterManager1.UpdateOrder = THITRACNGHIEM.DS_DSPHANMANHTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
+            // dS_DSPHANMANH
+            // 
+            this.dS_DSPHANMANH.DataSetName = "DS_DSPHANMANH";
+            this.dS_DSPHANMANH.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // v_DS_PHANMANHBindingSource
+            // 
+            this.v_DS_PHANMANHBindingSource.DataMember = "V_DS_PHANMANH";
+            this.v_DS_PHANMANHBindingSource.DataSource = this.dS_DSPHANMANH;
+            // 
+            // v_DS_PHANMANHTableAdapter
+            // 
+            this.v_DS_PHANMANHTableAdapter.ClearBeforeFill = true;
+            // 
             // frmDangNhap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(714, 412);
+            this.ClientSize = new System.Drawing.Size(932, 563);
             this.Controls.Add(this.groupControl1);
             this.Font = new System.Drawing.Font("Times New Roman", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -214,10 +213,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.v_DS_PHANMANHBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dS_DSPHANMANH)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLogin.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dS_DSPHANMANH)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.v_DS_PHANMANHBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -233,10 +232,10 @@
         private DevExpress.XtraEditors.TextEdit txtPassword;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.TextEdit txtLogin;
-        private DS_DSPHANMANH dS_DSPHANMANH;
-        private System.Windows.Forms.BindingSource v_DS_PHANMANHBindingSource;
-        private DS_DSPHANMANHTableAdapters.v_DS_PHANMANHTableAdapter v_DS_PHANMANHTableAdapter;
         private DS_DSPHANMANHTableAdapters.TableAdapterManager tableAdapterManager1;
         private System.Windows.Forms.ComboBox cmbCoSo;
+        private DS_DSPHANMANH dS_DSPHANMANH;
+        private System.Windows.Forms.BindingSource v_DS_PHANMANHBindingSource;
+        private DS_DSPHANMANHTableAdapters.V_DS_PHANMANHTableAdapter v_DS_PHANMANHTableAdapter;
     }
 }

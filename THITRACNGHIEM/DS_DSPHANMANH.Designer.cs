@@ -24,7 +24,7 @@ namespace THITRACNGHIEM {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class DS_DSPHANMANH : global::System.Data.DataSet {
         
-        private v_DS_PHANMANHDataTable tablev_DS_PHANMANH;
+        private V_DS_PHANMANHDataTable tableV_DS_PHANMANH;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -54,8 +54,8 @@ namespace THITRACNGHIEM {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["v_DS_PHANMANH"] != null)) {
-                    base.Tables.Add(new v_DS_PHANMANHDataTable(ds.Tables["v_DS_PHANMANH"]));
+                if ((ds.Tables["V_DS_PHANMANH"] != null)) {
+                    base.Tables.Add(new V_DS_PHANMANHDataTable(ds.Tables["V_DS_PHANMANH"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace THITRACNGHIEM {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public v_DS_PHANMANHDataTable v_DS_PHANMANH {
+        public V_DS_PHANMANHDataTable V_DS_PHANMANH {
             get {
-                return this.tablev_DS_PHANMANH;
+                return this.tableV_DS_PHANMANH;
             }
         }
         
@@ -152,8 +152,8 @@ namespace THITRACNGHIEM {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["v_DS_PHANMANH"] != null)) {
-                    base.Tables.Add(new v_DS_PHANMANHDataTable(ds.Tables["v_DS_PHANMANH"]));
+                if ((ds.Tables["V_DS_PHANMANH"] != null)) {
+                    base.Tables.Add(new V_DS_PHANMANHDataTable(ds.Tables["V_DS_PHANMANH"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace THITRACNGHIEM {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tablev_DS_PHANMANH = ((v_DS_PHANMANHDataTable)(base.Tables["v_DS_PHANMANH"]));
+            this.tableV_DS_PHANMANH = ((V_DS_PHANMANHDataTable)(base.Tables["V_DS_PHANMANH"]));
             if ((initTable == true)) {
-                if ((this.tablev_DS_PHANMANH != null)) {
-                    this.tablev_DS_PHANMANH.InitVars();
+                if ((this.tableV_DS_PHANMANH != null)) {
+                    this.tableV_DS_PHANMANH.InitVars();
                 }
             }
         }
@@ -204,13 +204,13 @@ namespace THITRACNGHIEM {
             this.Namespace = "http://tempuri.org/DS_DSPHANMANH.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tablev_DS_PHANMANH = new v_DS_PHANMANHDataTable();
-            base.Tables.Add(this.tablev_DS_PHANMANH);
+            this.tableV_DS_PHANMANH = new V_DS_PHANMANHDataTable();
+            base.Tables.Add(this.tableV_DS_PHANMANH);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private bool ShouldSerializev_DS_PHANMANH() {
+        private bool ShouldSerializeV_DS_PHANMANH() {
             return false;
         }
         
@@ -270,23 +270,23 @@ namespace THITRACNGHIEM {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public delegate void v_DS_PHANMANHRowChangeEventHandler(object sender, v_DS_PHANMANHRowChangeEvent e);
+        public delegate void V_DS_PHANMANHRowChangeEventHandler(object sender, V_DS_PHANMANHRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class v_DS_PHANMANHDataTable : global::System.Data.TypedTableBase<v_DS_PHANMANHRow> {
+        public partial class V_DS_PHANMANHDataTable : global::System.Data.TypedTableBase<V_DS_PHANMANHRow> {
             
-            private global::System.Data.DataColumn columnTENCN;
+            private global::System.Data.DataColumn columnTEN_COSO;
             
             private global::System.Data.DataColumn columnTEN_SERVER;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public v_DS_PHANMANHDataTable() {
-                this.TableName = "v_DS_PHANMANH";
+            public V_DS_PHANMANHDataTable() {
+                this.TableName = "V_DS_PHANMANH";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -294,7 +294,7 @@ namespace THITRACNGHIEM {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal v_DS_PHANMANHDataTable(global::System.Data.DataTable table) {
+            internal V_DS_PHANMANHDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -311,16 +311,16 @@ namespace THITRACNGHIEM {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected v_DS_PHANMANHDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected V_DS_PHANMANHDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn TENCNColumn {
+            public global::System.Data.DataColumn TEN_COSOColumn {
                 get {
-                    return this.columnTENCN;
+                    return this.columnTEN_COSO;
                 }
             }
             
@@ -343,46 +343,46 @@ namespace THITRACNGHIEM {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public v_DS_PHANMANHRow this[int index] {
+            public V_DS_PHANMANHRow this[int index] {
                 get {
-                    return ((v_DS_PHANMANHRow)(this.Rows[index]));
+                    return ((V_DS_PHANMANHRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event v_DS_PHANMANHRowChangeEventHandler v_DS_PHANMANHRowChanging;
+            public event V_DS_PHANMANHRowChangeEventHandler V_DS_PHANMANHRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event v_DS_PHANMANHRowChangeEventHandler v_DS_PHANMANHRowChanged;
+            public event V_DS_PHANMANHRowChangeEventHandler V_DS_PHANMANHRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event v_DS_PHANMANHRowChangeEventHandler v_DS_PHANMANHRowDeleting;
+            public event V_DS_PHANMANHRowChangeEventHandler V_DS_PHANMANHRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event v_DS_PHANMANHRowChangeEventHandler v_DS_PHANMANHRowDeleted;
+            public event V_DS_PHANMANHRowChangeEventHandler V_DS_PHANMANHRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void Addv_DS_PHANMANHRow(v_DS_PHANMANHRow row) {
+            public void AddV_DS_PHANMANHRow(V_DS_PHANMANHRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public v_DS_PHANMANHRow Addv_DS_PHANMANHRow(string TENCN, string TEN_SERVER) {
-                v_DS_PHANMANHRow rowv_DS_PHANMANHRow = ((v_DS_PHANMANHRow)(this.NewRow()));
+            public V_DS_PHANMANHRow AddV_DS_PHANMANHRow(string TEN_COSO, string TEN_SERVER) {
+                V_DS_PHANMANHRow rowV_DS_PHANMANHRow = ((V_DS_PHANMANHRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        TENCN,
+                        TEN_COSO,
                         TEN_SERVER};
-                rowv_DS_PHANMANHRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowv_DS_PHANMANHRow);
-                return rowv_DS_PHANMANHRow;
+                rowV_DS_PHANMANHRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowV_DS_PHANMANHRow);
+                return rowV_DS_PHANMANHRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                v_DS_PHANMANHDataTable cln = ((v_DS_PHANMANHDataTable)(base.Clone()));
+                V_DS_PHANMANHDataTable cln = ((V_DS_PHANMANHDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -390,51 +390,51 @@ namespace THITRACNGHIEM {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new v_DS_PHANMANHDataTable();
+                return new V_DS_PHANMANHDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             internal void InitVars() {
-                this.columnTENCN = base.Columns["TENCN"];
+                this.columnTEN_COSO = base.Columns["TEN_COSO"];
                 this.columnTEN_SERVER = base.Columns["TEN_SERVER"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             private void InitClass() {
-                this.columnTENCN = new global::System.Data.DataColumn("TENCN", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTENCN);
+                this.columnTEN_COSO = new global::System.Data.DataColumn("TEN_COSO", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTEN_COSO);
                 this.columnTEN_SERVER = new global::System.Data.DataColumn("TEN_SERVER", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTEN_SERVER);
-                this.columnTENCN.MaxLength = 255;
+                this.columnTEN_COSO.MaxLength = 255;
                 this.columnTEN_SERVER.MaxLength = 128;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public v_DS_PHANMANHRow Newv_DS_PHANMANHRow() {
-                return ((v_DS_PHANMANHRow)(this.NewRow()));
+            public V_DS_PHANMANHRow NewV_DS_PHANMANHRow() {
+                return ((V_DS_PHANMANHRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new v_DS_PHANMANHRow(builder);
+                return new V_DS_PHANMANHRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(v_DS_PHANMANHRow);
+                return typeof(V_DS_PHANMANHRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.v_DS_PHANMANHRowChanged != null)) {
-                    this.v_DS_PHANMANHRowChanged(this, new v_DS_PHANMANHRowChangeEvent(((v_DS_PHANMANHRow)(e.Row)), e.Action));
+                if ((this.V_DS_PHANMANHRowChanged != null)) {
+                    this.V_DS_PHANMANHRowChanged(this, new V_DS_PHANMANHRowChangeEvent(((V_DS_PHANMANHRow)(e.Row)), e.Action));
                 }
             }
             
@@ -442,8 +442,8 @@ namespace THITRACNGHIEM {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.v_DS_PHANMANHRowChanging != null)) {
-                    this.v_DS_PHANMANHRowChanging(this, new v_DS_PHANMANHRowChangeEvent(((v_DS_PHANMANHRow)(e.Row)), e.Action));
+                if ((this.V_DS_PHANMANHRowChanging != null)) {
+                    this.V_DS_PHANMANHRowChanging(this, new V_DS_PHANMANHRowChangeEvent(((V_DS_PHANMANHRow)(e.Row)), e.Action));
                 }
             }
             
@@ -451,8 +451,8 @@ namespace THITRACNGHIEM {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.v_DS_PHANMANHRowDeleted != null)) {
-                    this.v_DS_PHANMANHRowDeleted(this, new v_DS_PHANMANHRowChangeEvent(((v_DS_PHANMANHRow)(e.Row)), e.Action));
+                if ((this.V_DS_PHANMANHRowDeleted != null)) {
+                    this.V_DS_PHANMANHRowDeleted(this, new V_DS_PHANMANHRowChangeEvent(((V_DS_PHANMANHRow)(e.Row)), e.Action));
                 }
             }
             
@@ -460,14 +460,14 @@ namespace THITRACNGHIEM {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.v_DS_PHANMANHRowDeleting != null)) {
-                    this.v_DS_PHANMANHRowDeleting(this, new v_DS_PHANMANHRowChangeEvent(((v_DS_PHANMANHRow)(e.Row)), e.Action));
+                if ((this.V_DS_PHANMANHRowDeleting != null)) {
+                    this.V_DS_PHANMANHRowDeleting(this, new V_DS_PHANMANHRowChangeEvent(((V_DS_PHANMANHRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void Removev_DS_PHANMANHRow(v_DS_PHANMANHRow row) {
+            public void RemoveV_DS_PHANMANHRow(V_DS_PHANMANHRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -494,7 +494,7 @@ namespace THITRACNGHIEM {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "v_DS_PHANMANHDataTable";
+                attribute2.FixedValue = "V_DS_PHANMANHDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -538,30 +538,30 @@ namespace THITRACNGHIEM {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class v_DS_PHANMANHRow : global::System.Data.DataRow {
+        public partial class V_DS_PHANMANHRow : global::System.Data.DataRow {
             
-            private v_DS_PHANMANHDataTable tablev_DS_PHANMANH;
+            private V_DS_PHANMANHDataTable tableV_DS_PHANMANH;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal v_DS_PHANMANHRow(global::System.Data.DataRowBuilder rb) : 
+            internal V_DS_PHANMANHRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tablev_DS_PHANMANH = ((v_DS_PHANMANHDataTable)(this.Table));
+                this.tableV_DS_PHANMANH = ((V_DS_PHANMANHDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string TENCN {
+            public string TEN_COSO {
                 get {
                     try {
-                        return ((string)(this[this.tablev_DS_PHANMANH.TENCNColumn]));
+                        return ((string)(this[this.tableV_DS_PHANMANH.TEN_COSOColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TENCN\' in table \'v_DS_PHANMANH\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'TEN_COSO\' in table \'V_DS_PHANMANH\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablev_DS_PHANMANH.TENCNColumn] = value;
+                    this[this.tableV_DS_PHANMANH.TEN_COSOColumn] = value;
                 }
             }
             
@@ -570,39 +570,39 @@ namespace THITRACNGHIEM {
             public string TEN_SERVER {
                 get {
                     try {
-                        return ((string)(this[this.tablev_DS_PHANMANH.TEN_SERVERColumn]));
+                        return ((string)(this[this.tableV_DS_PHANMANH.TEN_SERVERColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TEN_SERVER\' in table \'v_DS_PHANMANH\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'TEN_SERVER\' in table \'V_DS_PHANMANH\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablev_DS_PHANMANH.TEN_SERVERColumn] = value;
+                    this[this.tableV_DS_PHANMANH.TEN_SERVERColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsTENCNNull() {
-                return this.IsNull(this.tablev_DS_PHANMANH.TENCNColumn);
+            public bool IsTEN_COSONull() {
+                return this.IsNull(this.tableV_DS_PHANMANH.TEN_COSOColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetTENCNNull() {
-                this[this.tablev_DS_PHANMANH.TENCNColumn] = global::System.Convert.DBNull;
+            public void SetTEN_COSONull() {
+                this[this.tableV_DS_PHANMANH.TEN_COSOColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsTEN_SERVERNull() {
-                return this.IsNull(this.tablev_DS_PHANMANH.TEN_SERVERColumn);
+                return this.IsNull(this.tableV_DS_PHANMANH.TEN_SERVERColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetTEN_SERVERNull() {
-                this[this.tablev_DS_PHANMANH.TEN_SERVERColumn] = global::System.Convert.DBNull;
+                this[this.tableV_DS_PHANMANH.TEN_SERVERColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -610,22 +610,22 @@ namespace THITRACNGHIEM {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public class v_DS_PHANMANHRowChangeEvent : global::System.EventArgs {
+        public class V_DS_PHANMANHRowChangeEvent : global::System.EventArgs {
             
-            private v_DS_PHANMANHRow eventRow;
+            private V_DS_PHANMANHRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public v_DS_PHANMANHRowChangeEvent(v_DS_PHANMANHRow row, global::System.Data.DataRowAction action) {
+            public V_DS_PHANMANHRowChangeEvent(V_DS_PHANMANHRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public v_DS_PHANMANHRow Row {
+            public V_DS_PHANMANHRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -653,7 +653,7 @@ namespace THITRACNGHIEM.DS_DSPHANMANHTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class v_DS_PHANMANHTableAdapter : global::System.ComponentModel.Component {
+    public partial class V_DS_PHANMANHTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -667,7 +667,7 @@ namespace THITRACNGHIEM.DS_DSPHANMANHTableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public v_DS_PHANMANHTableAdapter() {
+        public V_DS_PHANMANHTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -764,8 +764,8 @@ namespace THITRACNGHIEM.DS_DSPHANMANHTableAdapters {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "v_DS_PHANMANH";
-            tableMapping.ColumnMappings.Add("TENCN", "TENCN");
+            tableMapping.DataSetTable = "V_DS_PHANMANH";
+            tableMapping.ColumnMappings.Add("TEN_COSO", "TEN_COSO");
             tableMapping.ColumnMappings.Add("TEN_SERVER", "TEN_SERVER");
             this._adapter.TableMappings.Add(tableMapping);
         }
@@ -774,7 +774,7 @@ namespace THITRACNGHIEM.DS_DSPHANMANHTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = "Data Source=HOAIPHU-PC;Initial Catalog=TN_CSDLPT;Integrated Security=True";
+            this._connection.ConnectionString = global::THITRACNGHIEM.Properties.Settings.Default.TN_CSDLPTConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -783,7 +783,7 @@ namespace THITRACNGHIEM.DS_DSPHANMANHTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT TENCN, TEN_SERVER FROM dbo.v_DS_PHANMANH";
+            this._commandCollection[0].CommandText = "SELECT TEN_COSO, TEN_SERVER FROM dbo.V_DS_PHANMANH";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -791,7 +791,7 @@ namespace THITRACNGHIEM.DS_DSPHANMANHTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(DS_DSPHANMANH.v_DS_PHANMANHDataTable dataTable) {
+        public virtual int Fill(DS_DSPHANMANH.V_DS_PHANMANHDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -804,9 +804,9 @@ namespace THITRACNGHIEM.DS_DSPHANMANHTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual DS_DSPHANMANH.v_DS_PHANMANHDataTable GetData() {
+        public virtual DS_DSPHANMANH.V_DS_PHANMANHDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            DS_DSPHANMANH.v_DS_PHANMANHDataTable dataTable = new DS_DSPHANMANH.v_DS_PHANMANHDataTable();
+            DS_DSPHANMANH.V_DS_PHANMANHDataTable dataTable = new DS_DSPHANMANH.V_DS_PHANMANHDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

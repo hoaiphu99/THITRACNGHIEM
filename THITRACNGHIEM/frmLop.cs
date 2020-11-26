@@ -42,7 +42,7 @@ namespace THITRACNGHIEM
             cmbMaKhoa.SelectedIndex = 0;
 
             cmbCoSo.DataSource = Program.bds_dspm;
-            cmbCoSo.DisplayMember = "TENCN";
+            cmbCoSo.DisplayMember = "TEN_COSO";
             cmbCoSo.ValueMember = "TEN_SERVER";
             cmbCoSo.SelectedIndex = Program.mCoso;
             if (Program.mGroup == "TRUONG")

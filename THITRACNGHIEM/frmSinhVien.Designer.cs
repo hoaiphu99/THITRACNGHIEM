@@ -37,6 +37,7 @@
             System.Windows.Forms.Label mALOPLabel;
             System.Windows.Forms.Label mACSLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSinhVien));
+            System.Windows.Forms.Label mALOPLabel1;
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.bar2 = new DevExpress.XtraBars.Bar();
@@ -67,13 +68,15 @@
             this.colDIACHI = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMALOP = new DevExpress.XtraGrid.Columns.GridColumn();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
-            this.cmbMaLop = new System.Windows.Forms.ComboBox();
             this.txtDiaChi = new DevExpress.XtraEditors.TextEdit();
             this.dtpNgaySinh = new DevExpress.XtraEditors.DateEdit();
             this.txtTen = new DevExpress.XtraEditors.TextEdit();
             this.txtHo = new DevExpress.XtraEditors.TextEdit();
             this.txtMaSV = new DevExpress.XtraEditors.TextEdit();
             this.bdsBangDiem = new System.Windows.Forms.BindingSource(this.components);
+            this.cmbMaLop = new System.Windows.Forms.ComboBox();
+            this.txtMaLop = new DevExpress.XtraEditors.TextEdit();
+            this.fKBANGDIEMSINHVIEN1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             mASVLabel = new System.Windows.Forms.Label();
             hOLabel = new System.Windows.Forms.Label();
             tENLabel = new System.Windows.Forms.Label();
@@ -81,6 +84,7 @@
             dIACHILabel = new System.Windows.Forms.Label();
             mALOPLabel = new System.Windows.Forms.Label();
             mACSLabel = new System.Windows.Forms.Label();
+            mALOPLabel1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
@@ -97,6 +101,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtHo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaSV.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsBangDiem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMaLop.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fKBANGDIEMSINHVIEN1BindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // mASVLabel
@@ -309,6 +315,8 @@
             // 
             // groupControl1
             // 
+            this.groupControl1.Controls.Add(mALOPLabel1);
+            this.groupControl1.Controls.Add(this.cmbMaLop);
             this.groupControl1.Controls.Add(this.cmbCoSo);
             this.groupControl1.Controls.Add(mACSLabel);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -453,7 +461,7 @@
             // 
             // groupControl2
             // 
-            this.groupControl2.Controls.Add(this.cmbMaLop);
+            this.groupControl2.Controls.Add(this.txtMaLop);
             this.groupControl2.Controls.Add(mALOPLabel);
             this.groupControl2.Controls.Add(dIACHILabel);
             this.groupControl2.Controls.Add(this.txtDiaChi);
@@ -470,17 +478,6 @@
             this.groupControl2.Name = "groupControl2";
             this.groupControl2.Size = new System.Drawing.Size(1198, 346);
             this.groupControl2.TabIndex = 16;
-            // 
-            // cmbMaLop
-            // 
-            this.cmbMaLop.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsSinhVien, "MALOP", true));
-            this.cmbMaLop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbMaLop.FormattingEnabled = true;
-            this.cmbMaLop.Location = new System.Drawing.Point(409, 177);
-            this.cmbMaLop.Name = "cmbMaLop";
-            this.cmbMaLop.Size = new System.Drawing.Size(121, 24);
-            this.cmbMaLop.TabIndex = 14;
-            this.cmbMaLop.SelectedIndexChanged += new System.EventHandler(this.cmbMaLop_SelectedIndexChanged);
             // 
             // txtDiaChi
             // 
@@ -537,6 +534,41 @@
             this.bdsBangDiem.DataMember = "FK_BANGDIEM_SINHVIEN1";
             this.bdsBangDiem.DataSource = this.bdsSinhVien;
             // 
+            // mALOPLabel1
+            // 
+            mALOPLabel1.AutoSize = true;
+            mALOPLabel1.Location = new System.Drawing.Point(216, 51);
+            mALOPLabel1.Name = "mALOPLabel1";
+            mALOPLabel1.Size = new System.Drawing.Size(47, 17);
+            mALOPLabel1.TabIndex = 15;
+            mALOPLabel1.Text = "Mã lớp";
+            // 
+            // cmbMaLop
+            // 
+            this.cmbMaLop.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsSinhVien, "MALOP", true));
+            this.cmbMaLop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMaLop.FormattingEnabled = true;
+            this.cmbMaLop.Location = new System.Drawing.Point(278, 48);
+            this.cmbMaLop.Name = "cmbMaLop";
+            this.cmbMaLop.Size = new System.Drawing.Size(121, 24);
+            this.cmbMaLop.TabIndex = 16;
+            this.cmbMaLop.SelectedIndexChanged += new System.EventHandler(this.cmbMaLop_SelectedIndexChanged);
+            // 
+            // txtMaLop
+            // 
+            this.txtMaLop.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsSinhVien, "MALOP", true));
+            this.txtMaLop.Location = new System.Drawing.Point(409, 177);
+            this.txtMaLop.MenuManager = this.barManager1;
+            this.txtMaLop.Name = "txtMaLop";
+            this.txtMaLop.Properties.ReadOnly = true;
+            this.txtMaLop.Size = new System.Drawing.Size(125, 22);
+            this.txtMaLop.TabIndex = 12;
+            // 
+            // fKBANGDIEMSINHVIEN1BindingSource
+            // 
+            this.fKBANGDIEMSINHVIEN1BindingSource.DataMember = "FK_BANGDIEM_SINHVIEN1";
+            this.fKBANGDIEMSINHVIEN1BindingSource.DataSource = this.bdsSinhVien;
+            // 
             // frmSinhVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
@@ -573,6 +605,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtHo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaSV.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsBangDiem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMaLop.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fKBANGDIEMSINHVIEN1BindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -615,7 +649,9 @@
         private DevExpress.XtraBars.BarButtonItem btnPhuchoi;
         private DevExpress.XtraBars.BarButtonItem btnXoa;
         private DevExpress.XtraBars.BarButtonItem btnHuy;
-        private System.Windows.Forms.ComboBox cmbMaLop;
         private System.Windows.Forms.ComboBox cmbCoSo;
+        private System.Windows.Forms.ComboBox cmbMaLop;
+        private DevExpress.XtraEditors.TextEdit txtMaLop;
+        private System.Windows.Forms.BindingSource fKBANGDIEMSINHVIEN1BindingSource;
     }
 }

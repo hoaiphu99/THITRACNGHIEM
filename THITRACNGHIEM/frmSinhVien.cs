@@ -16,7 +16,7 @@ namespace THITRACNGHIEM
         private string maCS = "";
         private string maLop = "";
         private int vitri;
-
+        DataTable dt = new DataTable();
         private PhucHoi phucHoi = new PhucHoi();
         private Boolean isDangThem = false, isDangSua = false;
 
@@ -46,18 +46,16 @@ namespace THITRACNGHIEM
             this.bANGDIEMTableAdapter.Connection.ConnectionString = Program.connstr;
             this.bANGDIEMTableAdapter.Fill(this.dS.BANGDIEM);
 
-            BindingSource bdsLop = new BindingSource();
-            DataTable dt = new DataTable();
             dt = Program.ExecSqlDataTable("SELECT MALOP, TENLOP FROM LOP");
-            bdsLop.DataSource = dt;
-            cmbMaLop.DataSource = bdsLop;
-            cmbMaLop.DisplayMember = "MALOP";
+            cmbMaLop.DataSource = dt;
+            cmbMaLop.DisplayMember = "TENLOP";
             cmbMaLop.ValueMember = "MALOP";
             cmbMaLop.SelectedIndex = 0;
 
-
+            this.bdsSinhVien.Filter = "MALOP = '" + cmbMaLop.SelectedValue.ToString() + "'";
+            
             cmbCoSo.DataSource = Program.bds_dspm;
-            cmbCoSo.DisplayMember = "TENCN";
+            cmbCoSo.DisplayMember = "TEN_COSO";
             cmbCoSo.ValueMember = "TEN_SERVER";
             cmbCoSo.SelectedIndex = Program.mCoso;
             if (Program.mGroup == "TRUONG")
@@ -108,11 +106,18 @@ namespace THITRACNGHIEM
                 MessageBox.Show("Lỗi kết nối tới cơ sở mới!", "Lỗi", MessageBoxButtons.OK);
             else
             {
-
+               
                 this.sINHVIENTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.sINHVIENTableAdapter.Fill(this.dS.SINHVIEN);
 
-                
+                dt = Program.ExecSqlDataTable("SELECT MALOP, TENLOP FROM LOP");
+                cmbMaLop.DataSource = dt;
+                cmbMaLop.DisplayMember = "TENLOP";
+                cmbMaLop.ValueMember = "MALOP";
+                cmbMaLop.SelectedIndex = 0;
+
+                this.bdsSinhVien.Filter = "MALOP = '" + cmbMaLop.SelectedValue.ToString() + "'";
+
             }
         }
 
@@ -130,7 +135,7 @@ namespace THITRACNGHIEM
         private void cmbMaLop_SelectedIndexChanged(object sender, EventArgs e)
         {
             maLop = cmbMaLop.SelectedValue.ToString();
-            
+            this.bdsSinhVien.Filter = "MALOP = '" + cmbMaLop.SelectedValue.ToString() + "'";
         }
 
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -159,7 +164,7 @@ namespace THITRACNGHIEM
                 dtpNgaySinh.Focus();
                 return;
             }
-            cmbMaLop.Text = cmbMaLop.SelectedIndex.ToString();
+            txtMaLop.Text = maLop;
             try
             {
                 if (isDangThem)

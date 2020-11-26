@@ -38,6 +38,7 @@
             this.btnKhoa = new DevExpress.XtraBars.BarButtonItem();
             this.btnGiaoVien = new DevExpress.XtraBars.BarButtonItem();
             this.btnMonHoc = new DevExpress.XtraBars.BarButtonItem();
+            this.btnBoDe = new DevExpress.XtraBars.BarButtonItem();
             this.rbbHeThong = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rbbDanhMuc = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -48,7 +49,6 @@
             this.lblMa = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblTen = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblNhom = new System.Windows.Forms.ToolStripStatusLabel();
-            this.btnBoDe = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             this.sttTrangThai.SuspendLayout();
@@ -133,6 +133,14 @@
             this.btnMonHoc.Name = "btnMonHoc";
             this.btnMonHoc.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnMonHoc_ItemClick);
             // 
+            // btnBoDe
+            // 
+            this.btnBoDe.Caption = "Bộ đề";
+            this.btnBoDe.Id = 8;
+            this.btnBoDe.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnBoDe.ImageOptions.SvgImage")));
+            this.btnBoDe.Name = "btnBoDe";
+            this.btnBoDe.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnBoDe_ItemClick);
+            // 
             // rbbHeThong
             // 
             this.rbbHeThong.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -202,14 +210,6 @@
             this.lblNhom.Name = "lblNhom";
             this.lblNhom.Size = new System.Drawing.Size(151, 20);
             this.lblNhom.Text = "toolStripStatusLabel1";
-            // 
-            // btnBoDe
-            // 
-            this.btnBoDe.Caption = "Bộ đề";
-            this.btnBoDe.Id = 8;
-            this.btnBoDe.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
-            this.btnBoDe.Name = "btnBoDe";
-            this.btnBoDe.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnBoDe_ItemClick);
             // 
             // frmMain
             // 

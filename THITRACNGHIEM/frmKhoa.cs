@@ -12,6 +12,7 @@ namespace THITRACNGHIEM
 {
     public partial class frmKhoa : Form
     {
+        BindingSource bdsCoSo = new BindingSource();
         public frmKhoa()
         {
             InitializeComponent();
@@ -32,17 +33,14 @@ namespace THITRACNGHIEM
             this.kHOATableAdapter.Connection.ConnectionString = Program.connstr;
             this.kHOATableAdapter.Fill(this.dS.KHOA);
             
-            BindingSource bdsCoSo = new BindingSource();
+            
             DataTable dt = new DataTable();
             dt = Program.ExecSqlDataTable("SELECT MACS, TENCS FROM COSO");
             bdsCoSo.DataSource = dt;
-            cmbMaCS.DataSource = bdsCoSo;
-            cmbMaCS.DisplayMember = "MACS";
-            cmbMaCS.ValueMember = "MACS";
-            cmbMaCS.SelectedIndex = 0;
+            txtMaCS.Text = ((DataRowView)bdsCoSo[bdsCoSo.Position])["MACS"].ToString();
 
             cmbCoSo.DataSource = Program.bds_dspm;
-            cmbCoSo.DisplayMember = "TENCN";
+            cmbCoSo.DisplayMember = "TEN_COSO";
             cmbCoSo.ValueMember = "TEN_SERVER";
             cmbCoSo.SelectedIndex = Program.mCoso;
             if (Program.mGroup == "TRUONG")
@@ -147,7 +145,7 @@ namespace THITRACNGHIEM
                 txtTenKH.Focus();
                 return;
             }
-            cmbMaCS.Text = cmbMaCS.SelectedIndex.ToString();
+            txtMaCS.Text = ((DataRowView)bdsCoSo[bdsCoSo.Position])["MACS"].ToString();
             try
             {
 

@@ -31,7 +31,7 @@ namespace THITRACNGHIEM
         public static String mGroup = "";
         public static String mHoten = "";
         public static int mCoso = 0;
-        public static String mTenCS = "";
+        public static String mMaCS = "";
         public static Form frmMain1 = null;
 
         public static BindingSource bds_dspm = new BindingSource();  // giữ bdsPM khi đăng nhập

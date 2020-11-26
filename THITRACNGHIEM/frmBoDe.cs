@@ -257,9 +257,9 @@ namespace THITRACNGHIEM
                 bds_BoDe.EndEdit();
                 bds_BoDe.ResetCurrentItem(); //chọn item vừa thêm là vị trí hiện tại đang trỏ tới
                 //this.mONHOCTableAdapter.Update(this.dS.MONHOC);
-                Program.ExecSqlNonQuery("SET IDENTITY_INSERT dbo.BODE ON");
+                //Program.ExecSqlNonQuery("SET IDENTITY_INSERT dbo.BODE ON");
                 this.bODETableAdapter.Update(this.dS.BODE);
-
+                this.bODETableAdapter.Fill(this.dS.BODE);
                 gc_BoDe.Enabled = true;
                 groupBox1.Enabled = false;
                 btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnPhucHoi.Enabled = true;

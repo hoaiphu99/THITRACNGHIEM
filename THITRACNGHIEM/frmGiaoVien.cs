@@ -55,7 +55,7 @@ namespace THITRACNGHIEM
                 return;
             }
 
-            cmbMaKhoa.SelectedIndex = 0; cmbMaKhoa.SelectedIndex = 1;
+            //cmbMaKhoa.SelectedIndex = 0; cmbMaKhoa.SelectedIndex = 1;
             cmbMaKhoa.Text = cmbMaKhoa.SelectedIndex.ToString();
             gc1.Enabled = true;
             bdsGiaoVien.AddNew();
