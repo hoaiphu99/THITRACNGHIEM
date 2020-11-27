@@ -111,7 +111,7 @@
             // 
             // btnKhoa
             // 
-            this.btnKhoa.Caption = "Khoa";
+            this.btnKhoa.Caption = "Khoa, Lớp";
             this.btnKhoa.Id = 5;
             this.btnKhoa.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnKhoa.ImageOptions.SvgImage")));
             this.btnKhoa.Name = "btnKhoa";
@@ -165,7 +165,6 @@
             // ribbonPageGroup2
             // 
             this.ribbonPageGroup2.ItemLinks.Add(this.btnSinhVien);
-            this.ribbonPageGroup2.ItemLinks.Add(this.btnKhoaLop);
             this.ribbonPageGroup2.ItemLinks.Add(this.btnKhoa);
             this.ribbonPageGroup2.ItemLinks.Add(this.btnGiaoVien);
             this.ribbonPageGroup2.ItemLinks.Add(this.btnMonHoc);
