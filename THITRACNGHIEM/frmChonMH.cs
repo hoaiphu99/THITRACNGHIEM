@@ -32,7 +32,6 @@ namespace THITRACNGHIEM
             this.mONHOCTableAdapter.Connection.ConnectionString = Program.connstr;
             this.mONHOCTableAdapter.Fill(this.dS.MONHOC);
 
-
         }
 
         private void gvMonHoc_Click(object sender, EventArgs e)
@@ -52,6 +51,7 @@ namespace THITRACNGHIEM
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
+            frmChuanBiThi.maMH = "";
             this.Close();
         }
     }

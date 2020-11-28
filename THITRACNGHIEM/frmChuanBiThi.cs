@@ -64,12 +64,14 @@ namespace THITRACNGHIEM
 
         private void btnChonMH_Click(object sender, EventArgs e)
         {
+            txtMaMH.Text = "";
             frmChonMH f = new frmChonMH();
             f.Show();
         }
 
         private void btnChonLop_Click(object sender, EventArgs e)
         {
+            txtMaLop.Text = "";
             frmChonLop f = new frmChonLop();
             f.Show();
         }
@@ -83,6 +85,8 @@ namespace THITRACNGHIEM
             }
             vitri = bdsGV_DK.Position;
             bdsGV_DK.AddNew();
+            txtMaGV.Text = Program.username;
+            
             txtMaMH.Focus();
             dptNgayThi.EditValue = "";
 
@@ -135,7 +139,12 @@ namespace THITRACNGHIEM
                 spinThoiGian.Focus();
                 return;
             }
-
+            string sql = "EXEC SP_CHUANBITHI '" + txtMaMH.Text.Trim() + "', '" + cmbTrinhDo.Text.Trim() + "', '" + spinSoCau.Text.Trim() + "'";
+            int ketQua = Program.ExecSqlNonQuery(sql);
+            if(ketQua == 1)
+            {
+                return;
+            }
             try
             {
                 bdsGV_DK.EndEdit();
@@ -209,9 +218,9 @@ namespace THITRACNGHIEM
             this.gIAOVIEN_DANGKYTableAdapter.Connection.ConnectionString = Program.connstr;
             this.gIAOVIEN_DANGKYTableAdapter.Fill(this.dS.GIAOVIEN_DANGKY);
 
-            grcInFor.Enabled = true;
-            btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
-            btnGhi.Enabled = btnHuy.Enabled = true;
+            grcInFor.Enabled = false;
+            btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = true;
+            btnGhi.Enabled = btnHuy.Enabled = false;
         }
 
         private void cmbCoSo_SelectedIndexChanged(object sender, EventArgs e)
@@ -238,6 +247,19 @@ namespace THITRACNGHIEM
                 this.gIAOVIEN_DANGKYTableAdapter.Fill(this.dS.GIAOVIEN_DANGKY);
                 cmbTrinhDo.SelectedIndex = 0;
             }
+        }
+
+        private void txtMaMH_Click(object sender, EventArgs e)
+        {
+            if (txtMaMH.Text == "")
+                txtMaMH.Text = maMH;
+            
+        }
+
+        private void txtMaLop_Click(object sender, EventArgs e)
+        {
+            if (txtMaLop.Text == "")
+                txtMaLop.Text = maLop;
         }
     }
 }

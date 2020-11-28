@@ -51,6 +51,7 @@ namespace THITRACNGHIEM
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
+            frmChuanBiThi.maLop = "";
             this.Close();
         }
     }

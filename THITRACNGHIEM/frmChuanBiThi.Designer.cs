@@ -626,6 +626,7 @@
             this.txtMaLop.Name = "txtMaLop";
             this.txtMaLop.Size = new System.Drawing.Size(125, 22);
             this.txtMaLop.TabIndex = 5;
+            this.txtMaLop.Click += new System.EventHandler(this.txtMaLop_Click);
             // 
             // txtMaMH
             // 
@@ -636,6 +637,7 @@
             this.txtMaMH.Name = "txtMaMH";
             this.txtMaMH.Size = new System.Drawing.Size(125, 22);
             this.txtMaMH.TabIndex = 3;
+            this.txtMaMH.Click += new System.EventHandler(this.txtMaMH_Click);
             // 
             // txtMaGV
             // 
