@@ -49,6 +49,7 @@
             this.lblMa = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblTen = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblNhom = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnCBThi = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             this.sttTrangThai.SuspendLayout();
@@ -67,10 +68,11 @@
             this.btnKhoa,
             this.btnGiaoVien,
             this.btnMonHoc,
-            this.btnBoDe});
+            this.btnBoDe,
+            this.btnCBThi});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ribbonControl1.MaxItemId = 9;
+            this.ribbonControl1.MaxItemId = 10;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rbbHeThong,
@@ -173,6 +175,7 @@
             // 
             // ribbonPageGroup3
             // 
+            this.ribbonPageGroup3.ItemLinks.Add(this.btnCBThi);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
             // 
             // xtraTabbedMdiManager1
@@ -209,6 +212,13 @@
             this.lblNhom.Name = "lblNhom";
             this.lblNhom.Size = new System.Drawing.Size(151, 20);
             this.lblNhom.Text = "toolStripStatusLabel1";
+            // 
+            // btnCBThi
+            // 
+            this.btnCBThi.Caption = "Lập lịch thi";
+            this.btnCBThi.Id = 9;
+            this.btnCBThi.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
+            this.btnCBThi.Name = "btnCBThi";
             // 
             // frmMain
             // 
@@ -255,6 +265,7 @@
         private DevExpress.XtraBars.BarButtonItem btnGiaoVien;
         private DevExpress.XtraBars.BarButtonItem btnMonHoc;
         private DevExpress.XtraBars.BarButtonItem btnBoDe;
+        private DevExpress.XtraBars.BarButtonItem btnCBThi;
     }
 }
 

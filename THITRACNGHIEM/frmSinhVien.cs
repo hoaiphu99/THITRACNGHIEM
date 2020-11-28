@@ -52,7 +52,8 @@ namespace THITRACNGHIEM
             cmbMaLop.ValueMember = "MALOP";
             cmbMaLop.SelectedIndex = 0;
 
-            this.bdsSinhVien.Filter = "MALOP = '" + cmbMaLop.SelectedValue.ToString() + "'";
+            maLop = cmbMaLop.SelectedValue.ToString().Trim();
+            this.bdsSinhVien.Filter = "MALOP = '" + maLop + "'";
             
             cmbCoSo.DataSource = Program.bds_dspm;
             cmbCoSo.DisplayMember = "TEN_COSO";
@@ -116,7 +117,8 @@ namespace THITRACNGHIEM
                 cmbMaLop.ValueMember = "MALOP";
                 cmbMaLop.SelectedIndex = 0;
 
-                this.bdsSinhVien.Filter = "MALOP = '" + cmbMaLop.SelectedValue.ToString() + "'";
+                maLop = cmbMaLop.SelectedValue.ToString().Trim();
+                this.bdsSinhVien.Filter = "MALOP = '" + maLop + "'";
 
             }
         }
@@ -134,8 +136,8 @@ namespace THITRACNGHIEM
 
         private void cmbMaLop_SelectedIndexChanged(object sender, EventArgs e)
         {
-            maLop = cmbMaLop.SelectedValue.ToString();
-            this.bdsSinhVien.Filter = "MALOP = '" + cmbMaLop.SelectedValue.ToString() + "'";
+            maLop = cmbMaLop.SelectedValue.ToString().Trim();
+            this.bdsSinhVien.Filter = "MALOP = '" + maLop + "'";
         }
 
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -212,7 +214,7 @@ namespace THITRACNGHIEM
                 {
                     try
                     {
-                        phucHoi.PushStack_XoaSV(txtMaSV.Text, txtHo.Text, txtTen.Text, dtpNgaySinh.Text, txtDiaChi.Text, cmbMaLop.SelectedIndex.ToString());
+                        phucHoi.PushStack_XoaSV(txtMaSV.Text, txtHo.Text, txtTen.Text, dtpNgaySinh.Text, txtDiaChi.Text, maLop);
                         maSV = int.Parse(((DataRowView)bdsSinhVien[bdsSinhVien.Position])["MASV"].ToString());
                         bdsSinhVien.RemoveCurrent();
                         this.sINHVIENTableAdapter.Connection.ConnectionString = Program.connstr;

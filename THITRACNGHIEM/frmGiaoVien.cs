@@ -12,6 +12,8 @@ namespace THITRACNGHIEM
 {
     public partial class frmGiaoVien : Form
     {
+        DataTable dt = new DataTable();
+        string maKH = "";
         public frmGiaoVien()
         {
             InitializeComponent();
@@ -27,24 +29,37 @@ namespace THITRACNGHIEM
 
         private void frmGiaoVien_Load(object sender, EventArgs e)
         {
+            
             dS.EnforceConstraints = false;
+
             // TODO: This line of code loads data into the 'dS.GIAOVIEN' table. You can move, or remove it, as needed.
- 
             this.gIAOVIENTableAdapter.Connection.ConnectionString = Program.connstr;
             this.gIAOVIENTableAdapter.Fill(this.dS.GIAOVIEN);
-
-            BindingSource bdsKhoa = new BindingSource();
-            DataTable dt = new DataTable();
-            dt = Program.ExecSqlDataTable("SELECT MAKH FROM KHOA");
-            bdsKhoa.DataSource = dt;
-            cmbMaKhoa.DataSource = bdsKhoa;
-            cmbMaKhoa.DisplayMember = "MAKH";
+            
+            
+            dt = Program.ExecSqlDataTable("SELECT MAKH, TENKH FROM KHOA");
+            cmbMaKhoa.DataSource = dt;
+            cmbMaKhoa.DisplayMember = "TENKH";
             cmbMaKhoa.ValueMember = "MAKH";
             cmbMaKhoa.SelectedIndex = 0;
 
+            maKH = cmbMaKhoa.SelectedValue.ToString().Trim();
+            this.bdsGiaoVien.Filter = "MAKH = '" + maKH + "'";
 
+
+            cmbCoSo.DataSource = Program.bds_dspm;
+            cmbCoSo.DisplayMember = "TEN_COSO";
+            cmbCoSo.ValueMember = "TEN_SERVER";
+            cmbCoSo.SelectedIndex = Program.mCoso;
+
+            if (Program.mGroup == "TRUONG")
+                cmbCoSo.Enabled = true;
+            else
+                cmbCoSo.Enabled = false;
             gc1.Enabled = false;
             btnGhi.Enabled = btnHuy.Enabled = btnPhucHoi.Enabled = false;
+            if (bdsGiaoVien.Count == 0)
+                btnXoa.Enabled = false;
         }
 
         private void btnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -89,11 +104,9 @@ namespace THITRACNGHIEM
                 txtHo.Focus();
                 return;
             }
-            
+            txtMaKH.Text = maKH;
             try
             {
-                cmbMaKhoa.Text = cmbMaKhoa.SelectedIndex.ToString();
-
                 bdsGiaoVien.EndEdit();
                 bdsGiaoVien.ResetCurrentItem();
                 this.gIAOVIENTableAdapter.Update(this.dS.GIAOVIEN);
@@ -117,16 +130,6 @@ namespace THITRACNGHIEM
                 MessageBox.Show("Bạn không được phép xóa!", "Thông báo", MessageBoxButtons.OK);
                 return;
             }
-            // kiểm tra mã khoa thuộc cơ sở khác
-            //try
-            //{
-                
-
-            //}
-            //catch (Exception ex)
-            //{
-
-            //}
             if (MessageBox.Show("Bạn có thật sự muốn xóa giáo viên này?", "Xác nhận", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 try
@@ -173,9 +176,52 @@ namespace THITRACNGHIEM
 
         private void cmbMaKhoa_SelectedIndexChanged(object sender, EventArgs e)
         {
+            maKH = cmbMaKhoa.SelectedValue.ToString().Trim();
+            this.bdsGiaoVien.Filter = "MAKH = '" + maKH + "'";
+
+            btnXoa.Enabled = false;
+            if (bdsGiaoVien.Count != 0)
+                btnXoa.Enabled = true;
+        }
+
+        private void gcGiaoVien_Click(object sender, EventArgs e)
+        {
 
         }
 
-       
+        private void cmbCoSo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbCoSo.SelectedValue.ToString() == "System.Data.DataRowView")
+                return;
+            Program.servername = cmbCoSo.SelectedValue.ToString();
+            if (cmbCoSo.SelectedIndex != Program.mCoso)
+            {
+                Program.mlogin = Program.remotelogin;
+                Program.password = Program.remotepassword;
+            }
+            else
+            {
+                Program.mlogin = Program.mloginDN;
+                Program.password = Program.passwordDN;
+            }
+            if (Program.KetNoi() == 0)
+                MessageBox.Show("Lỗi kết nối tới cơ sở mới!", "Lỗi", MessageBoxButtons.OK);
+            else
+            {
+
+                this.gIAOVIENTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.gIAOVIENTableAdapter.Fill(this.dS.GIAOVIEN);
+
+                dt = Program.ExecSqlDataTable("SELECT MAKH, TENKH FROM KHOA");
+                cmbMaKhoa.DataSource = dt;
+                cmbMaKhoa.DisplayMember = "TENKH";
+                cmbMaKhoa.ValueMember = "MAKH";
+                cmbMaKhoa.SelectedIndex = 0;
+
+                maKH = cmbMaKhoa.SelectedValue.ToString().Trim();
+                this.bdsGiaoVien.Filter = "MAKH = '" + maKH + "'";
+
+            }
+        }
     }
 }
