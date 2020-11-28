@@ -82,6 +82,24 @@
     <Compile Include="frmBoDe.designer.cs">
       <DependentUpon>frmBoDe.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmChonLop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmChonLop.Designer.cs">
+      <DependentUpon>frmChonLop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmChonMH.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmChonMH.Designer.cs">
+      <DependentUpon>frmChonMH.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmChuanBiThi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmChuanBiThi.Designer.cs">
+      <DependentUpon>frmChuanBiThi.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDangNhap.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +147,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmBoDe.resx">
       <DependentUpon>frmBoDe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmChonLop.resx">
+      <DependentUpon>frmChonLop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmChonMH.resx">
+      <DependentUpon>frmChonMH.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmChuanBiThi.resx">
+      <DependentUpon>frmChuanBiThi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDangNhap.resx">
       <DependentUpon>frmDangNhap.cs</DependentUpon>

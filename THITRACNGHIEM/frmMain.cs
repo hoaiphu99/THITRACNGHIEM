@@ -88,6 +88,9 @@ namespace THITRACNGHIEM
             Form frmBD = this.CheckExists(typeof(frmBoDe));
             if (frmBD != null)
                 frmBD.Close();
+            Form frmCBThi = this.CheckExists(typeof(frmChuanBiThi));
+            if (frmCBThi != null)
+                frmCBThi.Close();
 
             Program.myReader = null;
             Program.username = "";
@@ -187,6 +190,24 @@ namespace THITRACNGHIEM
             else
             {
                 frmBoDe f = new frmBoDe();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        private void btnCBThi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (Program.mHoten.Equals("") || Program.mGroup.Equals(""))
+            {
+                MessageBox.Show("Vui lòng đăng nhập trước!", "Lỗi!", MessageBoxButtons.OK);
+                return;
+            }
+            Form frm = this.CheckExists(typeof(frmChuanBiThi));
+            if (frm != null)
+                frm.Activate();
+            else
+            {
+                frmChuanBiThi f = new frmChuanBiThi();
                 f.MdiParent = this;
                 f.Show();
             }

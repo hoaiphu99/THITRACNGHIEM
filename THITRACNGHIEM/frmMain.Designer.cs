@@ -39,6 +39,7 @@
             this.btnGiaoVien = new DevExpress.XtraBars.BarButtonItem();
             this.btnMonHoc = new DevExpress.XtraBars.BarButtonItem();
             this.btnBoDe = new DevExpress.XtraBars.BarButtonItem();
+            this.btnCBThi = new DevExpress.XtraBars.BarButtonItem();
             this.rbbHeThong = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rbbDanhMuc = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -49,7 +50,6 @@
             this.lblMa = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblTen = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblNhom = new System.Windows.Forms.ToolStripStatusLabel();
-            this.btnCBThi = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             this.sttTrangThai.SuspendLayout();
@@ -143,6 +143,14 @@
             this.btnBoDe.Name = "btnBoDe";
             this.btnBoDe.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnBoDe_ItemClick);
             // 
+            // btnCBThi
+            // 
+            this.btnCBThi.Caption = "Lập lịch thi";
+            this.btnCBThi.Id = 9;
+            this.btnCBThi.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnCBThi.ImageOptions.SvgImage")));
+            this.btnCBThi.Name = "btnCBThi";
+            this.btnCBThi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCBThi_ItemClick);
+            // 
             // rbbHeThong
             // 
             this.rbbHeThong.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -212,13 +220,6 @@
             this.lblNhom.Name = "lblNhom";
             this.lblNhom.Size = new System.Drawing.Size(151, 20);
             this.lblNhom.Text = "toolStripStatusLabel1";
-            // 
-            // btnCBThi
-            // 
-            this.btnCBThi.Caption = "Lập lịch thi";
-            this.btnCBThi.Id = 9;
-            this.btnCBThi.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
-            this.btnCBThi.Name = "btnCBThi";
             // 
             // frmMain
             // 
