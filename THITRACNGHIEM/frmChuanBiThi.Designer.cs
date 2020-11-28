@@ -643,6 +643,7 @@
             this.txtMaGV.Location = new System.Drawing.Point(97, 48);
             this.txtMaGV.MenuManager = this.barManager1;
             this.txtMaGV.Name = "txtMaGV";
+            this.txtMaGV.Properties.ReadOnly = true;
             this.txtMaGV.Size = new System.Drawing.Size(125, 22);
             this.txtMaGV.TabIndex = 1;
             // 
