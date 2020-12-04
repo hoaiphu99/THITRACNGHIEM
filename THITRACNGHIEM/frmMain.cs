@@ -40,9 +40,13 @@ namespace THITRACNGHIEM
 
         public void hienThiMenu()
         {
-            lblMa.Text = "Mã GV: " + Program.username;
-            lblTen.Text = "Tên GV: " + Program.mHoten;
+            lblMa.Text = "Mã: " + Program.username;
+            lblTen.Text = "Tên: " + Program.mHoten;
             lblNhom.Text = "Nhóm: " + Program.mGroup;
+            if (Program.isSinhVien)
+            {
+                rbbDanhMuc.Visible = false;
+            }
         }
 
         private void btnSinhVien_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -208,6 +212,42 @@ namespace THITRACNGHIEM
             else
             {
                 frmChuanBiThi f = new frmChuanBiThi();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        private void btnThongTinSV_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (Program.mHoten.Equals("") || Program.mGroup.Equals(""))
+            {
+                MessageBox.Show("Vui lòng đăng nhập trước!", "Lỗi!", MessageBoxButtons.OK);
+                return;
+            }
+            Form frm = this.CheckExists(typeof(frmThongTinSV));
+            if (frm != null)
+                frm.Activate();
+            else
+            {
+                frmThongTinSV f = new frmThongTinSV();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        private void btnChonMonThi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (Program.mHoten.Equals("") || Program.mGroup.Equals(""))
+            {
+                MessageBox.Show("Vui lòng đăng nhập trước!", "Lỗi!", MessageBoxButtons.OK);
+                return;
+            }
+            Form frm = this.CheckExists(typeof(frmChonMonThi));
+            if (frm != null)
+                frm.Activate();
+            else
+            {
+                frmChonMonThi f = new frmChonMonThi();
                 f.MdiParent = this;
                 f.Show();
             }

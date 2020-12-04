@@ -40,11 +40,16 @@
             this.btnMonHoc = new DevExpress.XtraBars.BarButtonItem();
             this.btnBoDe = new DevExpress.XtraBars.BarButtonItem();
             this.btnCBThi = new DevExpress.XtraBars.BarButtonItem();
+            this.btnThongTinSV = new DevExpress.XtraBars.BarButtonItem();
+            this.btnChonMonThi = new DevExpress.XtraBars.BarButtonItem();
             this.rbbHeThong = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rbbDanhMuc = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rbbThi = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
             this.sttTrangThai = new System.Windows.Forms.StatusStrip();
             this.lblMa = new System.Windows.Forms.ToolStripStatusLabel();
@@ -69,14 +74,17 @@
             this.btnGiaoVien,
             this.btnMonHoc,
             this.btnBoDe,
-            this.btnCBThi});
+            this.btnCBThi,
+            this.btnThongTinSV,
+            this.btnChonMonThi});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
             this.ribbonControl1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.ribbonControl1.MaxItemId = 10;
+            this.ribbonControl1.MaxItemId = 12;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rbbHeThong,
-            this.rbbDanhMuc});
+            this.rbbDanhMuc,
+            this.rbbThi});
             this.ribbonControl1.Size = new System.Drawing.Size(1294, 193);
             // 
             // btnLogin
@@ -151,6 +159,22 @@
             this.btnCBThi.Name = "btnCBThi";
             this.btnCBThi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnCBThi_ItemClick);
             // 
+            // btnThongTinSV
+            // 
+            this.btnThongTinSV.Caption = "Thông tin sinh viên";
+            this.btnThongTinSV.Id = 10;
+            this.btnThongTinSV.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnThongTinSV.ImageOptions.SvgImage")));
+            this.btnThongTinSV.Name = "btnThongTinSV";
+            this.btnThongTinSV.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThongTinSV_ItemClick);
+            // 
+            // btnChonMonThi
+            // 
+            this.btnChonMonThi.Caption = "Chọn môn thi";
+            this.btnChonMonThi.Id = 11;
+            this.btnChonMonThi.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnChonMonThi.ImageOptions.SvgImage")));
+            this.btnChonMonThi.Name = "btnChonMonThi";
+            this.btnChonMonThi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnChonMonThi_ItemClick);
+            // 
             // rbbHeThong
             // 
             this.rbbHeThong.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -185,6 +209,24 @@
             // 
             this.ribbonPageGroup3.ItemLinks.Add(this.btnCBThi);
             this.ribbonPageGroup3.Name = "ribbonPageGroup3";
+            // 
+            // rbbThi
+            // 
+            this.rbbThi.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPageGroup4,
+            this.ribbonPageGroup5});
+            this.rbbThi.Name = "rbbThi";
+            this.rbbThi.Text = "Thi";
+            // 
+            // ribbonPageGroup4
+            // 
+            this.ribbonPageGroup4.ItemLinks.Add(this.btnThongTinSV);
+            this.ribbonPageGroup4.Name = "ribbonPageGroup4";
+            // 
+            // ribbonPageGroup5
+            // 
+            this.ribbonPageGroup5.ItemLinks.Add(this.btnChonMonThi);
+            this.ribbonPageGroup5.Name = "ribbonPageGroup5";
             // 
             // xtraTabbedMdiManager1
             // 
@@ -267,6 +309,11 @@
         private DevExpress.XtraBars.BarButtonItem btnMonHoc;
         private DevExpress.XtraBars.BarButtonItem btnBoDe;
         private DevExpress.XtraBars.BarButtonItem btnCBThi;
+        private DevExpress.XtraBars.BarButtonItem btnThongTinSV;
+        private DevExpress.XtraBars.BarButtonItem btnChonMonThi;
+        private DevExpress.XtraBars.Ribbon.RibbonPage rbbThi;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
     }
 }
 

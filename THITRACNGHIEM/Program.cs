@@ -33,6 +33,14 @@ namespace THITRACNGHIEM
         public static int mCoso = 0;
         public static String mMaCS = "";
         public static Form frmMain1 = null;
+        public static string maMH;
+        public static string trinhDo;
+        public static string soCau;
+
+        public static bool isSinhVien;
+        public static string maLopSV;
+        public static string ngaySinhSV;
+        public static string diaChiSV;
 
         public static BindingSource bds_dspm = new BindingSource();  // giữ bdsPM khi đăng nhập
         //public static frmMain frmChinh;

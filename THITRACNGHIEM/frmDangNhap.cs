@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace THITRACNGHIEM
 {
@@ -43,41 +44,86 @@ namespace THITRACNGHIEM
             cmbCoSo.DisplayMember = "TEN_COSO";
             cmbCoSo.ValueMember = "TEN_SERVER";
             cmbCoSo.SelectedIndex = 0;
+            rdbGV.Checked = true;
+
         }
 
         private void btnDangNhap_Click_1(object sender, EventArgs e)
         {
-            if (txtLogin.Text.Trim() == "" || txtPassword.Text.Trim() == "")
+            if (txtLogin.Text.Trim() == "" || (txtPassword.Text.Trim() == "" && rdbGV.Checked))
             {
                 MessageBox.Show("Login name và mật mã không được trống", "", MessageBoxButtons.OK);
                 return;
             }
-            Program.mlogin = txtLogin.Text; 
-            Program.password = txtPassword.Text;
-            if (Program.KetNoi() == 0) return;
-
-            Program.mCoso = cmbCoSo.SelectedIndex;
-
-            Program.mloginDN = Program.mlogin;
-            Program.passwordDN = Program.password;
-            string strLenh = "EXEC SP_THONGTINDANGNHAP '" + Program.mlogin + "'";
-
-            Program.myReader = Program.ExecSqlDataReader(strLenh);
-            if (Program.myReader == null) return;
-            Program.myReader.Read();
-
-            Program.username = Program.myReader.GetString(0);     // Lay user name
-            if (Convert.IsDBNull(Program.username))
+            if (rdbGV.Checked)
             {
-                MessageBox.Show("Login bạn nhập không có quyền truy cập dữ liệu\n Bạn xem lại username, password", "", MessageBoxButtons.OK);
-                return;
+                Program.mlogin = txtLogin.Text;
+                Program.password = txtPassword.Text;
+                if (Program.KetNoi() == 0) return;
+
+                Program.mCoso = cmbCoSo.SelectedIndex;
+
+                Program.mloginDN = Program.mlogin;
+                Program.passwordDN = Program.password;
+                string strLenh = "EXEC SP_THONGTINDANGNHAP '" + Program.mlogin + "'";
+                Program.myReader = Program.ExecSqlDataReader(strLenh);
+                if (Program.myReader == null) return;
+                Program.myReader.Read();
+                Program.username = Program.myReader.GetString(0);     // Lay user name
+                Program.mHoten = Program.myReader.GetString(1);
+                Program.mGroup = Program.myReader.GetString(2);
+
+                if (Convert.IsDBNull(Program.username))
+                {
+                    MessageBox.Show("Login bạn nhập không có quyền truy cập dữ liệu\n Bạn xem lại username, password", "", MessageBoxButtons.OK);
+                    return;
+                }
+
+                Program.myReader.Close();
+                Program.conn.Close();
             }
-            Program.mHoten = Program.myReader.GetString(1);
-            Program.mGroup = Program.myReader.GetString(2);
-            Program.myReader.Close();
-            Program.conn.Close();
+            else if (rdbSV.Checked)
+            {
+                txtPassword.Enabled = false;
+                Program.mlogin = "SV";
+                Program.password = "123";
+                if (Program.KetNoi() == 0) return;
+
+                Program.mCoso = cmbCoSo.SelectedIndex;
+
+                Program.mloginDN = Program.mlogin;
+                Program.passwordDN = Program.password;
+
+                string strLenh = "EXEC SP_THONGTINDANGNHAP '" + Program.mlogin + "'";
+                Program.myReader = Program.ExecSqlDataReader(strLenh);
+                if (Program.myReader == null) return;
+                Program.myReader.Read();
+                Program.mGroup = Program.myReader.GetString(2);
+
+                Program.myReader.Close();
+                Program.conn.Close();
+
+                DataTable dt = new DataTable();
+                string sql = "EXEC SP_TIMSV '" + txtLogin.Text.Trim() + "'";
+                dt = Program.ExecSqlDataTable(sql);
+                BindingSource bds = new BindingSource();
+                bds.DataSource = dt;
+                if(bds.Count == 0)
+                {
+                    MessageBox.Show("Sai mã sinh viên, kiểm tra lại!", "Thông báo", MessageBoxButtons.OK);
+                    return;
+                }
+                Program.username = ((DataRowView)bds[0])["MASV"].ToString().Trim();
+                Program.mHoten = ((DataRowView)bds[0])["HO"].ToString().Trim() + " " + ((DataRowView)bds[0])["TEN"].ToString().Trim(); ;
+                
+                Program.maLopSV = ((DataRowView)bds[0])["MALOP"].ToString().Trim();
+                Program.ngaySinhSV = ((DataRowView)bds[0])["NGAYSINH"].ToString().Trim();
+                Program.diaChiSV = ((DataRowView)bds[0])["DIACHI"].ToString().Trim();
+            }
+            
+            
             //Program.frmMain.MANV.Text = "";
-            MessageBox.Show("Nhân viên - Nhóm : " + Program.mHoten + " - " + Program.mGroup, "", MessageBoxButtons.OK);
+            MessageBox.Show("Họ tên - Nhóm : " + Program.mHoten + " - " + Program.mGroup, "", MessageBoxButtons.OK);
             f.hienThiMenu();
         }
 
@@ -90,6 +136,18 @@ namespace THITRACNGHIEM
             catch (Exception)
             {
             };
+        }
+
+        private void rdbSV_CheckedChanged(object sender, EventArgs e)
+        {
+            Program.isSinhVien = true;
+            txtPassword.Enabled = false;
+        }
+
+        private void rdbGV_CheckedChanged(object sender, EventArgs e)
+        {
+            Program.isSinhVien = false;
+            txtPassword.Enabled = true;
         }
     }
 }
