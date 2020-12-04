@@ -33,10 +33,16 @@ namespace THITRACNGHIEM
         public static int mCoso = 0;
         public static String mMaCS = "";
         public static Form frmMain1 = null;
+
+        // luu thong tin thi
         public static string maMH;
         public static string trinhDo;
         public static string soCau;
+        public static int thoiGian;
+        public static int lanThi;
+        public static string ngayThi;
 
+        // luu thong tin SV
         public static bool isSinhVien;
         public static string maLopSV;
         public static string ngaySinhSV;

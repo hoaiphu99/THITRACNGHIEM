@@ -285,7 +285,7 @@
             // 
             // colTHOIGIAN
             // 
-            this.colTHOIGIAN.Caption = "Thời gian";
+            this.colTHOIGIAN.Caption = "Thời gian (phút)";
             this.colTHOIGIAN.FieldName = "THOIGIAN";
             this.colTHOIGIAN.MinWidth = 25;
             this.colTHOIGIAN.Name = "colTHOIGIAN";

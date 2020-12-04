@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient;
 
 namespace THITRACNGHIEM
 {
@@ -17,13 +18,30 @@ namespace THITRACNGHIEM
         
         Dictionary<int, CauHoi> deThi = new Dictionary<int, CauHoi>();
         BindingSource bdsDethi;
-        
+
+        int phut;
+        int giay;
+        double diem = 0.0;
+        double diemMoiCau = 0.0;
+
         public frmThi()
         {
             InitializeComponent();
-            string sql = "EXEC SP_THI '" + Program.maMH + "', '" + Program.trinhDo + "', " + Program.soCau + "";
+
+            setThoiGian();
+
             DataTable dt = new DataTable();
-            dt = Program.ExecSqlDataTable(sql);
+            try
+            {
+                string sql = "EXEC SP_THI '" + Program.maMH + "', '" + Program.trinhDo + "', " + Program.soCau + "";
+                
+                dt = Program.ExecSqlDataTable(sql);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("" + e.Message, "Lỗi", MessageBoxButtons.OK);
+                return;
+            }
             bdsDethi = new BindingSource();
             bdsDethi.DataSource = dt;
             for(int i = 1; i <= bdsDethi.Count; i++)
@@ -32,6 +50,8 @@ namespace THITRACNGHIEM
                 deThi.Add(i, LayCauHoiTuBDS(i - 1));
             }
             rdbCauHoi.SelectedIndex = 0;
+            diemMoiCau = 10.0 / Double.Parse(Program.soCau);
+            timer.Start();
         }
 
         private void rdbDapAn_SelectedIndexChanged(object sender, EventArgs e)
@@ -72,10 +92,38 @@ namespace THITRACNGHIEM
             
         }
 
-        public void loadCauHoi(int cauHoi)
+        public void setThoiGian()
         {
-            
-            
+            phut = Program.thoiGian - 1;
+            giay = 60;
+        }
+
+        public void hienThiTG()
+        {
+            if (giay < 10)
+            {
+                if (phut > 10)
+                    lblTime.Text = phut + ":0" + giay;
+                else
+                    lblTime.Text = "0" + phut + ":0" + giay;
+            }
+            else
+            {
+                if(giay == 60)
+                {
+                    if (phut > 10)
+                        lblTime.Text = phut + ":00";
+                    else
+                        lblTime.Text = "0" + phut + ":00";
+                }
+                else
+                {
+                    if (phut > 10)
+                        lblTime.Text = phut + ":" + giay;
+                    else
+                        lblTime.Text = "0" + phut + ":" + giay;
+                }
+            }
         }
 
         public CauHoi LayCauHoiTuBDS(int vitri)
@@ -96,5 +144,102 @@ namespace THITRACNGHIEM
 
             return c;
         }
+
+        private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            giay--;
+            if(giay == 0)
+            {
+                phut--;
+                giay = 60;
+            }
+            if (phut == 0 && giay == 0)
+                timer.Stop();
+            hienThiTG();
+        }
+
+        public void tinhDiem()
+        {
+            foreach(KeyValuePair<int, CauHoi> item in deThi)
+            {
+                if(item.Value.DaChon == item.Value.DapAn)
+                {
+                    diem += diemMoiCau;
+                }
+            }
+        }
+
+        public void luuVaoBangDiem()
+        {
+            string sql = "";
+            try
+            {
+                sql = "INSERT INTO BANGDIEM ( MAMH , MASV , LAN , NGAYTHI , DIEM , BAITHI ) " 
+                    + "VALUES  ( " +
+                    "'" + Program.maMH + "' , -- MAMH - char(5) \n" +
+                    "'" + Program.username + "' , -- MASV - char(8) \n" +
+                    " " + Program.lanThi + " , -- LAN - smallint \n" +
+                    "'" + Program.ngayThi + "' , -- NGAYTHI - datetime \n" +
+                    " " + diem + " , -- DIEM - float \n" +
+                    "N'Test' -- BAITHI - nchar(10) \n" +
+                    ")";
+
+                if (Program.ExecSqlNonQuery(sql) == 0)
+                {
+                    MessageBox.Show("Thêm vào bảng điểm thành công!", "Thông báo", MessageBoxButtons.OK);
+                }
+                sql = "";
+                sql = "EXEC SP_TIMBD '" + Program.maMH + "', '" + Program.username + "', " + Program.lanThi + ", '" + Program.ngayThi + "'";
+                SqlDataReader reader;
+                reader = Program.ExecSqlDataReader(sql);
+                if (reader == null) return;
+                reader.Read();
+                long IDBD; 
+                IDBD = reader.GetInt64(0);
+                reader.Close();
+
+                sql = "";
+                foreach (KeyValuePair<int, CauHoi> item in deThi)
+                {
+                    sql += "INSERT INTO CT_BAITHI ( IDBD, CAUHOI, DACHON, STT ) " +
+                        "VALUES  ( " +
+                        "" + IDBD + ", -- IDBD - bigint \n" +
+                        "" + item.Value.IDCauHoi + ", -- CAUHOI - int \n" +
+                        "N'" + item.Value.DaChon + "', -- DACHON - nchar(5) \n" +
+                        "" + item.Key + " -- STT - int \n" +
+                        ") \n\n";
+                }
+                if(Program.ExecSqlNonQuery(sql) == 0)
+                    MessageBox.Show("Thêm vào CT_BAITHI thành công!", "Thông báo", MessageBoxButtons.OK);
+                
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("" + e.Message, "Thông báo", MessageBoxButtons.OK);
+            }
+        }
+
+        private void btnNopBai_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if(phut != 0 && giay != 0)
+            {
+                if (MessageBox.Show("Chưa hết thời gian, bạn có chắc nộp bài không?", "Xác nhận", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    tinhDiem();
+                    luuVaoBangDiem();
+                    timer.Stop();
+                    phut = 0;
+                    giay = 0;
+                    hienThiTG();
+                    MessageBox.Show("Điểm của bạn: " + diem, "Điểm", MessageBoxButtons.OK);
+                }
+            }
+        }
+
     }
 }

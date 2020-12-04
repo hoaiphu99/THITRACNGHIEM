@@ -14,6 +14,8 @@ namespace THITRACNGHIEM
         public frmMain()
         {
             InitializeComponent();
+            rbbDanhMuc.Visible = false;
+            rbbThi.Visible = false;
         }
 
         private Form CheckExists(Type ftype)
@@ -45,7 +47,13 @@ namespace THITRACNGHIEM
             lblNhom.Text = "Nhóm: " + Program.mGroup;
             if (Program.isSinhVien)
             {
+                rbbThi.Visible = true;
                 rbbDanhMuc.Visible = false;
+            }
+            else
+            {
+                rbbThi.Visible = true;
+                rbbDanhMuc.Visible = true;
             }
         }
 

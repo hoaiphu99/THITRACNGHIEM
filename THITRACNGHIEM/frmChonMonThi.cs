@@ -32,6 +32,8 @@ namespace THITRACNGHIEM
             this.gIAOVIEN_DANGKYTableAdapter.Connection.ConnectionString = Program.connstr;
             this.gIAOVIEN_DANGKYTableAdapter.Fill(this.dS.GIAOVIEN_DANGKY);
 
+            bdsGV_DK.Filter = "NGAYTHI = '" + DateTime.Now.ToShortDateString() + "'";
+
         }
 
         private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -44,6 +46,9 @@ namespace THITRACNGHIEM
             Program.maMH = gvGV_DK.GetRowCellValue(gvGV_DK.FocusedRowHandle, "MAMH").ToString();
             Program.trinhDo = gvGV_DK.GetRowCellValue(gvGV_DK.FocusedRowHandle, "TRINHDO").ToString();
             Program.soCau = gvGV_DK.GetRowCellValue(gvGV_DK.FocusedRowHandle, "SOCAUTHI").ToString();
+            Program.ngayThi = gvGV_DK.GetRowCellValue(gvGV_DK.FocusedRowHandle, "NGAYTHI").ToString();
+            Program.thoiGian = Int32.Parse(gvGV_DK.GetRowCellValue(gvGV_DK.FocusedRowHandle, "THOIGIAN").ToString());
+            Program.lanThi = Int32.Parse(gvGV_DK.GetRowCellValue(gvGV_DK.FocusedRowHandle, "LAN").ToString());
 
             frmThi f = new frmThi();
             f.Show();

@@ -36,15 +36,17 @@
             this.btnXemKQ = new DevExpress.XtraBars.BarButtonItem();
             this.btnThoat = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
+            this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.lblTime = new System.Windows.Forms.Label();
             this.rdbCauHoi = new DevExpress.XtraEditors.RadioGroup();
             this.rdbDapAn = new DevExpress.XtraEditors.RadioGroup();
             this.lblCauHoi = new System.Windows.Forms.Label();
-            this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
@@ -92,6 +94,7 @@
             this.btnNopBai.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnNopBai.ImageOptions.SvgImage")));
             this.btnNopBai.Name = "btnNopBai";
             this.btnNopBai.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btnNopBai.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnNopBai_ItemClick);
             // 
             // btnXemKQ
             // 
@@ -108,6 +111,7 @@
             this.btnThoat.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnThoat.ImageOptions.SvgImage")));
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btnThoat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThoat_ItemClick);
             // 
             // bar3
             // 
@@ -123,21 +127,27 @@
             this.bar3.OptionsBar.UseWholeRow = true;
             this.bar3.Text = "Status bar";
             // 
+            // barStaticItem1
+            // 
+            this.barStaticItem1.Caption = "Time";
+            this.barStaticItem1.Id = 3;
+            this.barStaticItem1.Name = "barStaticItem1";
+            // 
             // barDockControlTop
             // 
             this.barDockControlTop.CausesValidation = false;
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(1256, 30);
+            this.barDockControlTop.Size = new System.Drawing.Size(1292, 30);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 501);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 537);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(1256, 27);
+            this.barDockControlBottom.Size = new System.Drawing.Size(1292, 27);
             // 
             // barDockControlLeft
             // 
@@ -145,37 +155,48 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 30);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 471);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 507);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1256, 30);
+            this.barDockControlRight.Location = new System.Drawing.Point(1292, 30);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 471);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 507);
             // 
             // groupControl1
             // 
+            this.groupControl1.Controls.Add(this.lblTime);
             this.groupControl1.Controls.Add(this.rdbCauHoi);
             this.groupControl1.Controls.Add(this.rdbDapAn);
             this.groupControl1.Controls.Add(this.lblCauHoi);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupControl1.Location = new System.Drawing.Point(0, 30);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(1256, 471);
+            this.groupControl1.Size = new System.Drawing.Size(1292, 507);
             this.groupControl1.TabIndex = 5;
             this.groupControl1.Text = "Nội dung";
+            // 
+            // lblTime
+            // 
+            this.lblTime.AutoSize = true;
+            this.lblTime.Font = new System.Drawing.Font("Times New Roman", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTime.Location = new System.Drawing.Point(1194, 3);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(50, 21);
+            this.lblTime.TabIndex = 3;
+            this.lblTime.Text = "00:00";
             // 
             // rdbCauHoi
             // 
             this.rdbCauHoi.AllowDrop = true;
             this.rdbCauHoi.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rdbCauHoi.Location = new System.Drawing.Point(2, 404);
+            this.rdbCauHoi.Location = new System.Drawing.Point(2, 440);
             this.rdbCauHoi.MenuManager = this.barManager1;
             this.rdbCauHoi.Name = "rdbCauHoi";
-            this.rdbCauHoi.Size = new System.Drawing.Size(1252, 65);
+            this.rdbCauHoi.Size = new System.Drawing.Size(1288, 65);
             this.rdbCauHoi.TabIndex = 2;
             this.rdbCauHoi.SelectedIndexChanged += new System.EventHandler(this.rdbCauHoi_SelectedIndexChanged);
             // 
@@ -183,10 +204,10 @@
             // 
             this.rdbDapAn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rdbDapAn.Location = new System.Drawing.Point(5, 259);
+            this.rdbDapAn.Location = new System.Drawing.Point(5, 295);
             this.rdbDapAn.MenuManager = this.barManager1;
             this.rdbDapAn.Name = "rdbDapAn";
-            this.rdbDapAn.Size = new System.Drawing.Size(1246, 139);
+            this.rdbDapAn.Size = new System.Drawing.Size(1282, 139);
             this.rdbDapAn.TabIndex = 1;
             this.rdbDapAn.SelectedIndexChanged += new System.EventHandler(this.rdbDapAn_SelectedIndexChanged);
             // 
@@ -201,17 +222,16 @@
             this.lblCauHoi.TabIndex = 0;
             this.lblCauHoi.Text = "Câu 1:";
             // 
-            // barStaticItem1
+            // timer
             // 
-            this.barStaticItem1.Caption = "Time";
-            this.barStaticItem1.Id = 3;
-            this.barStaticItem1.Name = "barStaticItem1";
+            this.timer.Interval = 1000;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
             // frmThi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1256, 528);
+            this.ClientSize = new System.Drawing.Size(1292, 564);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
@@ -248,5 +268,7 @@
         private System.Windows.Forms.Label lblCauHoi;
         private DevExpress.XtraEditors.RadioGroup rdbCauHoi;
         private DevExpress.XtraBars.BarStaticItem barStaticItem1;
+        private System.Windows.Forms.Label lblTime;
+        private System.Windows.Forms.Timer timer;
     }
 }
