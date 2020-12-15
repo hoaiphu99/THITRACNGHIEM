@@ -40,6 +40,7 @@
             System.Windows.Forms.Label mAMHLabel;
             System.Windows.Forms.Label cAUHOILabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBoDe));
+            DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.bar2 = new DevExpress.XtraBars.Bar();
@@ -49,7 +50,7 @@
             this.btnGhi = new DevExpress.XtraBars.BarButtonItem();
             this.btnHuy = new DevExpress.XtraBars.BarButtonItem();
             this.btnPhucHoi = new DevExpress.XtraBars.BarButtonItem();
-            this.btnThoat = new DevExpress.XtraBars.BarButtonItem();
+            this.btnThoat1 = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -82,6 +83,10 @@
             this.txtMaMH = new DevExpress.XtraEditors.TextEdit();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.spinMaCauHoi = new DevExpress.XtraEditors.SpinEdit();
+            this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.barEditItem1 = new DevExpress.XtraBars.BarEditItem();
+            this.barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
+            this.btnThoat = new DevExpress.XtraBars.BarButtonItem();
             tRINHDOLabel = new System.Windows.Forms.Label();
             dAP_ANLabel = new System.Windows.Forms.Label();
             nOIDUNGLabel = new System.Windows.Forms.Label();
@@ -101,6 +106,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtMaMH.Properties)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spinMaCauHoi.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(repositoryItemTextEdit1)).BeginInit();
             this.SuspendLayout();
             // 
             // tRINHDOLabel
@@ -211,9 +217,13 @@
             this.btnGhi,
             this.btnHuy,
             this.btnPhucHoi,
+            this.btnThoat1,
+            this.barButtonItem1,
+            this.barEditItem1,
+            this.barButtonItem2,
             this.btnThoat});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 7;
+            this.barManager1.MaxItemId = 11;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar1
@@ -232,12 +242,11 @@
             this.bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.bar2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnThem, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnXoa, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnSua, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnXoa, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnGhi, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnHuy, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnPhucHoi, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnThoat, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnThoat)});
             this.bar2.OptionsBar.MultiLine = true;
             this.bar2.OptionsBar.UseWholeRow = true;
             this.bar2.Text = "Main menu";
@@ -246,8 +255,7 @@
             // 
             this.btnThem.Caption = "Thêm";
             this.btnThem.Id = 0;
-            this.btnThem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThem.ImageOptions.Image")));
-            this.btnThem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnThem.ImageOptions.LargeImage")));
+            this.btnThem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnThem.ImageOptions.SvgImage")));
             this.btnThem.Name = "btnThem";
             this.btnThem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThem_ItemClick);
             // 
@@ -255,8 +263,7 @@
             // 
             this.btnXoa.Caption = "Xoá";
             this.btnXoa.Id = 1;
-            this.btnXoa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnXoa.ImageOptions.Image")));
-            this.btnXoa.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnXoa.ImageOptions.LargeImage")));
+            this.btnXoa.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnXoa.ImageOptions.SvgImage")));
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnXoa_ItemClick);
             // 
@@ -264,8 +271,7 @@
             // 
             this.btnSua.Caption = "Sửa";
             this.btnSua.Id = 2;
-            this.btnSua.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSua.ImageOptions.Image")));
-            this.btnSua.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnSua.ImageOptions.LargeImage")));
+            this.btnSua.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSua.ImageOptions.SvgImage")));
             this.btnSua.Name = "btnSua";
             this.btnSua.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSua_ItemClick);
             // 
@@ -275,6 +281,7 @@
             this.btnGhi.Id = 3;
             this.btnGhi.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnGhi.ImageOptions.Image")));
             this.btnGhi.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnGhi.ImageOptions.LargeImage")));
+            this.btnGhi.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnGhi.ImageOptions.SvgImage")));
             this.btnGhi.Name = "btnGhi";
             this.btnGhi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnGhi_ItemClick);
             // 
@@ -284,6 +291,7 @@
             this.btnHuy.Id = 4;
             this.btnHuy.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnHuy.ImageOptions.Image")));
             this.btnHuy.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnHuy.ImageOptions.LargeImage")));
+            this.btnHuy.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnHuy.ImageOptions.SvgImage")));
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnHuy_ItemClick);
             // 
@@ -296,14 +304,13 @@
             this.btnPhucHoi.Name = "btnPhucHoi";
             this.btnPhucHoi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPhucHoi_ItemClick);
             // 
-            // btnThoat
+            // btnThoat1
             // 
-            this.btnThoat.Caption = "Thoát";
-            this.btnThoat.Id = 6;
-            this.btnThoat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThoat.ImageOptions.Image")));
-            this.btnThoat.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnThoat.ImageOptions.LargeImage")));
-            this.btnThoat.Name = "btnThoat";
-            this.btnThoat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThoat_ItemClick);
+            this.btnThoat1.Caption = "Thoát";
+            this.btnThoat1.Id = 6;
+            this.btnThoat1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnThoat.ImageOptions.SvgImage")));
+            this.btnThoat1.Name = "btnThoat1";
+            this.btnThoat1.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThoat_ItemClick);
             // 
             // bar3
             // 
@@ -529,6 +536,7 @@
             // 
             // txtNoiDung
             // 
+            this.txtNoiDung.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtNoiDung.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bds_BoDe, "NOIDUNG", true));
             this.txtNoiDung.Location = new System.Drawing.Point(148, 208);
             this.txtNoiDung.Name = "txtNoiDung";
@@ -538,6 +546,7 @@
             // 
             // txtA
             // 
+            this.txtA.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtA.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bds_BoDe, "A", true));
             this.txtA.Location = new System.Drawing.Point(150, 312);
             this.txtA.Name = "txtA";
@@ -547,6 +556,7 @@
             // 
             // txtB
             // 
+            this.txtB.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtB.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bds_BoDe, "B", true));
             this.txtB.Location = new System.Drawing.Point(603, 312);
             this.txtB.Name = "txtB";
@@ -556,6 +566,7 @@
             // 
             // txtC
             // 
+            this.txtC.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtC.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bds_BoDe, "C", true));
             this.txtC.Location = new System.Drawing.Point(1056, 312);
             this.txtC.Name = "txtC";
@@ -565,6 +576,7 @@
             // 
             // txtD
             // 
+            this.txtD.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtD.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bds_BoDe, "D", true));
             this.txtD.Location = new System.Drawing.Point(1509, 312);
             this.txtD.Name = "txtD";
@@ -636,6 +648,36 @@
             this.spinMaCauHoi.Size = new System.Drawing.Size(125, 24);
             this.spinMaCauHoi.TabIndex = 20;
             // 
+            // barButtonItem1
+            // 
+            this.barButtonItem1.Caption = "Thoát";
+            this.barButtonItem1.Id = 7;
+            this.barButtonItem1.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
+            this.barButtonItem1.Name = "barButtonItem1";
+            // 
+            // barEditItem1
+            // 
+            this.barEditItem1.Caption = "barEditItem1";
+            repositoryItemTextEdit1.AutoHeight = false;
+            this.barEditItem1.Edit = repositoryItemTextEdit1;
+            this.barEditItem1.Id = 8;
+            this.barEditItem1.Name = "barEditItem1";
+            // 
+            // barButtonItem2
+            // 
+            this.barButtonItem2.Caption = "barButtonItem2";
+            this.barButtonItem2.Id = 9;
+            this.barButtonItem2.Name = "barButtonItem2";
+            // 
+            // btnThoat
+            // 
+            this.btnThoat.Caption = "Thoát";
+            this.btnThoat.Id = 10;
+            this.btnThoat.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem3.ImageOptions.SvgImage")));
+            this.btnThoat.Name = "btnThoat";
+            this.btnThoat.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btnThoat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThoat_ItemClick);
+            // 
             // frmBoDe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 22F);
@@ -663,6 +705,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spinMaCauHoi.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(repositoryItemTextEdit1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -684,7 +727,7 @@
         private DevExpress.XtraBars.BarButtonItem btnGhi;
         private DevExpress.XtraBars.BarButtonItem btnHuy;
         private DevExpress.XtraBars.BarButtonItem btnPhucHoi;
-        private DevExpress.XtraBars.BarButtonItem btnThoat;
+        private DevExpress.XtraBars.BarButtonItem btnThoat1;
         private System.Windows.Forms.BindingSource bds_BoDe;
         private DS dS;
         private DSTableAdapters.BODETableAdapter bODETableAdapter;
@@ -712,5 +755,9 @@
         private System.Windows.Forms.ComboBox cmb_DapAn;
         private System.Windows.Forms.ComboBox cmb_TrinhDo;
         private DevExpress.XtraEditors.SpinEdit spinMaCauHoi;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
+        private DevExpress.XtraBars.BarEditItem barEditItem1;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
+        private DevExpress.XtraBars.BarButtonItem btnThoat;
     }
 }

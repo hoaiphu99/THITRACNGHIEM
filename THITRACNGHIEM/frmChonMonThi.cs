@@ -32,8 +32,14 @@ namespace THITRACNGHIEM
             this.gIAOVIEN_DANGKYTableAdapter.Connection.ConnectionString = Program.connstr;
             this.gIAOVIEN_DANGKYTableAdapter.Fill(this.dS.GIAOVIEN_DANGKY);
 
-            bdsGV_DK.Filter = "NGAYTHI = '" + DateTime.Now.ToShortDateString() + "'";
-
+            if(Program.mGroup == "SINHVIEN")
+                bdsGV_DK.Filter = "NGAYTHI = '" + DateTime.Now.ToShortDateString() + "' AND MALOP = '" + Program.maLopSV + "'";
+            else
+                bdsGV_DK.Filter = "NGAYTHI = '" + DateTime.Now.ToShortDateString() + "'";
+            if (!gcGV_DK.Focused)
+            {
+                btnBatDauThi.Enabled = false;
+            }
         }
 
         private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -50,8 +56,14 @@ namespace THITRACNGHIEM
             Program.thoiGian = Int32.Parse(gvGV_DK.GetRowCellValue(gvGV_DK.FocusedRowHandle, "THOIGIAN").ToString());
             Program.lanThi = Int32.Parse(gvGV_DK.GetRowCellValue(gvGV_DK.FocusedRowHandle, "LAN").ToString());
 
-            frmThi f = new frmThi();
-            f.Show();
+            string sql = "EXEC SP_KTDATHI '" + Program.username + "', '" + Program.maMH + "', " + Program.lanThi;
+            if (Program.ExecSqlNonQuery(sql) == 0)
+            {
+                frmThi f = new frmThi();
+                f.Show();
+            }
+            else return;
+            
         }
 
         private void gvGV_DK_Click(object sender, EventArgs e)
@@ -59,7 +71,25 @@ namespace THITRACNGHIEM
             //Program.maMH = gvGV_DK.GetRowCellValue(gvGV_DK.FocusedRowHandle, "MAMH").ToString();
             //Program.trinhDo = gvGV_DK.GetRowCellValue(gvGV_DK.FocusedRowHandle, "TRINHDO").ToString();
             //Program.soCau = gvGV_DK.GetRowCellValue(gvGV_DK.FocusedRowHandle, "SOCAUTHI").ToString();
+            if (gvGV_DK.FocusedRowHandle != -1)
+            {
+                btnBatDauThi.Enabled = true;
+            }
+        }
 
+        public int ktDaThi(string maMH, string maSV, int lan)
+        {
+            string sql = "EXEC SP_KTDATHI '" + maMH + "', '" + maSV + "', " + lan;
+            if (Program.ExecSqlNonQuery(sql) == 0)
+            {
+                return 1;
+            }
+            return 0;
+        }
+
+        private void gcGV_DK_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

@@ -79,13 +79,15 @@ namespace THITRACNGHIEM
             }
             isDangThem = true;
             vitri = bdsSinhVien.Position;
-            groupControl2.Enabled = true;
             bdsSinhVien.AddNew();
             txtMaSV.Focus();
             dtpNgaySinh.EditValue = "";
+
+            txtMaSV.Enabled = true;
+            groupControl2.Enabled = true;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
             btnGhi.Enabled = btnPhuchoi.Enabled = btnHuy.Enabled = true;
-            //gcSinhVien.Enabled = false;
+            gcSinhVien.Enabled = false;
         }
 
         private void cmbCoSo_SelectedIndexChanged(object sender, EventArgs e)
@@ -247,6 +249,11 @@ namespace THITRACNGHIEM
             }
         }
 
+        private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.Close();
+        }
+
         private void btnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (Program.mGroup == "TRUONG" || Program.mGroup == "GIAOVIEN")
@@ -257,8 +264,10 @@ namespace THITRACNGHIEM
             isDangSua = true;
             phucHoi.Save_OldSV(txtMaSV.Text, txtHo.Text, txtTen.Text, dtpNgaySinh.Text, txtDiaChi.Text, cmbMaLop.SelectedIndex.ToString());
             groupControl2.Enabled = true;
+            txtMaSV.Enabled = false;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
             btnGhi.Enabled = btnPhuchoi.Enabled = btnHuy.Enabled = true;
+            gcSinhVien.Enabled = true;
         }
     }
 }

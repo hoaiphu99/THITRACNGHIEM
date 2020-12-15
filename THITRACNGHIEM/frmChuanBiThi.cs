@@ -249,17 +249,21 @@ namespace THITRACNGHIEM
             }
         }
 
-        private void txtMaMH_Click(object sender, EventArgs e)
+
+        private void btnChonMH_Leave(object sender, EventArgs e)
         {
-            if (txtMaMH.Text == "")
+            if (!txtMaMH.Focused)
+            {
                 txtMaMH.Text = maMH;
-            
+            }
         }
 
-        private void txtMaLop_Click(object sender, EventArgs e)
+        private void btnChonLop_Leave(object sender, EventArgs e)
         {
-            if (txtMaLop.Text == "")
+            if (!txtMaLop.Focused)
+            {
                 txtMaLop.Text = maLop;
+            }
         }
     }
 }

@@ -51,6 +51,8 @@ namespace THITRACNGHIEM
             }
             rdbCauHoi.SelectedIndex = 0;
             diemMoiCau = 10.0 / Double.Parse(Program.soCau);
+            btnXemKQ.Enabled = false;
+            btnThoat.Enabled = false;
             timer.Start();
         }
 
@@ -159,7 +161,20 @@ namespace THITRACNGHIEM
                 giay = 60;
             }
             if (phut == 0 && giay == 0)
+            {
                 timer.Stop();
+                tinhDiem();
+                luuVaoBangDiem();
+                hienThiTG();
+                updateDatagrid();
+                lblDiem.Text = "Điểm: " + diem;
+
+                btnXemKQ.Enabled = true;
+                btnThoat.Enabled = true;
+                btnNopBai.Enabled = false;
+                //MessageBox.Show("Điểm của bạn: " + diem, "Điểm", MessageBoxButtons.OK);
+            }
+                
             hienThiTG();
         }
 
@@ -176,52 +191,65 @@ namespace THITRACNGHIEM
 
         public void luuVaoBangDiem()
         {
-            string sql = "";
-            try
-            {
-                sql = "INSERT INTO BANGDIEM ( MAMH , MASV , LAN , NGAYTHI , DIEM , BAITHI ) " 
-                    + "VALUES  ( " +
-                    "'" + Program.maMH + "' , -- MAMH - char(5) \n" +
-                    "'" + Program.username + "' , -- MASV - char(8) \n" +
-                    " " + Program.lanThi + " , -- LAN - smallint \n" +
-                    "'" + Program.ngayThi + "' , -- NGAYTHI - datetime \n" +
-                    " " + diem + " , -- DIEM - float \n" +
-                    "N'Test' -- BAITHI - nchar(10) \n" +
-                    ")";
 
-                if (Program.ExecSqlNonQuery(sql) == 0)
-                {
-                    MessageBox.Show("Thêm vào bảng điểm thành công!", "Thông báo", MessageBoxButtons.OK);
-                }
-                sql = "";
-                sql = "EXEC SP_TIMBD '" + Program.maMH + "', '" + Program.username + "', " + Program.lanThi + ", '" + Program.ngayThi + "'";
-                SqlDataReader reader;
-                reader = Program.ExecSqlDataReader(sql);
-                if (reader == null) return;
-                reader.Read();
-                long IDBD; 
-                IDBD = reader.GetInt64(0);
-                reader.Close();
-
-                sql = "";
-                foreach (KeyValuePair<int, CauHoi> item in deThi)
-                {
-                    sql += "INSERT INTO CT_BAITHI ( IDBD, CAUHOI, DACHON, STT ) " +
-                        "VALUES  ( " +
-                        "" + IDBD + ", -- IDBD - bigint \n" +
-                        "" + item.Value.IDCauHoi + ", -- CAUHOI - int \n" +
-                        "N'" + item.Value.DaChon + "', -- DACHON - nchar(5) \n" +
-                        "" + item.Key + " -- STT - int \n" +
-                        ") \n\n";
-                }
-                if(Program.ExecSqlNonQuery(sql) == 0)
-                    MessageBox.Show("Thêm vào CT_BAITHI thành công!", "Thông báo", MessageBoxButtons.OK);
-                
-            }
-            catch (Exception e)
+            if (Program.mGroup == "SINHVIEN")
             {
-                MessageBox.Show("" + e.Message, "Thông báo", MessageBoxButtons.OK);
+                string sql = "";
+                sql = "SELECT * FROM BANGDIEM";
+                DataTable dt = new DataTable();
+                dt = Program.ExecSqlDataTable(sql);
+                BindingSource bdsBD = new BindingSource();
+                bdsBD.DataSource = dt;
+                int IDBD = bdsBD.Count + 1;
+
+                try
+                {
+                    sql = "INSERT INTO BANGDIEM ( IDBD, MAMH , MASV , LAN , NGAYTHI , DIEM , BAITHI ) "
+                        + "VALUES  ( " +
+                        "'" + IDBD + "' , -- IDBD - int \n" +
+                        "'" + Program.maMH + "' , -- MAMH - char(5) \n" +
+                        "'" + Program.username + "' , -- MASV - char(8) \n" +
+                        " " + Program.lanThi + " , -- LAN - smallint \n" +
+                        "'" + Program.ngayThi + "' , -- NGAYTHI - datetime \n" +
+                        " " + diem + " , -- DIEM - float \n" +
+                        "N'Test' -- BAITHI - nchar(10) \n" +
+                        ")";
+
+                    if (Program.ExecSqlNonQuery(sql) == 0)
+                    {
+                        MessageBox.Show("Thêm vào bảng điểm thành công!", "Thông báo", MessageBoxButtons.OK);
+                    }
+                    //sql = "";
+                    //sql = "EXEC SP_TIMBD '" + Program.maMH + "', '" + Program.username + "', " + Program.lanThi + ", '" + Program.ngayThi + "'";
+                    //SqlDataReader reader;
+                    //reader = Program.ExecSqlDataReader(sql);
+                    //if (reader == null) return;
+                    //reader.Read();
+                    //long IDBD; 
+                    //IDBD = reader.GetInt64(0);
+                    //reader.Close();
+
+                    //sql = "";
+                    foreach (KeyValuePair<int, CauHoi> item in deThi)
+                    {
+                        sql += "INSERT INTO CT_BAITHI ( IDBD, CAUHOI, DACHON, STT ) " +
+                            "VALUES  ( " +
+                            "" + IDBD + ", -- IDBD - bigint \n" +
+                            "" + item.Value.IDCauHoi + ", -- CAUHOI - int \n" +
+                            "N'" + item.Value.DaChon + "', -- DACHON - nchar(5) \n" +
+                            "" + item.Key + " -- STT - int \n" +
+                            ") \n\n";
+                    }
+                    if (Program.ExecSqlNonQuery(sql) == 0)
+                        MessageBox.Show("Thêm vào CT_BAITHI thành công!", "Thông báo", MessageBoxButtons.OK);
+
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("" + e.Message, "Thông báo", MessageBoxButtons.OK);
+                }
             }
+            else return;
         }
 
         private void btnNopBai_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -236,10 +264,49 @@ namespace THITRACNGHIEM
                     phut = 0;
                     giay = 0;
                     hienThiTG();
-                    MessageBox.Show("Điểm của bạn: " + diem, "Điểm", MessageBoxButtons.OK);
+                    updateDatagrid();
+                    lblDiem.Text = "Điểm: " + diem;
+
+                    btnXemKQ.Enabled = true;
+                    btnThoat.Enabled = true;
+                    btnNopBai.Enabled = false;
+                    //MessageBox.Show("Điểm của bạn: " + diem, "Điểm", MessageBoxButtons.OK);
                 }
             }
         }
 
+        public void updateDatagrid()
+        {
+            gvKetQua.Rows.Clear();
+            foreach(KeyValuePair<int, CauHoi> item in deThi)
+            {
+                DataGridViewRow newRow = new DataGridViewRow();
+
+                newRow.CreateCells(gvKetQua);
+                newRow.Cells[0].Value = item.Key;
+                newRow.Cells[1].Value = item.Value.DaChon;
+                newRow.Cells[2].Value = item.Value.DapAn;
+                gvKetQua.Rows.Add(newRow);
+            }
+        }
+
+        private void tabKetQua_Click(object sender, EventArgs e)
+        {
+            if(phut != 0 && giay != 0)
+            {
+                MessageBox.Show("Bạn chưa thi xong!", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
+        }
+
+        private void btnXemKQ_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (phut != 0 && giay != 0)
+            {
+                MessageBox.Show("Bạn chưa thi xong!", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
+            tbcMain.SelectedIndex = 1;
+        }
     }
 }

@@ -45,13 +45,17 @@ namespace THITRACNGHIEM
             lblMa.Text = "Mã: " + Program.username;
             lblTen.Text = "Tên: " + Program.mHoten;
             lblNhom.Text = "Nhóm: " + Program.mGroup;
+            btnTaoTK.Enabled = true;
             if (Program.isSinhVien)
             {
                 rbbThi.Visible = true;
                 rbbDanhMuc.Visible = false;
+                btnTaoTK.Enabled = false;
             }
             else
             {
+                if(Program.mGroup == "GIANGVIEN")
+                    btnTaoTK.Enabled = false;
                 rbbThi.Visible = true;
                 rbbDanhMuc.Visible = true;
             }
@@ -256,6 +260,24 @@ namespace THITRACNGHIEM
             else
             {
                 frmChonMonThi f = new frmChonMonThi();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        private void btnTaoTK_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (Program.mHoten.Equals("") || Program.mGroup.Equals(""))
+            {
+                MessageBox.Show("Vui lòng đăng nhập trước!", "Lỗi!", MessageBoxButtons.OK);
+                return;
+            }
+            Form frm = this.CheckExists(typeof(frmTaoTK));
+            if (frm != null)
+                frm.Activate();
+            else
+            {
+                frmTaoTK f = new frmTaoTK();
                 f.MdiParent = this;
                 f.Show();
             }

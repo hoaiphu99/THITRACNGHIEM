@@ -58,6 +58,7 @@ namespace THITRACNGHIEM
                 groupBox1.Enabled = true;
                 //edtMaMH.Focus();
                 txtMaMH.Focus();
+                txtMaMH.Enabled = true;
                 //btnThemMH.Enabled = btnSuaMH.Enabled = btnTaiLaiMH.Enabled = btnXoaMH.Enabled = btnTim.Enabled = edtTim.Enabled = false;
                 btnGhi.Enabled = btnHuy.Enabled = true;
                 btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnPhucHoi.Enabled = btnThoat.Enabled =  false;
@@ -89,69 +90,69 @@ namespace THITRACNGHIEM
             //nếu như tất cả đều ko rỗng
             try
             {
-                //string sql;
-                //int ketQua;
-                //if (isDangThem)
-                //{
-                //    sql = "exec [dbo].[SP_TrungMaMH] '" + txtMaMH.Text + "'";
-                //    ketQua = Program.ExecSqlNonQuery(sql);
-                //    //nếu như chạy sp ko thành công
-                //    if (ketQua == 1)
-                //    {
-                //        txtMaMH.Focus();
-                //        return;
-                //    }
+                string sql;
+                int ketQua;
+                if (isDangThem)
+                {
+                    sql = "exec [dbo].[SP_TrungMaMH] '" + txtMaMH.Text + "'";
+                    ketQua = Program.ExecSqlNonQuery(sql);
+                    //nếu như chạy sp ko thành công
+                    if (ketQua == 1)
+                    {
+                        txtMaMH.Focus();
+                        return;
+                    }
 
-                //    sql = "exec [dbo].[SP_TrungTenMH] '" + txtTenMH.Text + "'";
-                //    ketQua = Program.ExecSqlNonQuery(sql);
-                //    //nếu như chạy sp ko thành công
-                //    if (ketQua == 1)
-                //    {
-                //        txtMaMH.Focus();
-                //        return;
-                //    }
-                //}
-                ////isDangSua = true
-                //else
-                //{
-                //    string[] oldMH = phucHoi.GetDataTruocKhiSua().Split('/');
+                    sql = "exec [dbo].[SP_TrungTenMH] '" + txtTenMH.Text + "'";
+                    ketQua = Program.ExecSqlNonQuery(sql);
+                    //nếu như chạy sp ko thành công
+                    if (ketQua == 1)
+                    {
+                        txtMaMH.Focus();
+                        return;
+                    }
+                }
+                //isDangSua = true
+                else
+                {
+                    string[] oldMH = phucHoi.GetDataTruocKhiSua().Split('/');
 
-                //    if(txtMaMH.Text != oldMH[0])
-                //    {
-                //        sql = "exec [dbo].[SP_TrungMaMH] '" + txtMaMH.Text + "'";
-                //        ketQua = Program.ExecSqlNonQuery(sql);
-                //        //nếu như chạy sp ko thành công
-                //        if (ketQua == 1)
-                //        {
-                //            txtMaMH.Focus();
-                //            return;
-                //        }
-                //    }
-                    
-                //    if(txtTenMH.Text != oldMH[1])
-                //    {
-                //        sql = "exec [dbo].[SP_TrungTenMH] '" + txtTenMH.Text + "'";
-                //        ketQua = Program.ExecSqlNonQuery(sql);
-                //        //nếu như chạy sp ko thành công
-                //        if (ketQua == 1)
-                //        {
-                //            txtMaMH.Focus();
-                //            return;
-                //        }
-                //    }              
-                //}
-                             
-                //nếu như không trùng gì hết
-                //if (isDangThem)
-                //{
-                //    phucHoi.PushStack_ThemMH(txtMaMH.Text);
-                //    isDangThem = false;
-                //}
-                //else if (isDangSua)
-                //{
-                //    phucHoi.PushStack_SuaMH(txtMaMH.Text, txtTenMH.Text);
-                //    isDangSua = false;
-                //}
+                    if (txtMaMH.Text != oldMH[0])
+                    {
+                        sql = "exec [dbo].[SP_TrungMaMH] '" + txtMaMH.Text + "'";
+                        ketQua = Program.ExecSqlNonQuery(sql);
+                        //nếu như chạy sp ko thành công
+                        if (ketQua == 1)
+                        {
+                            txtMaMH.Focus();
+                            return;
+                        }
+                    }
+
+                    if (txtTenMH.Text != oldMH[1])
+                    {
+                        sql = "exec [dbo].[SP_TrungTenMH] '" + txtTenMH.Text + "'";
+                        ketQua = Program.ExecSqlNonQuery(sql);
+                        //nếu như chạy sp ko thành công
+                        if (ketQua == 1)
+                        {
+                            txtMaMH.Focus();
+                            return;
+                        }
+                    }
+                }
+
+                // nếu như không trùng gì hết
+                if (isDangThem)
+                {
+                    phucHoi.PushStack_ThemMH(txtMaMH.Text);
+                    isDangThem = false;
+                }
+                else if (isDangSua)
+                {
+                    phucHoi.PushStack_SuaMH(txtMaMH.Text, txtTenMH.Text);
+                    isDangSua = false;
+                }
                 bds_MonHoc.EndEdit();
                 bds_MonHoc.ResetCurrentItem(); //chọn item vừa thêm là vị trí hiện tại đang trỏ tới
                 this.mONHOCTableAdapter.Update(this.dS.MONHOC);
@@ -184,7 +185,7 @@ namespace THITRACNGHIEM
                 {
                     try
                     {
-                        //phucHoi.PushStack_XoaMH(txtMaMH.Text, txtTenMH.Text);
+                        phucHoi.PushStack_XoaMH(txtMaMH.Text, txtTenMH.Text);
                         bds_MonHoc.RemoveCurrent();
                         this.mONHOCTableAdapter.Update(this.dS.MONHOC);
                     }
@@ -206,7 +207,7 @@ namespace THITRACNGHIEM
         private void btnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             isDangSua = true;
-            txtMaMH.Text = txtMaMH.Text.Trim();
+            txtMaMH.Enabled = false;
             txtTenMH.Text = txtTenMH.Text.Trim();
             phucHoi.Save_OldMH(txtMaMH.Text, txtTenMH.Text);
             gc_MonHoc.Enabled = false;
@@ -223,7 +224,7 @@ namespace THITRACNGHIEM
                 //update lại dataTable Môn học
                 this.mONHOCTableAdapter.Fill(this.dS.MONHOC);
                 this.bODETableAdapter.Fill(this.dS.BODE);
-                //MessageBox.Show("Phục hồi thành công!", "Thông báo", MessageBoxButtons.OK);
+                MessageBox.Show("Phục hồi thành công!", "Thông báo", MessageBoxButtons.OK);
             }
             else
             {
@@ -238,10 +239,10 @@ namespace THITRACNGHIEM
             {
                
                 bds_MonHoc.CancelEdit();
-                //if (isDangThem)
-                //{
-                //    bds_MonHoc.RemoveCurrent();
-                //}
+                if (isDangThem)
+                {
+                    bds_MonHoc.RemoveCurrent();
+                }
                 isDangThem = isDangSua = false;
                 gc_MonHoc.Enabled = true;
                 groupBox1.Enabled = false;

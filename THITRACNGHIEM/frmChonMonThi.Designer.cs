@@ -202,6 +202,7 @@
             this.gcGV_DK.TabIndex = 5;
             this.gcGV_DK.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvGV_DK});
+            this.gcGV_DK.Click += new System.EventHandler(this.gcGV_DK_Click);
             // 
             // gvGV_DK
             // 

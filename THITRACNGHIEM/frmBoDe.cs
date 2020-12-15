@@ -96,11 +96,11 @@ namespace THITRACNGHIEM
             txtC.Text = txtC.Text.Trim();
             txtD.Text = txtD.Text.Trim();
             //phucHoi.Save_OldBD(int.Parse(spinMaCauHoi.Text), txtMaGV.Text, txtMaMH.Text, cmb_TrinhDo.Text, txtNoiDung.Text, txtA.Text, txtB.Text, txtC.Text, txtD.Text, cmb_DapAn.Text);
-
+            spinMaCauHoi.Enabled = false;
             gc_BoDe.Enabled = false;
             groupBox1.Enabled = true;
             btnGhi.Enabled = btnHuy.Enabled = true;
-            btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnPhucHoi.Enabled = btnThoat.Enabled = false;
+            btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnPhucHoi.Enabled = btnThoat1.Enabled = false;
         }
 
         private void btnHuy_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -115,7 +115,7 @@ namespace THITRACNGHIEM
                 isDangThem = isDangSua = false;
                 gc_BoDe.Enabled = true;
                 groupBox1.Enabled = false;
-                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnPhucHoi.Enabled = btnThoat.Enabled = true;
+                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnPhucHoi.Enabled = btnThoat1.Enabled = true;
                 btnGhi.Enabled = btnHuy.Enabled = false;
             }
             catch (Exception ex)
@@ -275,17 +275,17 @@ namespace THITRACNGHIEM
 
         private void btnPhucHoi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            string ketQua = phucHoi.PopStack();
-            if (ketQua.Equals("success"))
-            {
-                //update lại dataTable BỘ ĐỀ
-                this.bODETableAdapter.Fill(this.dS.BODE);
-                //MessageBox.Show("Phục hồi thành công!", "Thông báo", MessageBoxButtons.OK);
-            }
-            else
-            {
-                MessageBox.Show(ketQua, "Thông báo", MessageBoxButtons.OK);
-            }
+            //string ketQua = phucHoi.PopStack();
+            //if (ketQua.Equals("success"))
+            //{
+            //    //update lại dataTable BỘ ĐỀ
+            //    this.bODETableAdapter.Fill(this.dS.BODE);
+            //    //MessageBox.Show("Phục hồi thành công!", "Thông báo", MessageBoxButtons.OK);
+            //}
+            //else
+            //{
+            //    MessageBox.Show(ketQua, "Thông báo", MessageBoxButtons.OK);
+            //}
         }
 
         private void btnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -294,7 +294,7 @@ namespace THITRACNGHIEM
             {
                 //isDangThem = true;
                 bds_BoDe.AddNew();
-                
+                spinMaCauHoi.Enabled = true;
                 gc_BoDe.Enabled = false;        
                 groupBox1.Enabled = true;
 
@@ -323,7 +323,7 @@ namespace THITRACNGHIEM
                 txtNoiDung.Focus();
 
                 btnGhi.Enabled = btnHuy.Enabled = true;
-                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnPhucHoi.Enabled = btnThoat.Enabled = false;         
+                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnPhucHoi.Enabled = btnThoat1.Enabled = false;         
             }
             catch (Exception ex)
             {

@@ -545,6 +545,7 @@
             this.btnChonLop.Text = "Chọn";
             this.btnChonLop.UseVisualStyleBackColor = true;
             this.btnChonLop.Click += new System.EventHandler(this.btnChonLop_Click);
+            this.btnChonLop.Leave += new System.EventHandler(this.btnChonLop_Leave);
             // 
             // btnChonMH
             // 
@@ -555,6 +556,7 @@
             this.btnChonMH.Text = "Chọn";
             this.btnChonMH.UseVisualStyleBackColor = true;
             this.btnChonMH.Click += new System.EventHandler(this.btnChonMH_Click);
+            this.btnChonMH.Leave += new System.EventHandler(this.btnChonMH_Leave);
             // 
             // spinThoiGian
             // 
@@ -626,7 +628,6 @@
             this.txtMaLop.Name = "txtMaLop";
             this.txtMaLop.Size = new System.Drawing.Size(125, 22);
             this.txtMaLop.TabIndex = 5;
-            this.txtMaLop.Click += new System.EventHandler(this.txtMaLop_Click);
             // 
             // txtMaMH
             // 
@@ -637,7 +638,6 @@
             this.txtMaMH.Name = "txtMaMH";
             this.txtMaMH.Size = new System.Drawing.Size(125, 22);
             this.txtMaMH.TabIndex = 3;
-            this.txtMaMH.Click += new System.EventHandler(this.txtMaMH_Click);
             // 
             // txtMaGV
             // 

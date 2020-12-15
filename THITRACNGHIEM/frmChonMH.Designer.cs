@@ -35,11 +35,11 @@
             this.tableAdapterManager = new THITRACNGHIEM.DSTableAdapters.TableAdapterManager();
             this.gcMonHoc = new DevExpress.XtraGrid.GridControl();
             this.gvMonHoc = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.btnChon = new System.Windows.Forms.Button();
-            this.btnHuy = new System.Windows.Forms.Button();
             this.colMAMH = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTENMH = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.btnHuy = new System.Windows.Forms.Button();
+            this.btnChon = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsMonHoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcMonHoc)).BeginInit();
@@ -98,36 +98,6 @@
             this.gvMonHoc.Name = "gvMonHoc";
             this.gvMonHoc.Click += new System.EventHandler(this.gvMonHoc_Click);
             // 
-            // groupControl1
-            // 
-            this.groupControl1.Controls.Add(this.btnHuy);
-            this.groupControl1.Controls.Add(this.btnChon);
-            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupControl1.Location = new System.Drawing.Point(0, 345);
-            this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(770, 65);
-            this.groupControl1.TabIndex = 2;
-            // 
-            // btnChon
-            // 
-            this.btnChon.Location = new System.Drawing.Point(602, 30);
-            this.btnChon.Name = "btnChon";
-            this.btnChon.Size = new System.Drawing.Size(75, 23);
-            this.btnChon.TabIndex = 0;
-            this.btnChon.Text = "OK";
-            this.btnChon.UseVisualStyleBackColor = true;
-            this.btnChon.Click += new System.EventHandler(this.btnChon_Click);
-            // 
-            // btnHuy
-            // 
-            this.btnHuy.Location = new System.Drawing.Point(683, 30);
-            this.btnHuy.Name = "btnHuy";
-            this.btnHuy.Size = new System.Drawing.Size(75, 23);
-            this.btnHuy.TabIndex = 1;
-            this.btnHuy.Text = "Hủy";
-            this.btnHuy.UseVisualStyleBackColor = true;
-            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
-            // 
             // colMAMH
             // 
             this.colMAMH.Caption = "Mã MH";
@@ -149,6 +119,36 @@
             this.colTENMH.Visible = true;
             this.colTENMH.VisibleIndex = 1;
             this.colTENMH.Width = 94;
+            // 
+            // groupControl1
+            // 
+            this.groupControl1.Controls.Add(this.btnHuy);
+            this.groupControl1.Controls.Add(this.btnChon);
+            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupControl1.Location = new System.Drawing.Point(0, 345);
+            this.groupControl1.Name = "groupControl1";
+            this.groupControl1.Size = new System.Drawing.Size(770, 65);
+            this.groupControl1.TabIndex = 2;
+            // 
+            // btnHuy
+            // 
+            this.btnHuy.Location = new System.Drawing.Point(683, 30);
+            this.btnHuy.Name = "btnHuy";
+            this.btnHuy.Size = new System.Drawing.Size(75, 23);
+            this.btnHuy.TabIndex = 1;
+            this.btnHuy.Text = "Hủy";
+            this.btnHuy.UseVisualStyleBackColor = true;
+            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
+            // 
+            // btnChon
+            // 
+            this.btnChon.Location = new System.Drawing.Point(602, 30);
+            this.btnChon.Name = "btnChon";
+            this.btnChon.Size = new System.Drawing.Size(75, 23);
+            this.btnChon.TabIndex = 0;
+            this.btnChon.Text = "OK";
+            this.btnChon.UseVisualStyleBackColor = true;
+            this.btnChon.Click += new System.EventHandler(this.btnChon_Click);
             // 
             // frmChonMH
             // 

@@ -76,6 +76,7 @@ namespace THITRACNGHIEM
             bdsGiaoVien.AddNew();
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
             btnGhi.Enabled = btnHuy.Enabled = btnPhucHoi.Enabled = true;
+            gcGiaoVien.Enabled = false;
         }
 
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -114,6 +115,7 @@ namespace THITRACNGHIEM
                 gc1.Enabled = false;
                 btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = true;
                 btnGhi.Enabled = btnHuy.Enabled = btnPhucHoi.Enabled = false;
+                gcGiaoVien.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -159,9 +161,11 @@ namespace THITRACNGHIEM
                 MessageBox.Show("Bạn không có quyền này!", "Thông báo", MessageBoxButtons.OK);
                 return;
             }
+            txtMaGV.Enabled = false;
             gc1.Enabled = true;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
             btnGhi.Enabled = btnHuy.Enabled = btnPhucHoi.Enabled = true;
+            gcGiaoVien.Enabled = false;
         }
 
         private void btnHuy_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -172,6 +176,7 @@ namespace THITRACNGHIEM
             gc1.Enabled = false;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = true;
             btnGhi.Enabled = btnHuy.Enabled = btnPhucHoi.Enabled = false;
+            gcGiaoVien.Enabled = true;
         }
 
         private void cmbMaKhoa_SelectedIndexChanged(object sender, EventArgs e)
@@ -211,7 +216,7 @@ namespace THITRACNGHIEM
 
                 this.gIAOVIENTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.gIAOVIENTableAdapter.Fill(this.dS.GIAOVIEN);
-
+                
                 dt = Program.ExecSqlDataTable("SELECT MAKH, TENKH FROM KHOA");
                 cmbMaKhoa.DataSource = dt;
                 cmbMaKhoa.DisplayMember = "TENKH";
@@ -222,6 +227,11 @@ namespace THITRACNGHIEM
                 this.bdsGiaoVien.Filter = "MAKH = '" + maKH + "'";
 
             }
+        }
+
+        private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.Close();
         }
     }
 }

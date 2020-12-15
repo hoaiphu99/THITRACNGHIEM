@@ -169,13 +169,14 @@ namespace THITRACNGHIEM
 
             this.lOPTableAdapter.Connection.ConnectionString = Program.connstr;
             this.lOPTableAdapter.Fill(this.dS.LOP);
-
+            
             gc2.Enabled = false;
-            btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = true;
+            subThem.Enabled = btnSua.Enabled = btnXoa.Enabled = true;
             btnGhi.Enabled = btnHuy.Enabled = false;
 
             txtMaKH.Enabled = txtTenKH.Enabled = txtMaCS.Enabled = true;
             txtMaLop.Enabled = txtTenLop.Enabled = txtMaKH_Lop.Enabled = true;
+            gcKhoa.Enabled = gcLop.Enabled = true;
         }
 
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -209,6 +210,7 @@ namespace THITRACNGHIEM
 
                     txtMaKH.Enabled = txtTenKH.Enabled = txtMaCS.Enabled = true;
                     txtMaLop.Enabled = txtTenLop.Enabled = txtMaKH_Lop.Enabled = true;
+                    gcKhoa.Enabled = gcLop.Enabled = false;
                 }
                 catch (Exception ex)
                 {
@@ -244,6 +246,7 @@ namespace THITRACNGHIEM
 
                     txtMaKH.Enabled = txtTenKH.Enabled = txtMaCS.Enabled = true;
                     txtMaLop.Enabled = txtTenLop.Enabled = txtMaKH_Lop.Enabled = true;
+                    gcKhoa.Enabled = gcLop.Enabled = true;
                 }
                 catch (Exception ex)
                 {
@@ -265,24 +268,31 @@ namespace THITRACNGHIEM
                 isThemKH = true;
                 gc2.Enabled = true;
                 txtMaKH.Focus();
-                btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
+
+                txtMaKH.Enabled = false;
+                subThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
                 btnGhi.Enabled = btnHuy.Enabled = true;
 
                 txtMaLop.Enabled = txtTenLop.Enabled = txtMaKH_Lop.Enabled = false;
+                gcKhoa.Enabled = gcLop.Enabled = false;
             }
             else if (gvLop.IsFocusedView)
             {
                 isThemLop = true;
                 gc2.Enabled = true;
                 txtMaLop.Focus();
-                btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
+
+                txtMaLop.Enabled = false;
+                subThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
                 btnGhi.Enabled = btnHuy.Enabled = true;
 
                 txtMaKH.Enabled = txtTenKH.Enabled = txtMaCS.Enabled = false;
+                gcKhoa.Enabled = gcLop.Enabled = false;
             }
             gc2.Enabled = true;
-            btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
+            subThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
             btnGhi.Enabled = btnHuy.Enabled = true;
+            gcKhoa.Enabled = gcLop.Enabled = false;
         }
 
         private void cmbMaCS_SelectedIndexChanged(object sender, EventArgs e)
@@ -320,10 +330,14 @@ namespace THITRACNGHIEM
             gc2.Enabled = true;
             bdsKhoa.AddNew();
             txtMaKH.Focus();
-            btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
+            txtMaCS.Text = ((DataRowView)bdsCoSo[bdsCoSo.Position])["MACS"].ToString();
+            txtMaKH.Enabled = true;
+            subThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
             btnGhi.Enabled = btnHuy.Enabled = true;
 
             txtMaLop.Enabled = txtTenLop.Enabled = txtMaKH_Lop.Enabled = false;
+            gcKhoa.Enabled = gcLop.Enabled = false;
+            
         }
 
         private void btnAddLop_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -337,10 +351,19 @@ namespace THITRACNGHIEM
             gc2.Enabled = true;
             bdsLop.AddNew();
             txtMaLop.Focus();
-            btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
+
+            txtMaKH_Lop.Text = gvKhoa.GetRowCellValue(gvKhoa.FocusedRowHandle, "MAKH").ToString().Trim();
+            txtMaLop.Enabled = true;
+            subThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
             btnGhi.Enabled = btnHuy.Enabled = true;
 
             txtMaKH.Enabled = txtTenKH.Enabled = txtMaCS.Enabled = false;
+            gcKhoa.Enabled = gcLop.Enabled = false;
+        }
+
+        private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.Close();
         }
     }
 }
