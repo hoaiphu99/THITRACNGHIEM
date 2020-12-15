@@ -282,5 +282,41 @@ namespace THITRACNGHIEM
                 f.Show();
             }
         }
+
+        private void btnXemKQ_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (Program.mHoten.Equals("") || Program.mGroup.Equals(""))
+            {
+                MessageBox.Show("Vui lòng đăng nhập trước!", "Lỗi!", MessageBoxButtons.OK);
+                return;
+            }
+            Form frm = this.CheckExists(typeof(frmXemKetQua));
+            if (frm != null)
+                frm.Activate();
+            else
+            {
+                frmXemKetQua f = new frmXemKetQua();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        private void btnXemBD_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (Program.mHoten.Equals("") || Program.mGroup.Equals(""))
+            {
+                MessageBox.Show("Vui lòng đăng nhập trước!", "Lỗi!", MessageBoxButtons.OK);
+                return;
+            }
+            Form frm = this.CheckExists(typeof(frmXemBangDiem));
+            if (frm != null)
+                frm.Activate();
+            else
+            {
+                frmXemBangDiem f = new frmXemBangDiem();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
     }
 }
