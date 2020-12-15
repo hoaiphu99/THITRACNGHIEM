@@ -75,11 +75,11 @@
             this.btnChonMH = new System.Windows.Forms.Button();
             this.spinThoiGian = new DevExpress.XtraEditors.SpinEdit();
             this.spinSoCau = new DevExpress.XtraEditors.SpinEdit();
-            this.spinLan = new DevExpress.XtraEditors.SpinEdit();
             this.dptNgayThi = new DevExpress.XtraEditors.DateEdit();
             this.txtMaLop = new DevExpress.XtraEditors.TextEdit();
             this.txtMaMH = new DevExpress.XtraEditors.TextEdit();
             this.txtMaGV = new DevExpress.XtraEditors.TextEdit();
+            this.cmbLan = new System.Windows.Forms.ComboBox();
             mAGVLabel = new System.Windows.Forms.Label();
             mAMHLabel = new System.Windows.Forms.Label();
             mALOPLabel = new System.Windows.Forms.Label();
@@ -99,7 +99,6 @@
             this.grcInFor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spinThoiGian.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinSoCau.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinLan.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dptNgayThi.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dptNgayThi.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaLop.Properties)).BeginInit();
@@ -500,6 +499,7 @@
             // 
             // grcInFor
             // 
+            this.grcInFor.Controls.Add(this.cmbLan);
             this.grcInFor.Controls.Add(this.cmbTrinhDo);
             this.grcInFor.Controls.Add(this.btnChonLop);
             this.grcInFor.Controls.Add(this.btnChonMH);
@@ -508,7 +508,6 @@
             this.grcInFor.Controls.Add(sOCAUTHILabel);
             this.grcInFor.Controls.Add(this.spinSoCau);
             this.grcInFor.Controls.Add(lANLabel);
-            this.grcInFor.Controls.Add(this.spinLan);
             this.grcInFor.Controls.Add(nGAYTHILabel);
             this.grcInFor.Controls.Add(this.dptNgayThi);
             this.grcInFor.Controls.Add(tRINHDOLabel);
@@ -590,22 +589,6 @@
             this.spinSoCau.Size = new System.Drawing.Size(125, 24);
             this.spinSoCau.TabIndex = 13;
             // 
-            // spinLan
-            // 
-            this.spinLan.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsGV_DK, "LAN", true));
-            this.spinLan.EditValue = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.spinLan.Location = new System.Drawing.Point(404, 109);
-            this.spinLan.MenuManager = this.barManager1;
-            this.spinLan.Name = "spinLan";
-            this.spinLan.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.spinLan.Size = new System.Drawing.Size(125, 24);
-            this.spinLan.TabIndex = 11;
-            // 
             // dptNgayThi
             // 
             this.dptNgayThi.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsGV_DK, "NGAYTHI", true));
@@ -649,6 +632,16 @@
             this.txtMaGV.Size = new System.Drawing.Size(125, 22);
             this.txtMaGV.TabIndex = 1;
             // 
+            // cmbLan
+            // 
+            this.cmbLan.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsGV_DK, "LAN", true));
+            this.cmbLan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbLan.FormattingEnabled = true;
+            this.cmbLan.Location = new System.Drawing.Point(404, 109);
+            this.cmbLan.Name = "cmbLan";
+            this.cmbLan.Size = new System.Drawing.Size(121, 24);
+            this.cmbLan.TabIndex = 19;
+            // 
             // frmChuanBiThi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -677,7 +670,6 @@
             this.grcInFor.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spinThoiGian.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spinSoCau.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spinLan.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dptNgayThi.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dptNgayThi.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaLop.Properties)).EndInit();
@@ -725,12 +717,12 @@
         private System.Windows.Forms.Button btnChonMH;
         private DevExpress.XtraEditors.SpinEdit spinThoiGian;
         private DevExpress.XtraEditors.SpinEdit spinSoCau;
-        private DevExpress.XtraEditors.SpinEdit spinLan;
         private DevExpress.XtraEditors.DateEdit dptNgayThi;
         private DevExpress.XtraEditors.TextEdit txtMaLop;
         private DevExpress.XtraEditors.TextEdit txtMaMH;
         private DevExpress.XtraEditors.TextEdit txtMaGV;
         private System.Windows.Forms.ComboBox cmbTrinhDo;
         private DevExpress.XtraBars.BarButtonItem btnGhi;
+        private System.Windows.Forms.ComboBox cmbLan;
     }
 }

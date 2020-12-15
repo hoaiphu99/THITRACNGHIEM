@@ -40,6 +40,9 @@ namespace THITRACNGHIEM
             cmbTrinhDo.Items.Add("B");
             cmbTrinhDo.Items.Add("C");
             cmbTrinhDo.SelectedIndex = 0;
+            cmbLan.Items.Add("1");
+            cmbLan.Items.Add("2");
+            cmbLan.SelectedIndex = 0;
 
             cmbCoSo.DataSource = Program.bds_dspm;
             cmbCoSo.DisplayMember = "TEN_COSO";
@@ -103,6 +106,7 @@ namespace THITRACNGHIEM
             if(txtMaLop.Text == "")
             txtMaLop.Text = maLop;
             cmbTrinhDo.Text = cmbTrinhDo.SelectedIndex.ToString();
+            cmbLan.Text = cmbLan.SelectedIndex.ToString();
             if(txtMaMH.Text.Trim().Length == 0)
             {
                 MessageBox.Show("Mã môn học không được trống!", "Lỗi", MessageBoxButtons.OK);
@@ -119,12 +123,6 @@ namespace THITRACNGHIEM
             {
                 MessageBox.Show("Ngày thi không được trống!", "Lỗi", MessageBoxButtons.OK);
                 dptNgayThi.Focus();
-                return;
-            }
-            if (spinLan.Text.Trim().Length == 0)
-            {
-                MessageBox.Show("Lần thi không được trống!", "Lỗi", MessageBoxButtons.OK);
-                spinLan.Focus();
                 return;
             }
             if (spinSoCau.Text.Trim().Length == 0)
