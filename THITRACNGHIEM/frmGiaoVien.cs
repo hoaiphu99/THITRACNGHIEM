@@ -12,8 +12,15 @@ namespace THITRACNGHIEM
 {
     public partial class frmGiaoVien : Form
     {
-        DataTable dt = new DataTable();
-        string maKH = "";
+        private PhucHoi phucHoi = new PhucHoi();
+        private bool isDangThem = false;
+        private bool isDangSua = false;
+        private bool suaKH = false;
+        private int index = 0;
+        private string tenKH = "";
+        private string maKH = "";
+        private DataTable dt = new DataTable();
+        
         public frmGiaoVien()
         {
             InitializeComponent();
@@ -69,12 +76,12 @@ namespace THITRACNGHIEM
                 MessageBox.Show("Bạn không có quyền này!", "Thông báo", MessageBoxButtons.OK);
                 return;
             }
-
-            //cmbMaKhoa.SelectedIndex = 0; cmbMaKhoa.SelectedIndex = 1;
-            cmbMaKhoa.Text = cmbMaKhoa.SelectedIndex.ToString();
-            gc1.Enabled = true;
+            isDangThem = true;
             bdsGiaoVien.AddNew();
-            btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
+            txtMaGV.Focus();
+            txtMaKH.Text = maKH;
+            gc1.Enabled = true;
+            btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnRefresh.Enabled = false;
             btnGhi.Enabled = btnHuy.Enabled = btnPhucHoi.Enabled = true;
             gcGiaoVien.Enabled = false;
         }
@@ -105,17 +112,47 @@ namespace THITRACNGHIEM
                 txtHo.Focus();
                 return;
             }
-            txtMaKH.Text = maKH;
+            if (txtMaKH.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Mã khoa không được trống!", "Lỗi", MessageBoxButtons.OK);
+                txtMaKH.Focus();
+                return;
+            }
+            if (!suaKH)
+                txtMaKH.Text = maKH;
             try
             {
+                string sql;
+                int ketQua;
+                if (isDangThem)
+                {
+                    sql = "exec [dbo].[SP_TrungMaGV] '" + txtMaGV.Text + "'";
+                    ketQua = Program.ExecSqlNonQuery(sql);
+                    //nếu như chạy sp ko thành công
+                    if (ketQua == 1)
+                    {
+                        txtMaGV.Focus();
+                        return;
+                    }
+                }
+                if (isDangThem)
+                {
+                    phucHoi.PushStack_ThemGV(txtMaGV.Text.Trim());
+                }
+                else if (isDangSua)
+                {
+                    phucHoi.PushStack_SuaGV(txtMaGV.Text.Trim());
+                }
                 bdsGiaoVien.EndEdit();
                 bdsGiaoVien.ResetCurrentItem();
                 this.gIAOVIENTableAdapter.Update(this.dS.GIAOVIEN);
 
                 gc1.Enabled = false;
-                btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = true;
-                btnGhi.Enabled = btnHuy.Enabled = btnPhucHoi.Enabled = false;
+                btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnPhucHoi.Enabled = btnRefresh.Enabled = true;
+                btnGhi.Enabled = btnHuy.Enabled = false;
                 gcGiaoVien.Enabled = true;
+
+                isDangThem = isDangSua = false;
             }
             catch (Exception ex)
             {
@@ -136,8 +173,9 @@ namespace THITRACNGHIEM
             {
                 try
                 {
-                    maGV = ((DataRowView)bdsGiaoVien[bdsGiaoVien.Position])["MAGV"].ToString();
                     
+                    maGV = ((DataRowView)bdsGiaoVien[bdsGiaoVien.Position])["MAGV"].ToString();
+                    phucHoi.PushStack_XoaGV(maGV, txtHo.Text.Trim(), txtTen.Text.Trim(), txtHocVi.Text.Trim(), txtMaKH.Text.Trim());
                     bdsGiaoVien.RemoveCurrent();
                     this.gIAOVIENTableAdapter.Connection.ConnectionString = Program.connstr;
                     this.gIAOVIENTableAdapter.Update(this.dS.GIAOVIEN);
@@ -161,32 +199,42 @@ namespace THITRACNGHIEM
                 MessageBox.Show("Bạn không có quyền này!", "Thông báo", MessageBoxButtons.OK);
                 return;
             }
+            isDangSua = true;
+            suaKH = true;
+            phucHoi.Save_OldGV(txtHo.Text.Trim(), txtTen.Text.Trim(), txtHocVi.Text.Trim(), txtMaKH.Text.Trim());
             txtMaGV.Enabled = false;
             gc1.Enabled = true;
-            btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
+            btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnRefresh.Enabled = false;
             btnGhi.Enabled = btnHuy.Enabled = btnPhucHoi.Enabled = true;
             gcGiaoVien.Enabled = false;
         }
 
         private void btnHuy_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            bdsGiaoVien.RemoveCurrent();
-            this.gIAOVIENTableAdapter.Connection.ConnectionString = Program.connstr;
-            this.gIAOVIENTableAdapter.Fill(this.dS.GIAOVIEN);
+            bdsGiaoVien.CancelEdit();
+
+            //this.gIAOVIENTableAdapter.Connection.ConnectionString = Program.connstr;
+            //this.gIAOVIENTableAdapter.Fill(this.dS.GIAOVIEN);
             gc1.Enabled = false;
-            btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = true;
-            btnGhi.Enabled = btnHuy.Enabled = btnPhucHoi.Enabled = false;
+            btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnPhucHoi.Enabled = btnRefresh.Enabled = true;
+            btnGhi.Enabled = btnHuy.Enabled = false;
             gcGiaoVien.Enabled = true;
         }
 
         private void cmbMaKhoa_SelectedIndexChanged(object sender, EventArgs e)
         {
-            maKH = cmbMaKhoa.SelectedValue.ToString().Trim();
+            if(cmbMaKhoa.SelectedValue != null)
+            {
+                maKH = cmbMaKhoa.SelectedValue.ToString().Trim();
+                tenKH = cmbMaKhoa.GetItemText(cmbMaKhoa.SelectedItem);
+                index = cmbMaKhoa.SelectedIndex;
+            }
             this.bdsGiaoVien.Filter = "MAKH = '" + maKH + "'";
-
+            cmbMaKhoa.Text = tenKH;
             btnXoa.Enabled = false;
             if (bdsGiaoVien.Count != 0)
                 btnXoa.Enabled = true;
+            return;
         }
 
         private void gcGiaoVien_Click(object sender, EventArgs e)
@@ -232,6 +280,31 @@ namespace THITRACNGHIEM
         private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             this.Close();
+        }
+
+        private void btnPhucHoi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            string ketQua = phucHoi.PopStack();
+            if (ketQua.Equals("success"))
+            {
+                this.gIAOVIENTableAdapter.Fill(this.dS.GIAOVIEN);
+                MessageBox.Show("Phục hồi thành công!", "Thông báo", MessageBoxButtons.OK);
+            }
+            else
+            {
+                MessageBox.Show(ketQua, "Thông báo", MessageBoxButtons.OK);
+            }
+        }
+
+        private void btnRefresh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.gIAOVIENTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.gIAOVIENTableAdapter.Fill(this.dS.GIAOVIEN);
+
+            cmbMaKhoa.DataSource = dt;
+            cmbMaKhoa.DisplayMember = "TENKH";
+            cmbMaKhoa.ValueMember = "MAKH";
+            cmbMaKhoa.SelectedIndex = index;
         }
     }
 }

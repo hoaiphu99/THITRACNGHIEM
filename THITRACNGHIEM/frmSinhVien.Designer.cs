@@ -46,7 +46,9 @@
             this.btnXoa = new DevExpress.XtraBars.BarButtonItem();
             this.btnGhi = new DevExpress.XtraBars.BarButtonItem();
             this.btnPhuchoi = new DevExpress.XtraBars.BarButtonItem();
+            this.btnRefresh = new DevExpress.XtraBars.BarButtonItem();
             this.btnHuy = new DevExpress.XtraBars.BarButtonItem();
+            this.btnThoat = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -59,7 +61,6 @@
             this.cmbCoSo = new System.Windows.Forms.ComboBox();
             this.sINHVIENTableAdapter = new THITRACNGHIEM.DSTableAdapters.SINHVIENTableAdapter();
             this.tableAdapterManager = new THITRACNGHIEM.DSTableAdapters.TableAdapterManager();
-            this.bANGDIEMTableAdapter = new THITRACNGHIEM.DSTableAdapters.BANGDIEMTableAdapter();
             this.gcSinhVien = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colMASV = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -75,9 +76,6 @@
             this.txtTen = new DevExpress.XtraEditors.TextEdit();
             this.txtHo = new DevExpress.XtraEditors.TextEdit();
             this.txtMaSV = new DevExpress.XtraEditors.TextEdit();
-            this.bdsBangDiem = new System.Windows.Forms.BindingSource(this.components);
-            this.fKBANGDIEMSINHVIEN1BindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnThoat = new DevExpress.XtraBars.BarButtonItem();
             mASVLabel = new System.Windows.Forms.Label();
             hOLabel = new System.Windows.Forms.Label();
             tENLabel = new System.Windows.Forms.Label();
@@ -102,8 +100,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtTen.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaSV.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsBangDiem)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fKBANGDIEMSINHVIEN1BindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // mASVLabel
@@ -174,9 +170,9 @@
             mALOPLabel1.AutoSize = true;
             mALOPLabel1.Location = new System.Drawing.Point(216, 51);
             mALOPLabel1.Name = "mALOPLabel1";
-            mALOPLabel1.Size = new System.Drawing.Size(47, 17);
+            mALOPLabel1.Size = new System.Drawing.Size(31, 17);
             mALOPLabel1.TabIndex = 15;
-            mALOPLabel1.Text = "Mã lớp";
+            mALOPLabel1.Text = "Lớp";
             // 
             // barManager1
             // 
@@ -196,9 +192,10 @@
             this.btnPhuchoi,
             this.btnXoa,
             this.btnHuy,
-            this.btnThoat});
+            this.btnThoat,
+            this.btnRefresh});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 7;
+            this.barManager1.MaxItemId = 8;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar1
@@ -221,6 +218,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btnXoa),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnGhi),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnPhuchoi),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnRefresh),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnHuy),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnThoat)});
             this.bar2.OptionsBar.MultiLine = true;
@@ -272,6 +270,15 @@
             this.btnPhuchoi.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btnPhuchoi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPhuchoi_ItemClick);
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Caption = "Refresh";
+            this.btnRefresh.Id = 7;
+            this.btnRefresh.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnRefresh.ImageOptions.SvgImage")));
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btnRefresh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRefresh_ItemClick);
+            // 
             // btnHuy
             // 
             this.btnHuy.Caption = "Hủy";
@@ -280,6 +287,15 @@
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btnHuy.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnHuy_ItemClick);
+            // 
+            // btnThoat
+            // 
+            this.btnThoat.Caption = "Thoát";
+            this.btnThoat.Id = 6;
+            this.btnThoat.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnThoat.ImageOptions.SvgImage")));
+            this.btnThoat.Name = "btnThoat";
+            this.btnThoat.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btnThoat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThoat_ItemClick);
             // 
             // bar3
             // 
@@ -342,9 +358,9 @@
             this.cmbMaLop.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsSinhVien, "MALOP", true));
             this.cmbMaLop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMaLop.FormattingEnabled = true;
-            this.cmbMaLop.Location = new System.Drawing.Point(278, 48);
+            this.cmbMaLop.Location = new System.Drawing.Point(253, 48);
             this.cmbMaLop.Name = "cmbMaLop";
-            this.cmbMaLop.Size = new System.Drawing.Size(121, 24);
+            this.cmbMaLop.Size = new System.Drawing.Size(186, 24);
             this.cmbMaLop.TabIndex = 16;
             this.cmbMaLop.SelectedIndexChanged += new System.EventHandler(this.cmbMaLop_SelectedIndexChanged);
             // 
@@ -375,7 +391,7 @@
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.BANGDIEMTableAdapter = this.bANGDIEMTableAdapter;
+            this.tableAdapterManager.BANGDIEMTableAdapter = null;
             this.tableAdapterManager.BODETableAdapter = null;
             this.tableAdapterManager.COSOTableAdapter = null;
             this.tableAdapterManager.CT_BAITHITableAdapter = null;
@@ -386,10 +402,6 @@
             this.tableAdapterManager.MONHOCTableAdapter = null;
             this.tableAdapterManager.SINHVIENTableAdapter = this.sINHVIENTableAdapter;
             this.tableAdapterManager.UpdateOrder = THITRACNGHIEM.DSTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
-            // bANGDIEMTableAdapter
-            // 
-            this.bANGDIEMTableAdapter.ClearBeforeFill = true;
             // 
             // gcSinhVien
             // 
@@ -508,7 +520,6 @@
             this.txtMaLop.Location = new System.Drawing.Point(409, 177);
             this.txtMaLop.MenuManager = this.barManager1;
             this.txtMaLop.Name = "txtMaLop";
-            this.txtMaLop.Properties.ReadOnly = true;
             this.txtMaLop.Size = new System.Drawing.Size(125, 22);
             this.txtMaLop.TabIndex = 12;
             // 
@@ -562,25 +573,6 @@
             this.txtMaSV.Size = new System.Drawing.Size(125, 22);
             this.txtMaSV.TabIndex = 1;
             // 
-            // bdsBangDiem
-            // 
-            this.bdsBangDiem.DataMember = "FK_BANGDIEM_SINHVIEN1";
-            this.bdsBangDiem.DataSource = this.bdsSinhVien;
-            // 
-            // fKBANGDIEMSINHVIEN1BindingSource
-            // 
-            this.fKBANGDIEMSINHVIEN1BindingSource.DataMember = "FK_BANGDIEM_SINHVIEN1";
-            this.fKBANGDIEMSINHVIEN1BindingSource.DataSource = this.bdsSinhVien;
-            // 
-            // btnThoat
-            // 
-            this.btnThoat.Caption = "Thoát";
-            this.btnThoat.Id = 6;
-            this.btnThoat.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
-            this.btnThoat.Name = "btnThoat";
-            this.btnThoat.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btnThoat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThoat_ItemClick);
-            // 
             // frmSinhVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
@@ -617,8 +609,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtTen.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtHo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaSV.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsBangDiem)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.fKBANGDIEMSINHVIEN1BindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -655,8 +645,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colNGAYSINH;
         private DevExpress.XtraGrid.Columns.GridColumn colDIACHI;
         private DevExpress.XtraGrid.Columns.GridColumn colMALOP;
-        private DSTableAdapters.BANGDIEMTableAdapter bANGDIEMTableAdapter;
-        private System.Windows.Forms.BindingSource bdsBangDiem;
         private DevExpress.XtraBars.BarButtonItem btnGhi;
         private DevExpress.XtraBars.BarButtonItem btnPhuchoi;
         private DevExpress.XtraBars.BarButtonItem btnXoa;
@@ -664,7 +652,7 @@
         private System.Windows.Forms.ComboBox cmbCoSo;
         private System.Windows.Forms.ComboBox cmbMaLop;
         private DevExpress.XtraEditors.TextEdit txtMaLop;
-        private System.Windows.Forms.BindingSource fKBANGDIEMSINHVIEN1BindingSource;
         private DevExpress.XtraBars.BarButtonItem btnThoat;
+        private DevExpress.XtraBars.BarButtonItem btnRefresh;
     }
 }

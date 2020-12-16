@@ -16,7 +16,6 @@ namespace THITRACNGHIEM
         private string maLop;
         private string maSV;
         private string maMH;
-        private string ngayThi;
         private int lan;
 
         public frmXemKetQua()
@@ -95,7 +94,6 @@ namespace THITRACNGHIEM
                 maSV = Program.username;
                 maMH = gvMonHoc.GetRowCellValue(gvMonHoc.FocusedRowHandle, "MAMH").ToString().Trim();
                 lan = Int32.Parse(cmbLan.SelectedItem.ToString());
-                ngayThi = dptNgayThi.Text;
             }
             else
             {
@@ -103,20 +101,18 @@ namespace THITRACNGHIEM
                 maSV = gvSinhVIen.GetRowCellValue(gvSinhVIen.FocusedRowHandle, "MASV").ToString().Trim();
                 maMH = gvMonHoc.GetRowCellValue(gvMonHoc.FocusedRowHandle, "MAMH").ToString().Trim();
                 lan = Int32.Parse(cmbLan.SelectedItem.ToString());
-                ngayThi = dptNgayThi.Text;
             }
             // kiem tra ma lop cua sv
             string sql = "EXEC SP_KTMaLop '" + maLop + "'";
             if(Program.ExecSqlNonQuery(sql) == 0)
             {
-                sql = "EXEC SP_KTKetQuaNULL '" + maSV + "', '" + maMH + "', " + lan + ", '" + ngayThi + "'";
+                sql = "EXEC SP_KTKetQuaNULL '" + maSV + "', '" + maMH + "', " + lan + "";
                 if(Program.ExecSqlNonQuery(sql) == 0)
                 {
-                    rptXemKetQua rpt = new rptXemKetQua(maSV, maMH, lan, ngayThi);
+                    rptXemKetQua rpt = new rptXemKetQua(maSV, maMH, lan);
                     rpt.lblLop.Text = txtLop.Text;
                     rpt.lblHoTen.Text = txtHoTen.Text;
                     rpt.lblMon.Text = txtMonHoc.Text;
-                    rpt.lblNgay.Text = ngayThi;
                     rpt.lblLan.Text = lan.ToString();
 
                     ReportPrintTool print = new ReportPrintTool(rpt);

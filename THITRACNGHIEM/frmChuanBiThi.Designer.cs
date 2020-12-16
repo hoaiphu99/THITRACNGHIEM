@@ -60,7 +60,7 @@
             this.gIAOVIEN_DANGKYTableAdapter = new THITRACNGHIEM.DSTableAdapters.GIAOVIEN_DANGKYTableAdapter();
             this.tableAdapterManager = new THITRACNGHIEM.DSTableAdapters.TableAdapterManager();
             this.gIAOVIEN_DANGKYGridControl = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gvGV_DK = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colMAGV = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMAMH = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMALOP = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -70,6 +70,7 @@
             this.colSOCAUTHI = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTHOIGIAN = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grcInFor = new DevExpress.XtraEditors.GroupControl();
+            this.cmbLan = new System.Windows.Forms.ComboBox();
             this.cmbTrinhDo = new System.Windows.Forms.ComboBox();
             this.btnChonLop = new System.Windows.Forms.Button();
             this.btnChonMH = new System.Windows.Forms.Button();
@@ -79,7 +80,7 @@
             this.txtMaLop = new DevExpress.XtraEditors.TextEdit();
             this.txtMaMH = new DevExpress.XtraEditors.TextEdit();
             this.txtMaGV = new DevExpress.XtraEditors.TextEdit();
-            this.cmbLan = new System.Windows.Forms.ComboBox();
+            this.btnRefresh = new DevExpress.XtraBars.BarButtonItem();
             mAGVLabel = new System.Windows.Forms.Label();
             mAMHLabel = new System.Windows.Forms.Label();
             mALOPLabel = new System.Windows.Forms.Label();
@@ -94,7 +95,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dS)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsGV_DK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gIAOVIEN_DANGKYGridControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvGV_DK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grcInFor)).BeginInit();
             this.grcInFor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spinThoiGian.Properties)).BeginInit();
@@ -195,9 +196,10 @@
             this.btnXoa,
             this.btnHuy,
             this.btnThoat,
-            this.btnGhi});
+            this.btnGhi,
+            this.btnRefresh});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 6;
+            this.barManager1.MaxItemId = 7;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar1
@@ -219,6 +221,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btnSua),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnXoa),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnGhi),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnRefresh),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnHuy),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnThoat)});
             this.bar2.OptionsBar.MultiLine = true;
@@ -387,17 +390,17 @@
             this.gIAOVIEN_DANGKYGridControl.DataSource = this.bdsGV_DK;
             this.gIAOVIEN_DANGKYGridControl.Dock = System.Windows.Forms.DockStyle.Top;
             this.gIAOVIEN_DANGKYGridControl.Location = new System.Drawing.Point(0, 128);
-            this.gIAOVIEN_DANGKYGridControl.MainView = this.gridView1;
+            this.gIAOVIEN_DANGKYGridControl.MainView = this.gvGV_DK;
             this.gIAOVIEN_DANGKYGridControl.MenuManager = this.barManager1;
             this.gIAOVIEN_DANGKYGridControl.Name = "gIAOVIEN_DANGKYGridControl";
             this.gIAOVIEN_DANGKYGridControl.Size = new System.Drawing.Size(1228, 252);
             this.gIAOVIEN_DANGKYGridControl.TabIndex = 6;
             this.gIAOVIEN_DANGKYGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.gvGV_DK});
             // 
-            // gridView1
+            // gvGV_DK
             // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gvGV_DK.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colMAGV,
             this.colMAMH,
             this.colMALOP,
@@ -406,8 +409,8 @@
             this.colLAN,
             this.colSOCAUTHI,
             this.colTHOIGIAN});
-            this.gridView1.GridControl = this.gIAOVIEN_DANGKYGridControl;
-            this.gridView1.Name = "gridView1";
+            this.gvGV_DK.GridControl = this.gIAOVIEN_DANGKYGridControl;
+            this.gvGV_DK.Name = "gvGV_DK";
             // 
             // colMAGV
             // 
@@ -524,6 +527,17 @@
             this.grcInFor.TabIndex = 7;
             this.grcInFor.Text = "Thông tin chi tiết";
             // 
+            // cmbLan
+            // 
+            this.cmbLan.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsGV_DK, "LAN", true));
+            this.cmbLan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbLan.FormattingEnabled = true;
+            this.cmbLan.Location = new System.Drawing.Point(404, 109);
+            this.cmbLan.Name = "cmbLan";
+            this.cmbLan.Size = new System.Drawing.Size(121, 24);
+            this.cmbLan.TabIndex = 19;
+            this.cmbLan.SelectedIndexChanged += new System.EventHandler(this.cmbLan_SelectedIndexChanged);
+            // 
             // cmbTrinhDo
             // 
             this.cmbTrinhDo.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsGV_DK, "TRINHDO", true));
@@ -632,15 +646,14 @@
             this.txtMaGV.Size = new System.Drawing.Size(125, 22);
             this.txtMaGV.TabIndex = 1;
             // 
-            // cmbLan
+            // btnRefresh
             // 
-            this.cmbLan.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsGV_DK, "LAN", true));
-            this.cmbLan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbLan.FormattingEnabled = true;
-            this.cmbLan.Location = new System.Drawing.Point(404, 109);
-            this.cmbLan.Name = "cmbLan";
-            this.cmbLan.Size = new System.Drawing.Size(121, 24);
-            this.cmbLan.TabIndex = 19;
+            this.btnRefresh.Caption = "Refresh";
+            this.btnRefresh.Id = 6;
+            this.btnRefresh.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btnRefresh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRefresh_ItemClick);
             // 
             // frmChuanBiThi
             // 
@@ -664,7 +677,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dS)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsGV_DK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gIAOVIEN_DANGKYGridControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gvGV_DK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grcInFor)).EndInit();
             this.grcInFor.ResumeLayout(false);
             this.grcInFor.PerformLayout();
@@ -703,7 +716,7 @@
         private DSTableAdapters.GIAOVIEN_DANGKYTableAdapter gIAOVIEN_DANGKYTableAdapter;
         private DSTableAdapters.TableAdapterManager tableAdapterManager;
         private DevExpress.XtraGrid.GridControl gIAOVIEN_DANGKYGridControl;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
+        private DevExpress.XtraGrid.Views.Grid.GridView gvGV_DK;
         private DevExpress.XtraEditors.GroupControl grcInFor;
         private DevExpress.XtraGrid.Columns.GridColumn colMAGV;
         private DevExpress.XtraGrid.Columns.GridColumn colMAMH;
@@ -724,5 +737,6 @@
         private System.Windows.Forms.ComboBox cmbTrinhDo;
         private DevExpress.XtraBars.BarButtonItem btnGhi;
         private System.Windows.Forms.ComboBox cmbLan;
+        private DevExpress.XtraBars.BarButtonItem btnRefresh;
     }
 }

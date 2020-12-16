@@ -33,9 +33,7 @@
             DevExpress.DataAccess.Sql.QueryParameter queryParameter1 = new DevExpress.DataAccess.Sql.QueryParameter();
             DevExpress.DataAccess.Sql.QueryParameter queryParameter2 = new DevExpress.DataAccess.Sql.QueryParameter();
             DevExpress.DataAccess.Sql.QueryParameter queryParameter3 = new DevExpress.DataAccess.Sql.QueryParameter();
-            DevExpress.DataAccess.Sql.QueryParameter queryParameter4 = new DevExpress.DataAccess.Sql.QueryParameter();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(rptXemKetQua));
-            this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
             this.Title = new DevExpress.XtraReports.UI.XRControlStyle();
             this.DetailCaption1 = new DevExpress.XtraReports.UI.XRControlStyle();
             this.DetailData1 = new DevExpress.XtraReports.UI.XRControlStyle();
@@ -80,34 +78,9 @@
             this.lblMon = new DevExpress.XtraReports.UI.XRLabel();
             this.lblNgay = new DevExpress.XtraReports.UI.XRLabel();
             this.lblLan = new DevExpress.XtraReports.UI.XRLabel();
+            this.sqlDataSource1 = new DevExpress.DataAccess.Sql.SqlDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.table1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
-            // 
-            // sqlDataSource1
-            // 
-            this.sqlDataSource1.ConnectionName = "TN_CSDLPTConnectionString";
-            this.sqlDataSource1.Name = "sqlDataSource1";
-            storedProcQuery1.Name = "SP_XemKetQua";
-            queryParameter1.Name = "@MASV";
-            queryParameter1.Type = typeof(string);
-            queryParameter1.ValueInfo = "001";
-            queryParameter2.Name = "@MAMH";
-            queryParameter2.Type = typeof(string);
-            queryParameter2.ValueInfo = "AVCB";
-            queryParameter3.Name = "@LAN";
-            queryParameter3.Type = typeof(short);
-            queryParameter3.ValueInfo = "1";
-            queryParameter4.Name = "@NGAYTHI";
-            queryParameter4.Type = typeof(System.DateTime);
-            queryParameter4.ValueInfo = "2020-12-15";
-            storedProcQuery1.Parameters.Add(queryParameter1);
-            storedProcQuery1.Parameters.Add(queryParameter2);
-            storedProcQuery1.Parameters.Add(queryParameter3);
-            storedProcQuery1.Parameters.Add(queryParameter4);
-            storedProcQuery1.StoredProcName = "SP_XemKetQua";
-            this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
-            storedProcQuery1});
-            this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
             // 
             // Title
             // 
@@ -193,7 +166,6 @@
             // 
             this.GroupHeader1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.table1});
-            this.GroupHeader1.Expanded = false;
             this.GroupHeader1.GroupUnion = DevExpress.XtraReports.UI.GroupUnion.WithFirstDetail;
             this.GroupHeader1.HeightF = 28F;
             this.GroupHeader1.Name = "GroupHeader1";
@@ -207,7 +179,6 @@
             this.xrLabel3,
             this.xrLabel4,
             this.xrLabel5});
-            this.Detail.Expanded = false;
             this.Detail.HeightF = 148.3333F;
             this.Detail.Name = "Detail";
             // 
@@ -267,7 +238,7 @@
             this.tableCell1.StylePriority.UseBorderWidth = false;
             this.tableCell1.StylePriority.UseTextAlignment = false;
             this.tableCell1.Text = "STT";
-            this.tableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.tableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.tableCell1.Weight = 0.059045195872576908D;
             // 
             // tableCell2
@@ -280,8 +251,8 @@
             this.tableCell2.StylePriority.UseBorders = false;
             this.tableCell2.StylePriority.UseBorderWidth = false;
             this.tableCell2.StylePriority.UseTextAlignment = false;
-            this.tableCell2.Text = "CAUHOI";
-            this.tableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.tableCell2.Text = "CÂU HỎI";
+            this.tableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.tableCell2.Weight = 0.080801552861744452D;
             // 
             // tableCell3
@@ -293,7 +264,9 @@
             this.tableCell3.StyleName = "DetailCaption1";
             this.tableCell3.StylePriority.UseBorders = false;
             this.tableCell3.StylePriority.UseBorderWidth = false;
-            this.tableCell3.Text = "NOIDUNG";
+            this.tableCell3.StylePriority.UseTextAlignment = false;
+            this.tableCell3.Text = "NỘI DUNG";
+            this.tableCell3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.tableCell3.Weight = 0.431615900206577D;
             // 
             // tableCell4
@@ -305,7 +278,9 @@
             this.tableCell4.StyleName = "DetailCaption1";
             this.tableCell4.StylePriority.UseBorders = false;
             this.tableCell4.StylePriority.UseBorderWidth = false;
-            this.tableCell4.Text = "DAP AN";
+            this.tableCell4.StylePriority.UseTextAlignment = false;
+            this.tableCell4.Text = "ĐÁP ÁN";
+            this.tableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.tableCell4.Weight = 0.0944649406034336D;
             // 
             // tableCell5
@@ -318,7 +293,9 @@
             this.tableCell5.StyleName = "DetailCaption1";
             this.tableCell5.StylePriority.UseBorders = false;
             this.tableCell5.StylePriority.UseBorderWidth = false;
-            this.tableCell5.Text = "DACHON";
+            this.tableCell5.StylePriority.UseTextAlignment = false;
+            this.tableCell5.Text = "ĐÃ CHỌN";
+            this.tableCell5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.tableCell5.Weight = 0.098630330019971027D;
             // 
             // xrTableCell1
@@ -331,7 +308,9 @@
             this.xrTableCell1.StyleName = "DetailCaption1";
             this.xrTableCell1.StylePriority.UseBorders = false;
             this.xrTableCell1.StylePriority.UseBorderWidth = false;
-            this.xrTableCell1.Text = "Các lựa chọn";
+            this.xrTableCell1.StylePriority.UseTextAlignment = false;
+            this.xrTableCell1.Text = "CÁC LỰA CHỌN";
+            this.xrTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell1.Weight = 0.474229791532934D;
             // 
             // xrLabel1
@@ -660,6 +639,28 @@
             this.lblLan.SizeF = new System.Drawing.SizeF(109.3904F, 29.16667F);
             this.lblLan.StyleName = "Title";
             // 
+            // sqlDataSource1
+            // 
+            this.sqlDataSource1.ConnectionName = "TN_CSDLPTConnectionString";
+            this.sqlDataSource1.Name = "sqlDataSource1";
+            storedProcQuery1.Name = "SP_XemKetQua";
+            queryParameter1.Name = "@MASV";
+            queryParameter1.Type = typeof(string);
+            queryParameter1.ValueInfo = "001";
+            queryParameter2.Name = "@MAMH";
+            queryParameter2.Type = typeof(string);
+            queryParameter2.ValueInfo = "AVCB";
+            queryParameter3.Name = "@LAN";
+            queryParameter3.Type = typeof(short);
+            queryParameter3.ValueInfo = "1";
+            storedProcQuery1.Parameters.Add(queryParameter1);
+            storedProcQuery1.Parameters.Add(queryParameter2);
+            storedProcQuery1.Parameters.Add(queryParameter3);
+            storedProcQuery1.StoredProcName = "SP_XemKetQua";
+            this.sqlDataSource1.Queries.AddRange(new DevExpress.DataAccess.Sql.SqlQuery[] {
+            storedProcQuery1});
+            this.sqlDataSource1.ResultSchemaSerializable = resources.GetString("sqlDataSource1.ResultSchemaSerializable");
+            // 
             // rptXemKetQua
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -691,8 +692,6 @@
         }
 
         #endregion
-
-        private DevExpress.DataAccess.Sql.SqlDataSource sqlDataSource1;
         private DevExpress.XtraReports.UI.XRControlStyle Title;
         private DevExpress.XtraReports.UI.XRControlStyle DetailCaption1;
         private DevExpress.XtraReports.UI.XRControlStyle DetailData1;
@@ -737,5 +736,6 @@
         public DevExpress.XtraReports.UI.XRLabel lblMon;
         public DevExpress.XtraReports.UI.XRLabel lblHoTen;
         public DevExpress.XtraReports.UI.XRLabel lblLop;
+        private DevExpress.DataAccess.Sql.SqlDataSource sqlDataSource1;
     }
 }

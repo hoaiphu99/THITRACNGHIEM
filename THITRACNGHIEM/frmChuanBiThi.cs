@@ -14,6 +14,8 @@ namespace THITRACNGHIEM
     {
         public static string maMH = "";
         public static string maLop = "";
+        public static string trinhDo = "A";
+        private static int lan = 1;
         int vitri;
 
         public frmChuanBiThi()
@@ -105,9 +107,9 @@ namespace THITRACNGHIEM
                 txtMaMH.Text = maMH;
             if(txtMaLop.Text == "")
             txtMaLop.Text = maLop;
-            cmbTrinhDo.Text = cmbTrinhDo.SelectedIndex.ToString();
-            cmbLan.Text = cmbLan.SelectedIndex.ToString();
-            if(txtMaMH.Text.Trim().Length == 0)
+            cmbTrinhDo.Text = trinhDo;
+            cmbLan.Text = lan.ToString();
+            if (txtMaMH.Text.Trim().Length == 0)
             {
                 MessageBox.Show("Mã môn học không được trống!", "Lỗi", MessageBoxButtons.OK);
                 txtMaMH.Focus();
@@ -145,13 +147,18 @@ namespace THITRACNGHIEM
             }
             try
             {
-                bdsGV_DK.EndEdit();
-                bdsGV_DK.ResetCurrentItem();
-                this.gIAOVIEN_DANGKYTableAdapter.Update(this.dS.GIAOVIEN_DANGKY);
+                sql = "EXEC SP_KTLapLichThi '" + txtMaMH.Text.Trim() + "', '" + txtMaLop.Text.Trim() + "', " + lan + "";
+                if(Program.ExecSqlNonQuery(sql) == 0)
+                {
+                    bdsGV_DK.EndEdit();
+                    bdsGV_DK.ResetCurrentItem();
+                    this.gIAOVIEN_DANGKYTableAdapter.Update(this.dS.GIAOVIEN_DANGKY);
 
-                grcInFor.Enabled = false;
-                btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = true;
-                btnGhi.Enabled = btnHuy.Enabled = false;
+                    grcInFor.Enabled = false;
+                    btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = true;
+                    btnGhi.Enabled = btnHuy.Enabled = false;
+                }
+                
             }
             catch (Exception ex)
             {
@@ -161,7 +168,7 @@ namespace THITRACNGHIEM
 
         private void cmbTrinhDo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            trinhDo = cmbTrinhDo.GetItemText(cmbTrinhDo.SelectedItem);
         }
 
         private void btnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -171,7 +178,15 @@ namespace THITRACNGHIEM
                 MessageBox.Show("Bạn không có quyền này!", "Thông báo", MessageBoxButtons.OK);
                 return;
             }
-
+            maLop = gvGV_DK.GetRowCellValue(gvGV_DK.FocusedRowHandle, "MALOP").ToString().Trim();
+            maMH = gvGV_DK.GetRowCellValue(gvGV_DK.FocusedRowHandle, "MAMH").ToString().Trim();
+            lan = Int32.Parse(gvGV_DK.GetRowCellValue(gvGV_DK.FocusedRowHandle, "LAN").ToString().Trim());
+            string sql = "EXEC SP_KTBangDiemNULL '" + maMH + "', " + lan + ", '" + maLop + "'";
+            if (Program.ExecSqlNonQuery(sql) == 0)
+            {
+                MessageBox.Show("Môn này đã thi, không được sửa!", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
             grcInFor.Enabled = true;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
             btnGhi.Enabled = btnHuy.Enabled = true;
@@ -262,6 +277,17 @@ namespace THITRACNGHIEM
             {
                 txtMaLop.Text = maLop;
             }
+        }
+
+        private void btnRefresh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.gIAOVIEN_DANGKYTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.gIAOVIEN_DANGKYTableAdapter.Fill(this.dS.GIAOVIEN_DANGKY);
+        }
+
+        private void cmbLan_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lan = Int32.Parse(cmbLan.GetItemText(cmbLan.SelectedItem));
         }
     }
 }

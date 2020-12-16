@@ -57,8 +57,6 @@
             this.btnChonMH = new System.Windows.Forms.Button();
             this.txtMonHoc = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.dptNgayThi = new DevExpress.XtraEditors.DateEdit();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbLan = new System.Windows.Forms.ComboBox();
             this.btnPreview = new System.Windows.Forms.Button();
@@ -79,8 +77,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gcSinhVIen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsSinhVien)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvSinhVIen)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dptNgayThi.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dptNgayThi.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -354,35 +350,11 @@
             this.label3.TabIndex = 7;
             this.label3.Text = "Môn thi";
             // 
-            // label4
-            // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(369, 145);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(72, 21);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Ngày thi";
-            // 
-            // dptNgayThi
-            // 
-            this.dptNgayThi.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.dptNgayThi.EditValue = null;
-            this.dptNgayThi.Location = new System.Drawing.Point(448, 145);
-            this.dptNgayThi.Name = "dptNgayThi";
-            this.dptNgayThi.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dptNgayThi.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dptNgayThi.Size = new System.Drawing.Size(147, 22);
-            this.dptNgayThi.TabIndex = 11;
-            // 
             // label5
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(369, 176);
+            this.label5.Location = new System.Drawing.Point(369, 149);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(61, 21);
@@ -394,7 +366,7 @@
             this.cmbLan.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.cmbLan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbLan.FormattingEnabled = true;
-            this.cmbLan.Location = new System.Drawing.Point(448, 173);
+            this.cmbLan.Location = new System.Drawing.Point(448, 146);
             this.cmbLan.Name = "cmbLan";
             this.cmbLan.Size = new System.Drawing.Size(147, 28);
             this.cmbLan.TabIndex = 13;
@@ -402,7 +374,7 @@
             // btnPreview
             // 
             this.btnPreview.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnPreview.Location = new System.Drawing.Point(448, 245);
+            this.btnPreview.Location = new System.Drawing.Point(448, 218);
             this.btnPreview.Name = "btnPreview";
             this.btnPreview.Size = new System.Drawing.Size(117, 48);
             this.btnPreview.TabIndex = 14;
@@ -413,7 +385,7 @@
             // btnThoat
             // 
             this.btnThoat.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnThoat.Location = new System.Drawing.Point(635, 245);
+            this.btnThoat.Location = new System.Drawing.Point(635, 218);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(117, 48);
             this.btnThoat.TabIndex = 15;
@@ -458,8 +430,6 @@
             this.Controls.Add(this.btnPreview);
             this.Controls.Add(this.cmbLan);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.dptNgayThi);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.btnChonMH);
             this.Controls.Add(this.txtMonHoc);
             this.Controls.Add(this.label3);
@@ -487,8 +457,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gcSinhVIen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsSinhVien)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvSinhVIen)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dptNgayThi.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dptNgayThi.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -506,8 +474,6 @@
         private System.Windows.Forms.Button btnChonMH;
         private System.Windows.Forms.TextBox txtMonHoc;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private DevExpress.XtraEditors.DateEdit dptNgayThi;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cmbLan;
         private System.Windows.Forms.Button btnPreview;

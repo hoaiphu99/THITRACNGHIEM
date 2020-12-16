@@ -219,17 +219,7 @@ namespace THITRACNGHIEM
                     {
                         MessageBox.Show("Thêm vào bảng điểm thành công!", "Thông báo", MessageBoxButtons.OK);
                     }
-                    //sql = "";
-                    //sql = "EXEC SP_TIMBD '" + Program.maMH + "', '" + Program.username + "', " + Program.lanThi + ", '" + Program.ngayThi + "'";
-                    //SqlDataReader reader;
-                    //reader = Program.ExecSqlDataReader(sql);
-                    //if (reader == null) return;
-                    //reader.Read();
-                    //long IDBD; 
-                    //IDBD = reader.GetInt64(0);
-                    //reader.Close();
-
-                    //sql = "";
+                    sql = "";
                     foreach (KeyValuePair<int, CauHoi> item in deThi)
                     {
                         sql += "INSERT INTO CT_BAITHI ( IDBD, CAUHOI, DACHON, STT ) " +
@@ -241,7 +231,7 @@ namespace THITRACNGHIEM
                             ") \n\n";
                     }
                     if (Program.ExecSqlNonQuery(sql) == 0)
-                        MessageBox.Show("Thêm vào CT_BAITHI thành công!", "Thông báo", MessageBoxButtons.OK);
+                        MessageBox.Show("Đã lưu bài thi vào CSDL!", "Thông báo", MessageBoxButtons.OK);
 
                 }
                 catch (Exception e)

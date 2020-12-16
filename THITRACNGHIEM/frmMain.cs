@@ -51,6 +51,8 @@ namespace THITRACNGHIEM
                 rbbThi.Visible = true;
                 rbbDanhMuc.Visible = false;
                 btnTaoTK.Enabled = false;
+                btnXemBD.Enabled = false;
+                btnDSDK.Enabled = false;
             }
             else
             {
@@ -58,6 +60,8 @@ namespace THITRACNGHIEM
                     btnTaoTK.Enabled = false;
                 rbbThi.Visible = true;
                 rbbDanhMuc.Visible = true;
+                btnXemBD.Enabled = true;
+                btnDSDK.Enabled = true;
             }
         }
 
@@ -314,6 +318,24 @@ namespace THITRACNGHIEM
             else
             {
                 frmXemBangDiem f = new frmXemBangDiem();
+                f.MdiParent = this;
+                f.Show();
+            }
+        }
+
+        private void btnDSDK_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (Program.mHoten.Equals("") || Program.mGroup.Equals(""))
+            {
+                MessageBox.Show("Vui lòng đăng nhập trước!", "Lỗi!", MessageBoxButtons.OK);
+                return;
+            }
+            Form frm = this.CheckExists(typeof(frmDSDKThi));
+            if (frm != null)
+                frm.Activate();
+            else
+            {
+                frmDSDKThi f = new frmDSDKThi();
                 f.MdiParent = this;
                 f.Show();
             }

@@ -39,12 +39,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lblMSV = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnThoat = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupControl1
             // 
+            this.groupControl1.Controls.Add(this.btnThoat);
             this.groupControl1.Controls.Add(this.lblDiaChi);
             this.groupControl1.Controls.Add(this.label11);
             this.groupControl1.Controls.Add(this.lblNgaySinh);
@@ -156,6 +158,17 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Mã sinh viên:";
             // 
+            // btnThoat
+            // 
+            this.btnThoat.Font = new System.Drawing.Font("Tahoma", 13F);
+            this.btnThoat.Location = new System.Drawing.Point(1011, 419);
+            this.btnThoat.Name = "btnThoat";
+            this.btnThoat.Size = new System.Drawing.Size(110, 70);
+            this.btnThoat.TabIndex = 14;
+            this.btnThoat.Text = "Thoát";
+            this.btnThoat.UseVisualStyleBackColor = true;
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
+            // 
             // frmThongTinSV
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -185,5 +198,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblMSV;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnThoat;
     }
 }

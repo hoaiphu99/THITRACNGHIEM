@@ -61,7 +61,7 @@ namespace THITRACNGHIEM
                 txtMaMH.Enabled = true;
                 //btnThemMH.Enabled = btnSuaMH.Enabled = btnTaiLaiMH.Enabled = btnXoaMH.Enabled = btnTim.Enabled = edtTim.Enabled = false;
                 btnGhi.Enabled = btnHuy.Enabled = true;
-                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnPhucHoi.Enabled = btnThoat.Enabled =  false;
+                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnPhucHoi.Enabled = btnThoat.Enabled = btnRefresh.Enabled =  false;
                 //checkThem = true;
                 //checkSave = false;
             }
@@ -113,21 +113,21 @@ namespace THITRACNGHIEM
                     }
                 }
                 //isDangSua = true
-                else
+                else if(isDangSua)
                 {
-                    string[] oldMH = phucHoi.GetDataTruocKhiSua().Split('/');
+                    string[] oldMH = phucHoi.GetDataTruocKhiSua().Split('-');
 
-                    if (txtMaMH.Text != oldMH[0])
-                    {
-                        sql = "exec [dbo].[SP_TrungMaMH] '" + txtMaMH.Text + "'";
-                        ketQua = Program.ExecSqlNonQuery(sql);
-                        //nếu như chạy sp ko thành công
-                        if (ketQua == 1)
-                        {
-                            txtMaMH.Focus();
-                            return;
-                        }
-                    }
+                    //if (txtMaMH.Text != oldMH[0])
+                    //{
+                    //    sql = "exec [dbo].[SP_TrungMaMH] '" + txtMaMH.Text + "'";
+                    //    ketQua = Program.ExecSqlNonQuery(sql);
+                    //    //nếu như chạy sp ko thành công
+                    //    if (ketQua == 1)
+                    //    {
+                    //        txtMaMH.Focus();
+                    //        return;
+                    //    }
+                    //}
 
                     if (txtTenMH.Text != oldMH[1])
                     {
@@ -150,7 +150,7 @@ namespace THITRACNGHIEM
                 }
                 else if (isDangSua)
                 {
-                    phucHoi.PushStack_SuaMH(txtMaMH.Text, txtTenMH.Text);
+                    phucHoi.PushStack_SuaMH(txtTenMH.Text);
                     isDangSua = false;
                 }
                 bds_MonHoc.EndEdit();
@@ -159,14 +159,14 @@ namespace THITRACNGHIEM
               
                 gc_MonHoc.Enabled = true;
                 groupBox1.Enabled = false;
-                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnPhucHoi.Enabled = true;
+                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnPhucHoi.Enabled = btnRefresh.Enabled = btnThoat.Enabled = true;
                 btnGhi.Enabled = btnHuy.Enabled = false;
             }
             catch(Exception ex) {
                 MessageBox.Show("Thao tác lỗi!\n" + ex.Message, "Thông báo", MessageBoxButtons.OK);
                 
             }
-            MessageBox.Show("Thêm thành công!", "Thông báo", MessageBoxButtons.OK);
+            //MessageBox.Show("Thêm thành công!", "Thông báo", MessageBoxButtons.OK);
         }
 
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -213,7 +213,7 @@ namespace THITRACNGHIEM
             gc_MonHoc.Enabled = false;
             groupBox1.Enabled = true;
             btnGhi.Enabled = btnHuy.Enabled = true;
-            btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnPhucHoi.Enabled = btnThoat.Enabled = false;
+            btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnPhucHoi.Enabled = btnThoat.Enabled = btnRefresh.Enabled = false;
         }
 
         private void btnPhucHoi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -232,6 +232,17 @@ namespace THITRACNGHIEM
             }
         }
 
+        private void btnRefresh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.mONHOCTableAdapter.Connection.ConnectionString = Program.connstr;
+            //this.mONHOCTableAdapter.Connection.ConnectionString = "Data Source=DESKTOP-D1DKRD0\\SERVER1;Initial Catalog=TN_CSDLPT;User ID=dvt;password=123456";
+            this.mONHOCTableAdapter.Fill(this.dS.MONHOC);
+
+            // TODO: This line of code loads data into the 'dS.BODE' table. You can move, or remove it, as needed.
+            //this.bODETableAdapter.Connection.ConnectionString = "Data Source=DESKTOP-D1DKRD0\\SERVER1;Initial Catalog=TN_CSDLPT;User ID=dvt;password=123456";
+            this.bODETableAdapter.Fill(this.dS.BODE);
+        }
+
         private void btnHuy_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             //MessageBox.Show("Không có môn học để xóa!", "THÔNG BÁO", MessageBoxButtons.YesNo,);
@@ -246,7 +257,7 @@ namespace THITRACNGHIEM
                 isDangThem = isDangSua = false;
                 gc_MonHoc.Enabled = true;
                 groupBox1.Enabled = false;
-                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnPhucHoi.Enabled = btnThoat.Enabled = true;
+                btnThem.Enabled = btnXoa.Enabled = btnSua.Enabled = btnPhucHoi.Enabled = btnThoat.Enabled = btnRefresh.Enabled = true;
                 btnGhi.Enabled = btnHuy.Enabled = false;
             }
             catch(Exception ex)

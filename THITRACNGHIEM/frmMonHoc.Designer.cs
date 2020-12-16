@@ -36,8 +36,8 @@
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.bar2 = new DevExpress.XtraBars.Bar();
             this.btnThem = new DevExpress.XtraBars.BarButtonItem();
-            this.btnXoa = new DevExpress.XtraBars.BarButtonItem();
             this.btnSua = new DevExpress.XtraBars.BarButtonItem();
+            this.btnXoa = new DevExpress.XtraBars.BarButtonItem();
             this.btnGhi = new DevExpress.XtraBars.BarButtonItem();
             this.btnHuy = new DevExpress.XtraBars.BarButtonItem();
             this.btnPhucHoi = new DevExpress.XtraBars.BarButtonItem();
@@ -61,6 +61,7 @@
             this.txtMaMH = new DevExpress.XtraEditors.TextEdit();
             this.bds_BoDe = new System.Windows.Forms.BindingSource(this.components);
             this.bODETableAdapter = new THITRACNGHIEM.DSTableAdapters.BODETableAdapter();
+            this.btnRefresh = new DevExpress.XtraBars.BarButtonItem();
             mAMHLabel = new System.Windows.Forms.Label();
             tENMHLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -111,9 +112,10 @@
             this.btnPhucHoi,
             this.btnHuy,
             this.btnThoat,
-            this.barButtonItem2});
+            this.barButtonItem2,
+            this.btnRefresh});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 8;
+            this.barManager1.MaxItemId = 9;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar1
@@ -135,8 +137,9 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnSua, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnXoa, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnGhi, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnHuy, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnPhucHoi, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnRefresh),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnHuy, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnThoat, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
             this.bar2.OptionsBar.MultiLine = true;
             this.bar2.OptionsBar.UseWholeRow = true;
@@ -150,14 +153,6 @@
             this.btnThem.Name = "btnThem";
             this.btnThem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThem_ItemClick);
             // 
-            // btnXoa
-            // 
-            this.btnXoa.Caption = "Xoá";
-            this.btnXoa.Id = 1;
-            this.btnXoa.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnXoa.ImageOptions.SvgImage")));
-            this.btnXoa.Name = "btnXoa";
-            this.btnXoa.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnXoa_ItemClick);
-            // 
             // btnSua
             // 
             this.btnSua.Caption = "Sửa";
@@ -165,6 +160,14 @@
             this.btnSua.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnSua.ImageOptions.SvgImage")));
             this.btnSua.Name = "btnSua";
             this.btnSua.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSua_ItemClick);
+            // 
+            // btnXoa
+            // 
+            this.btnXoa.Caption = "Xoá";
+            this.btnXoa.Id = 1;
+            this.btnXoa.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnXoa.ImageOptions.SvgImage")));
+            this.btnXoa.Name = "btnXoa";
+            this.btnXoa.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnXoa_ItemClick);
             // 
             // btnGhi
             // 
@@ -339,7 +342,7 @@
             // 
             this.txtTenMH.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bds_MonHoc, "TENMH", true));
             this.txtTenMH.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bds_MonHoc, "TENMH", true));
-            this.txtTenMH.Location = new System.Drawing.Point(331, 81);
+            this.txtTenMH.Location = new System.Drawing.Point(309, 83);
             this.txtTenMH.MenuManager = this.barManager1;
             this.txtTenMH.Name = "txtTenMH";
             this.txtTenMH.Size = new System.Drawing.Size(254, 22);
@@ -349,7 +352,7 @@
             // 
             this.txtMaMH.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bds_MonHoc, "MAMH", true));
             this.txtMaMH.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bds_MonHoc, "MAMH", true));
-            this.txtMaMH.Location = new System.Drawing.Point(331, 44);
+            this.txtMaMH.Location = new System.Drawing.Point(309, 44);
             this.txtMaMH.MenuManager = this.barManager1;
             this.txtMaMH.Name = "txtMaMH";
             this.txtMaMH.Size = new System.Drawing.Size(254, 22);
@@ -363,6 +366,15 @@
             // bODETableAdapter
             // 
             this.bODETableAdapter.ClearBeforeFill = true;
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Caption = "Refresh";
+            this.btnRefresh.Id = 8;
+            this.btnRefresh.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btnRefresh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRefresh_ItemClick);
             // 
             // frmMonHoc
             // 
@@ -425,5 +437,6 @@
         private DevExpress.XtraBars.BarButtonItem barButtonItem2;
         private System.Windows.Forms.BindingSource bds_BoDe;
         private DSTableAdapters.BODETableAdapter bODETableAdapter;
+        private DevExpress.XtraBars.BarButtonItem btnRefresh;
     }
 }

@@ -12,10 +12,13 @@ namespace THITRACNGHIEM
 {
     public partial class frmKhoa : Form
     {
-        BindingSource bdsCoSo = new BindingSource();
-        string maKH = "";
-        bool isThemKH = false;
-        bool isThemLop = false;
+        private BindingSource bdsCoSo = new BindingSource();
+        private string maKH = "";
+        private bool isThemKH = false;
+        private bool isThemLop = false;
+        private bool isDangThem = false;
+        private bool isDangSua = false;
+        private bool suaKH = false;
         public frmKhoa()
         {
             InitializeComponent();
@@ -161,14 +164,14 @@ namespace THITRACNGHIEM
 
         private void btnHuy_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            bdsKhoa.RemoveCurrent();
-            bdsLop.RemoveCurrent();
+            bdsKhoa.CancelEdit();
+            bdsLop.CancelEdit();
 
-            this.kHOATableAdapter.Connection.ConnectionString = Program.connstr;
-            this.kHOATableAdapter.Fill(this.dS.KHOA);
+            //this.kHOATableAdapter.Connection.ConnectionString = Program.connstr;
+            //this.kHOATableAdapter.Fill(this.dS.KHOA);
 
-            this.lOPTableAdapter.Connection.ConnectionString = Program.connstr;
-            this.lOPTableAdapter.Fill(this.dS.LOP);
+            //this.lOPTableAdapter.Connection.ConnectionString = Program.connstr;
+            //this.lOPTableAdapter.Fill(this.dS.LOP);
             
             gc2.Enabled = false;
             subThem.Enabled = btnSua.Enabled = btnXoa.Enabled = true;
@@ -177,6 +180,7 @@ namespace THITRACNGHIEM
             txtMaKH.Enabled = txtTenKH.Enabled = txtMaCS.Enabled = true;
             txtMaLop.Enabled = txtTenLop.Enabled = txtMaKH_Lop.Enabled = true;
             gcKhoa.Enabled = gcLop.Enabled = true;
+            isThemKH = isThemLop = false;
         }
 
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -198,19 +202,54 @@ namespace THITRACNGHIEM
                 txtMaCS.Text = ((DataRowView)bdsCoSo[bdsCoSo.Position])["MACS"].ToString();
                 try
                 {
-                    
+                    string sql;
+                    int ketQua;
+                    if (isDangThem)
+                    {
+                        sql = "exec [dbo].[SP_TrungMaKH] '" + txtMaKH.Text + "'";
+                        ketQua = Program.ExecSqlNonQuery(sql);
+                        //nếu như chạy sp ko thành công
+                        if (ketQua == 1)
+                        {
+                            txtMaKH.Focus();
+                            return;
+                        }
+
+                        sql = "exec [dbo].[SP_TrungTenKH] '" + txtTenKH.Text + "'";
+                        ketQua = Program.ExecSqlNonQuery(sql);
+                        //nếu như chạy sp ko thành công
+                        if (ketQua == 1)
+                        {
+                            txtTenKH.Focus();
+                            return;
+                        }
+                    }
+                    //isDangSua = true
+                    else if (isDangSua)
+                    {
+                        sql = "exec [dbo].[SP_TrungTenKH] '" + txtTenKH.Text + "'";
+                        ketQua = Program.ExecSqlNonQuery(sql);
+                        //nếu như chạy sp ko thành công
+                        if (ketQua == 1)
+                        {
+                            txtTenKH.Focus();
+                            return;
+
+                        }
+                    }
+
                     bdsKhoa.EndEdit();
                     bdsKhoa.ResetCurrentItem();
                     this.kHOATableAdapter.Update(this.dS.KHOA);
-                    isThemKH = false;
+                    isThemKH = isDangSua = isDangThem = false;
 
                     gc2.Enabled = false;
-                    btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = true;
+                    subThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnRefresh.Enabled = true;
                     btnGhi.Enabled = btnHuy.Enabled = false;
 
                     txtMaKH.Enabled = txtTenKH.Enabled = txtMaCS.Enabled = true;
                     txtMaLop.Enabled = txtTenLop.Enabled = txtMaKH_Lop.Enabled = true;
-                    gcKhoa.Enabled = gcLop.Enabled = false;
+                    gcKhoa.Enabled = gcLop.Enabled = true;
                 }
                 catch (Exception ex)
                 {
@@ -231,17 +270,61 @@ namespace THITRACNGHIEM
                     txtTenLop.Focus();
                     return;
                 }
-                txtMaKH_Lop.Text = gvKhoa.GetRowCellValue(gvKhoa.FocusedRowHandle, "MAKH").ToString().Trim();
+                if (txtMaKH_Lop.Text.Trim().Length == 0)
+                {
+                    MessageBox.Show("Mã khoa không được trống!", "Lỗi", MessageBoxButtons.OK);
+                    txtMaKH_Lop.Focus();
+                    return;
+                }
+                if (!suaKH)
+                {
+                    txtMaKH_Lop.Text = gvKhoa.GetRowCellValue(gvKhoa.FocusedRowHandle, "MAKH").ToString().Trim();
+                }
                 try
                 {
+                    string sql;
+                    int ketQua;
+                    if (isDangThem)
+                    {
+                        sql = "exec [dbo].[SP_TrungMaLop] '" + txtMaLop.Text + "'";
+                        ketQua = Program.ExecSqlNonQuery(sql);
+                        //nếu như chạy sp ko thành công
+                        if (ketQua == 1)
+                        {
+                            txtMaLop.Focus();
+                            return;
+                        }
+
+                        sql = "exec [dbo].[SP_TrungTenLop] '" + txtTenLop.Text + "'";
+                        ketQua = Program.ExecSqlNonQuery(sql);
+                        //nếu như chạy sp ko thành công
+                        if (ketQua == 1)
+                        {
+                            txtTenLop.Focus();
+                            return;
+                        }
+                    }
+                    //isDangSua = true
+                    else if (isDangSua)
+                    {
+                        sql = "exec [dbo].[SP_TrungTenLop] '" + txtTenLop.Text + "'";
+                        ketQua = Program.ExecSqlNonQuery(sql);
+                        //nếu như chạy sp ko thành công
+                        if (ketQua == 1)
+                        {
+                            txtTenLop.Focus();
+                                return;
+                            
+                        }
+                    }
 
                     bdsLop.EndEdit();
                     bdsLop.ResetCurrentItem();
                     this.lOPTableAdapter.Update(this.dS.LOP);
-                    isThemLop = false;
-
+                    isThemLop = isDangSua = isDangThem = false;
+                    suaKH = false;
                     gc2.Enabled = false;
-                    btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = true;
+                    subThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnRefresh.Enabled = true;
                     btnGhi.Enabled = btnHuy.Enabled = false;
 
                     txtMaKH.Enabled = txtTenKH.Enabled = txtMaCS.Enabled = true;
@@ -265,12 +348,18 @@ namespace THITRACNGHIEM
             }
             if (gvKhoa.IsFocusedView)
             {
-                isThemKH = true;
+                if (gvKhoa.IsEmpty)
+                {
+                    MessageBox.Show("Không có gì để sửa!", "Thông báo", MessageBoxButtons.OK);
+                    return;
+                }
+                    
+                isThemKH = isDangSua = true;
                 gc2.Enabled = true;
                 txtMaKH.Focus();
 
                 txtMaKH.Enabled = false;
-                subThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
+                subThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnRefresh.Enabled = false;
                 btnGhi.Enabled = btnHuy.Enabled = true;
 
                 txtMaLop.Enabled = txtTenLop.Enabled = txtMaKH_Lop.Enabled = false;
@@ -278,19 +367,25 @@ namespace THITRACNGHIEM
             }
             else if (gvLop.IsFocusedView)
             {
-                isThemLop = true;
+                if (gvLop.IsEmpty)
+                {
+                    MessageBox.Show("Không có gì để sửa!", "Thông báo", MessageBoxButtons.OK);
+                    return;
+                }
+                isThemLop = isDangSua = true;
                 gc2.Enabled = true;
-                txtMaLop.Focus();
-
+                txtTenLop.Focus();
+                suaKH = true;
                 txtMaLop.Enabled = false;
-                subThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
+                txtMaKH_Lop.Enabled = true;
+                subThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnRefresh.Enabled = false;
                 btnGhi.Enabled = btnHuy.Enabled = true;
 
                 txtMaKH.Enabled = txtTenKH.Enabled = txtMaCS.Enabled = false;
                 gcKhoa.Enabled = gcLop.Enabled = false;
             }
             gc2.Enabled = true;
-            subThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
+            subThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnRefresh.Enabled = false;
             btnGhi.Enabled = btnHuy.Enabled = true;
             gcKhoa.Enabled = gcLop.Enabled = false;
         }
@@ -326,13 +421,13 @@ namespace THITRACNGHIEM
                 MessageBox.Show("Bạn không có quyền này!", "Thông báo", MessageBoxButtons.OK);
                 return;
             }
-            isThemKH = true;
+            isThemKH = isDangThem = true;
             gc2.Enabled = true;
             bdsKhoa.AddNew();
             txtMaKH.Focus();
             txtMaCS.Text = ((DataRowView)bdsCoSo[bdsCoSo.Position])["MACS"].ToString();
             txtMaKH.Enabled = true;
-            subThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
+            subThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnRefresh.Enabled = false;
             btnGhi.Enabled = btnHuy.Enabled = true;
 
             txtMaLop.Enabled = txtTenLop.Enabled = txtMaKH_Lop.Enabled = false;
@@ -347,14 +442,14 @@ namespace THITRACNGHIEM
                 MessageBox.Show("Bạn không có quyền này!", "Thông báo", MessageBoxButtons.OK);
                 return;
             }
-            isThemLop = true;
+            isThemLop = isDangThem = true;
             gc2.Enabled = true;
             bdsLop.AddNew();
             txtMaLop.Focus();
 
             txtMaKH_Lop.Text = gvKhoa.GetRowCellValue(gvKhoa.FocusedRowHandle, "MAKH").ToString().Trim();
             txtMaLop.Enabled = true;
-            subThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
+            subThem.Enabled = btnSua.Enabled = btnXoa.Enabled = btnRefresh.Enabled = false;
             btnGhi.Enabled = btnHuy.Enabled = true;
 
             txtMaKH.Enabled = txtTenKH.Enabled = txtMaCS.Enabled = false;
@@ -364,6 +459,16 @@ namespace THITRACNGHIEM
         private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             this.Close();
+        }
+
+        private void btnRefresh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            // TODO: This line of code loads data into the 'dS.KHOA' table. You can move, or remove it, as needed.
+            this.kHOATableAdapter.Connection.ConnectionString = Program.connstr;
+            this.kHOATableAdapter.Fill(this.dS.KHOA);
+            // TODO: This line of code loads data into the 'dS.LOP' table. You can move, or remove it, as needed.
+            this.lOPTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.lOPTableAdapter.Fill(this.dS.LOP);
         }
     }
 }

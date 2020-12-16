@@ -46,6 +46,7 @@
             this.btnXoa = new DevExpress.XtraBars.BarButtonItem();
             this.btnGhi = new DevExpress.XtraBars.BarButtonItem();
             this.btnHuy = new DevExpress.XtraBars.BarButtonItem();
+            this.btnThoat = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -73,15 +74,15 @@
             this.txtMaCS = new DevExpress.XtraEditors.TextEdit();
             this.txtTenKH = new DevExpress.XtraEditors.TextEdit();
             this.txtMaKH = new DevExpress.XtraEditors.TextEdit();
-            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.grcKhoa = new DevExpress.XtraEditors.GroupControl();
             this.gcLop = new DevExpress.XtraGrid.GridControl();
             this.gvLop = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colMALOP = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTENLOP = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMAKH1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.lOPTableAdapter = new THITRACNGHIEM.DSTableAdapters.LOPTableAdapter();
-            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
-            this.btnThoat = new DevExpress.XtraBars.BarButtonItem();
+            this.grcLop = new DevExpress.XtraEditors.GroupControl();
+            this.btnRefresh = new DevExpress.XtraBars.BarButtonItem();
             mAKHLabel = new System.Windows.Forms.Label();
             tENKHLabel = new System.Windows.Forms.Label();
             label2 = new System.Windows.Forms.Label();
@@ -105,12 +106,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtMaCS.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTenKH.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaKH.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
-            this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grcKhoa)).BeginInit();
+            this.grcKhoa.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcLop)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvLop)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
-            this.groupControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grcLop)).BeginInit();
+            this.grcLop.SuspendLayout();
             this.SuspendLayout();
             // 
             // mAKHLabel
@@ -187,9 +188,10 @@
             this.subThem,
             this.btnAddKhoa,
             this.btnAddLop,
-            this.btnThoat});
+            this.btnThoat,
+            this.btnRefresh});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 9;
+            this.barManager1.MaxItemId = 10;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar1
@@ -211,6 +213,7 @@
             new DevExpress.XtraBars.LinkPersistInfo(this.btnSua),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnXoa),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnGhi),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnRefresh),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnHuy),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnThoat)});
             this.bar2.OptionsBar.MultiLine = true;
@@ -221,7 +224,7 @@
             // 
             this.subThem.Caption = "Thêm";
             this.subThem.Id = 5;
-            this.subThem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barSubItem1.ImageOptions.SvgImage")));
+            this.subThem.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("subThem.ImageOptions.SvgImage")));
             this.subThem.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.btnAddKhoa),
             new DevExpress.XtraBars.LinkPersistInfo(this.btnAddLop)});
@@ -277,6 +280,15 @@
             this.btnHuy.Name = "btnHuy";
             this.btnHuy.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.btnHuy.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnHuy_ItemClick);
+            // 
+            // btnThoat
+            // 
+            this.btnThoat.Caption = "Thoát";
+            this.btnThoat.Id = 8;
+            this.btnThoat.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnThoat.ImageOptions.SvgImage")));
+            this.btnThoat.Name = "btnThoat";
+            this.btnThoat.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btnThoat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThoat_ItemClick);
             // 
             // bar3
             // 
@@ -404,7 +416,7 @@
             this.gcKhoa.MainView = this.gvKhoa;
             this.gcKhoa.MenuManager = this.barManager1;
             this.gcKhoa.Name = "gcKhoa";
-            this.gcKhoa.Size = new System.Drawing.Size(1287, 112);
+            this.gcKhoa.Size = new System.Drawing.Size(1287, 151);
             this.gcKhoa.TabIndex = 6;
             this.gcKhoa.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvKhoa});
@@ -480,7 +492,6 @@
             this.txtMaKH_Lop.Location = new System.Drawing.Point(637, 85);
             this.txtMaKH_Lop.MenuManager = this.barManager1;
             this.txtMaKH_Lop.Name = "txtMaKH_Lop";
-            this.txtMaKH_Lop.Properties.ReadOnly = true;
             this.txtMaKH_Lop.Size = new System.Drawing.Size(125, 22);
             this.txtMaKH_Lop.TabIndex = 11;
             // 
@@ -535,15 +546,15 @@
             this.txtMaKH.Size = new System.Drawing.Size(125, 22);
             this.txtMaKH.TabIndex = 1;
             // 
-            // groupControl1
+            // grcKhoa
             // 
-            this.groupControl1.Controls.Add(this.gcKhoa);
-            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupControl1.Location = new System.Drawing.Point(0, 117);
-            this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(1291, 142);
-            this.groupControl1.TabIndex = 12;
-            this.groupControl1.Text = "Khoa";
+            this.grcKhoa.Controls.Add(this.gcKhoa);
+            this.grcKhoa.Dock = System.Windows.Forms.DockStyle.Top;
+            this.grcKhoa.Location = new System.Drawing.Point(0, 117);
+            this.grcKhoa.Name = "grcKhoa";
+            this.grcKhoa.Size = new System.Drawing.Size(1291, 181);
+            this.grcKhoa.TabIndex = 12;
+            this.grcKhoa.Text = "Khoa";
             // 
             // gcLop
             // 
@@ -553,7 +564,7 @@
             this.gcLop.MainView = this.gvLop;
             this.gcLop.MenuManager = this.barManager1;
             this.gcLop.Name = "gcLop";
-            this.gcLop.Size = new System.Drawing.Size(1287, 494);
+            this.gcLop.Size = new System.Drawing.Size(1287, 455);
             this.gcLop.TabIndex = 0;
             this.gcLop.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvLop});
@@ -604,32 +615,32 @@
             // 
             this.lOPTableAdapter.ClearBeforeFill = true;
             // 
-            // groupControl2
+            // grcLop
             // 
-            this.groupControl2.Controls.Add(this.gcLop);
-            this.groupControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupControl2.Location = new System.Drawing.Point(0, 259);
-            this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(1291, 524);
-            this.groupControl2.TabIndex = 17;
-            this.groupControl2.Text = "Lớp";
+            this.grcLop.Controls.Add(this.gcLop);
+            this.grcLop.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grcLop.Location = new System.Drawing.Point(0, 298);
+            this.grcLop.Name = "grcLop";
+            this.grcLop.Size = new System.Drawing.Size(1291, 485);
+            this.grcLop.TabIndex = 17;
+            this.grcLop.Text = "Lớp";
             // 
-            // btnThoat
+            // btnRefresh
             // 
-            this.btnThoat.Caption = "Thoát";
-            this.btnThoat.Id = 8;
-            this.btnThoat.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
-            this.btnThoat.Name = "btnThoat";
-            this.btnThoat.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.btnThoat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThoat_ItemClick);
+            this.btnRefresh.Caption = "Refresh";
+            this.btnRefresh.Id = 9;
+            this.btnRefresh.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("barButtonItem1.ImageOptions.SvgImage")));
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.btnRefresh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRefresh_ItemClick);
             // 
             // frmKhoa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1291, 939);
-            this.Controls.Add(this.groupControl2);
-            this.Controls.Add(this.groupControl1);
+            this.Controls.Add(this.grcLop);
+            this.Controls.Add(this.grcKhoa);
             this.Controls.Add(this.gc2);
             this.Controls.Add(this.gc1);
             this.Controls.Add(this.barDockControlLeft);
@@ -659,12 +670,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtMaCS.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTenKH.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaKH.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
-            this.groupControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grcKhoa)).EndInit();
+            this.grcKhoa.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gcLop)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvLop)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
-            this.groupControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grcLop)).EndInit();
+            this.grcLop.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -701,7 +712,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colTENKH;
         private DevExpress.XtraGrid.Columns.GridColumn colMACS;
         private DevExpress.XtraEditors.TextEdit txtMaCS;
-        private DevExpress.XtraEditors.GroupControl groupControl1;
+        private DevExpress.XtraEditors.GroupControl grcKhoa;
         private System.Windows.Forms.BindingSource bdsLop;
         private DSTableAdapters.LOPTableAdapter lOPTableAdapter;
         private DevExpress.XtraGrid.GridControl gcLop;
@@ -709,7 +720,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colMALOP;
         private DevExpress.XtraGrid.Columns.GridColumn colTENLOP;
         private DevExpress.XtraGrid.Columns.GridColumn colMAKH1;
-        private DevExpress.XtraEditors.GroupControl groupControl2;
+        private DevExpress.XtraEditors.GroupControl grcLop;
         private DevExpress.XtraEditors.TextEdit txtTenLop;
         private DevExpress.XtraEditors.TextEdit txtMaLop;
         private DevExpress.XtraEditors.TextEdit txtMaKH_Lop;
@@ -718,5 +729,6 @@
         private DevExpress.XtraBars.BarButtonItem btnAddKhoa;
         private DevExpress.XtraBars.BarButtonItem btnAddLop;
         private DevExpress.XtraBars.BarButtonItem btnThoat;
+        private DevExpress.XtraBars.BarButtonItem btnRefresh;
     }
 }

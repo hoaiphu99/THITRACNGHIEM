@@ -122,6 +122,12 @@
     <Compile Include="frmDangNhap.Designer.cs">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmDSDKThi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDSDKThi.Designer.cs">
+      <DependentUpon>frmDSDKThi.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmGiaoVien.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -191,6 +197,12 @@
     <Compile Include="PhucHoi.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="rptDSDKThi.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptDSDKThi.Designer.cs">
+      <DependentUpon>rptDSDKThi.cs</DependentUpon>
+    </Compile>
     <Compile Include="rptXemBangDiem.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -220,6 +232,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDangNhap.resx">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDSDKThi.resx">
+      <DependentUpon>frmDSDKThi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmGiaoVien.resx">
       <DependentUpon>frmGiaoVien.cs</DependentUpon>
@@ -264,6 +279,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="rptDSDKThi.resx">
+      <DependentUpon>rptDSDKThi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="rptXemBangDiem.resx">
       <DependentUpon>rptXemBangDiem.cs</DependentUpon>
     </EmbeddedResource>

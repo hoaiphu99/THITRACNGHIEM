@@ -11,7 +11,7 @@ namespace THITRACNGHIEM
         private Stack<string> myStack = new Stack<string>();
         private string DataTruocKhiSua = "";
 
-        //-----------MÔN HỌC ------------------------
+        //-------------MÔN HỌC ------------------------
         public string GetDataTruocKhiSua()
         {
             return this.DataTruocKhiSua;
@@ -26,16 +26,56 @@ namespace THITRACNGHIEM
         }
         public void Save_OldMH(string oldMaMH, string oldTenMH)
         {
-            DataTruocKhiSua = oldMaMH + "/" + oldTenMH;
+            DataTruocKhiSua = oldMaMH + "-" + oldTenMH;
         }
 
-        public void PushStack_SuaMH(string newMaMH, string newTenMH)
+        public void PushStack_SuaMH(string newTenMH)
         {
-            string[] arr = DataTruocKhiSua.Split('/');
+            string[] arr = DataTruocKhiSua.Split('-');
             //myStack.Push("update[dbo].[MONHOC] set MAMH = '" + arr[0] + "', TENMH = '" + arr[1] + "' where MAMH = '" + newMaMH + "'");
-            myStack.Push("exec[dbo].[SP_PhucHoiSuaMH] '" + newMaMH + "', N'" + newTenMH + "', '" + arr[0] + "', N'" + arr[1] + "'");
+            myStack.Push("exec[dbo].[SP_PhucHoiSuaMH] '" + arr[0] + "', N'" + newTenMH + "', N'" + arr[1] + "'");
         }
 
+        // ------------Giáo viên--------------
+        public void PushStack_ThemGV(string newMaGV)
+        {
+            myStack.Push("exec [dbo].[SP_PhucHoiThemGV] '" + newMaGV + "'");
+        }
+        public void PushStack_XoaGV(string maGV, string HoGV, string TenGV, string HocVi, string MaKH)
+        {
+            myStack.Push("exec [dbo].[SP_PhucHoiXoaGV] '" + maGV + "', N'" + HoGV + "', N'" + TenGV + "', N'" + HocVi + "', '" + MaKH + "'");
+        }
+        public void Save_OldGV(string oldHoGV, string oldTenGV, string oldHocVi, string oldMaKH)
+        {
+            DataTruocKhiSua = oldHoGV + "-" + oldTenGV + "-" + oldHocVi + "-" + oldMaKH;
+        }
+        public void PushStack_SuaGV(string MaGV)
+        {
+            string[] arr = DataTruocKhiSua.Split('-');
+            myStack.Push("exec[dbo].[SP_PhucHoiSuaGV] '" + MaGV + "', N'" + arr[0] + "', N'" + arr[1] + "', N'" + arr[2] + "', '" + arr[3] + "'");
+        }
+
+        // sinh viên
+        public void PushStack_ThemSV(string newMaSV)
+        {
+            myStack.Push("exec [dbo].[SP_PhucHoiThemSV] '" + newMaSV + "'");
+        }
+
+        public void PushStack_XoaSV(string maSV, string ho, string ten, string ngaySinh, string diaChi, string maLop)
+        {
+            myStack.Push("exec [dbo].[SP_PhucHoiXoaSV] '" + maSV + "', N'" + ho + "', N'" + ten + "', '" + ngaySinh + "', N'" + diaChi + "', '" + maLop + "'");
+        }
+
+        public void Save_OldSV(string oldHo, string oldTen, string oldNgaySinh, string oldDiaChi, string oldMaLop)
+        {
+            DataTruocKhiSua = oldHo + "-" + oldTen + "-" + oldNgaySinh + "-" + oldDiaChi + "-" + oldMaLop;
+        }
+
+        public void PushStack_SuaSV(string MaSV)
+        {
+            string[] arr = DataTruocKhiSua.Split('-');
+            myStack.Push("exec[dbo].[SP_PhucHoiSuaSV] '" + MaSV + "', N'" + arr[0] + "', N'" + arr[1] + "', '" + arr[2] + "', N'" + arr[3] + "', '" + arr[4] +"'");
+        }
         public string PopStack()
         {
             if (myStack.Count == 0)
@@ -46,30 +86,6 @@ namespace THITRACNGHIEM
             Program.ExecSqlNonQuery(sql);
             return "success";
         }
-
-        // sinh viên
-        public void PushStack_ThemSV(string newMaSV)
-        {
-            myStack.Push("delete dbo.SINHVIEN where MASV = '" + newMaSV + "'");
-        }
-
-        public void PushStack_XoaSV(string maSV, string ho, string ten, string ngaySinh, string diaChi, string maLop)
-        {
-            myStack.Push("insert into [dbo].[SINHVIEN] ( MASV, HO, TEN, NGAYSINH, DIACHI, MALOP ) " +
-                "values ('" + maSV + "', N'" + ho + "', N'" + ten + "', '" + ngaySinh + "', N'" + diaChi + "', '" + maLop + "')");
-        }
-
-        public void Save_OldSV(string oldMaSV, string oldHo, string oldTen, string oldNgaySinh, string oldDiaChi, string oldMaLop)
-        {
-            DataTruocKhiSua = oldMaSV + "/" + oldHo + "/" + oldTen + "/" + oldNgaySinh + "/" + oldDiaChi + "/" + oldMaLop;
-        }
-
-        public void PushStack_SuaSV(string newMaSV)
-        {
-            string[] arr = DataTruocKhiSua.Split('/');
-            myStack.Push("update [dbo].[SINHVIEN] set MASV = '" + arr[0] + "', HO = '" + arr[1] +"', TEN = '" + arr[2] + "', NGAYSINH = '" + arr[3] + "', DIACHI = '" + arr[4] + "', MALOP = '" + arr[5] + "' where MASV = '" + newMaSV + "'");
-        }
-
     }
 
 }

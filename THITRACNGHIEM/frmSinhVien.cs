@@ -13,12 +13,13 @@ namespace THITRACNGHIEM
 {
     public partial class frmSinhVien : Form
     {
-        private string maCS = "";
+        private int index = 0;
         private string maLop = "";
+        private string tenLop = "";
         private int vitri;
-        DataTable dt = new DataTable();
+        private DataTable dt = new DataTable();
         private PhucHoi phucHoi = new PhucHoi();
-        private Boolean isDangThem = false, isDangSua = false;
+        private Boolean isDangThem = false, isDangSua = false, suaLop = false;
 
         public frmSinhVien()
         {
@@ -41,10 +42,6 @@ namespace THITRACNGHIEM
             // TODO: This line of code loads data into the 'dS.SINHVIEN' table. You can move, or remove it, as needed.
             this.sINHVIENTableAdapter.Connection.ConnectionString = Program.connstr;
             this.sINHVIENTableAdapter.Fill(this.dS.SINHVIEN);
-
-            // TODO: This line of code loads data into the 'dS.BANGDIEM' table. You can move, or remove it, as needed.
-            this.bANGDIEMTableAdapter.Connection.ConnectionString = Program.connstr;
-            this.bANGDIEMTableAdapter.Fill(this.dS.BANGDIEM);
 
             dt = Program.ExecSqlDataTable("SELECT MALOP, TENLOP FROM LOP");
             cmbMaLop.DataSource = dt;
@@ -81,6 +78,7 @@ namespace THITRACNGHIEM
             vitri = bdsSinhVien.Position;
             bdsSinhVien.AddNew();
             txtMaSV.Focus();
+            txtMaLop.Text = maLop;
             dtpNgaySinh.EditValue = "";
 
             txtMaSV.Enabled = true;
@@ -113,7 +111,6 @@ namespace THITRACNGHIEM
                 this.sINHVIENTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.sINHVIENTableAdapter.Fill(this.dS.SINHVIEN);
 
-                dt = Program.ExecSqlDataTable("SELECT MALOP, TENLOP FROM LOP");
                 cmbMaLop.DataSource = dt;
                 cmbMaLop.DisplayMember = "TENLOP";
                 cmbMaLop.ValueMember = "MALOP";
@@ -127,19 +124,27 @@ namespace THITRACNGHIEM
 
         private void btnHuy_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            bdsSinhVien.RemoveCurrent();
-            this.sINHVIENTableAdapter.Connection.ConnectionString = Program.connstr;
-            this.sINHVIENTableAdapter.Fill(this.dS.SINHVIEN);
+            bdsSinhVien.CancelEdit();
+            //this.sINHVIENTableAdapter.Connection.ConnectionString = Program.connstr;
+            //this.sINHVIENTableAdapter.Fill(this.dS.SINHVIEN);
             groupControl2.Enabled = false;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = true;
             btnGhi.Enabled = btnHuy.Enabled = false;
             gcSinhVien.Enabled = true;
+            isDangThem = isDangSua = false;
         }
 
         private void cmbMaLop_SelectedIndexChanged(object sender, EventArgs e)
         {
-            maLop = cmbMaLop.SelectedValue.ToString().Trim();
+            if (cmbMaLop.SelectedValue != null)
+            {
+                maLop = cmbMaLop.SelectedValue.ToString().Trim();
+                tenLop = cmbMaLop.GetItemText(cmbMaLop.SelectedItem);
+                index = cmbMaLop.SelectedIndex;
+            }
             this.bdsSinhVien.Filter = "MALOP = '" + maLop + "'";
+            cmbMaLop.Text = tenLop;
+            return;
         }
 
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -168,9 +173,30 @@ namespace THITRACNGHIEM
                 dtpNgaySinh.Focus();
                 return;
             }
-            txtMaLop.Text = maLop;
+            if (txtMaLop.Text.Trim().Length == 0)
+            {
+                MessageBox.Show("Mã lớp không được trống!", "Lỗi", MessageBoxButtons.OK);
+                txtMaLop.Focus();
+                return;
+            }
+            if (!suaLop)
+                txtMaLop.Text = maLop;
             try
             {
+                string sql;
+                int ketQua;
+                if (isDangThem)
+                {
+                    sql = "exec [dbo].[SP_TrungMaSV] '" + txtMaSV.Text + "'";
+                    ketQua = Program.ExecSqlNonQuery(sql);
+                    //nếu như chạy sp ko thành công
+                    if (ketQua == 1)
+                    {
+                        txtMaSV.Focus();
+                        return;
+                    }
+                }
+
                 if (isDangThem)
                 {
                     phucHoi.PushStack_ThemSV(txtMaSV.Text);
@@ -240,6 +266,10 @@ namespace THITRACNGHIEM
             {
                 //update lại dataTable sinh viên
                 this.sINHVIENTableAdapter.Fill(this.dS.SINHVIEN);
+                cmbMaLop.DataSource = dt;
+                cmbMaLop.DisplayMember = "TENLOP";
+                cmbMaLop.ValueMember = "MALOP";
+                cmbMaLop.SelectedIndex = index;
                 MessageBox.Show("Phục hồi thành công!", "Thông báo", MessageBoxButtons.OK);
             }
             else
@@ -254,6 +284,23 @@ namespace THITRACNGHIEM
             this.Close();
         }
 
+        private void btnRefresh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.sINHVIENTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.sINHVIENTableAdapter.Fill(this.dS.SINHVIEN);
+
+            cmbMaLop.DataSource = dt;
+            cmbMaLop.DisplayMember = "TENLOP";
+            cmbMaLop.ValueMember = "MALOP";
+            cmbMaLop.SelectedIndex = index;
+
+            groupControl2.Enabled = false;
+            btnGhi.Enabled = btnPhuchoi.Enabled = btnHuy.Enabled = false;
+            btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = gcSinhVien.Enabled = true;
+            if (bdsSinhVien.Count == 0)
+                btnXoa.Enabled = false;
+        }
+
         private void btnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (Program.mGroup == "TRUONG" || Program.mGroup == "GIAOVIEN")
@@ -262,9 +309,11 @@ namespace THITRACNGHIEM
                 return;
             }
             isDangSua = true;
-            phucHoi.Save_OldSV(txtMaSV.Text, txtHo.Text, txtTen.Text, dtpNgaySinh.Text, txtDiaChi.Text, cmbMaLop.SelectedIndex.ToString());
+            suaLop = true;
+            phucHoi.Save_OldSV(txtHo.Text, txtTen.Text, dtpNgaySinh.Text, txtDiaChi.Text, cmbMaLop.SelectedValue.ToString());
             groupControl2.Enabled = true;
             txtMaSV.Enabled = false;
+            txtMaLop.Enabled = true;
             btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
             btnGhi.Enabled = btnPhuchoi.Enabled = btnHuy.Enabled = true;
             gcSinhVien.Enabled = true;
