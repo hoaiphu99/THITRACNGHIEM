@@ -14,8 +14,8 @@ namespace THITRACNGHIEM
     {
         public static string maMH = "";
         public static string maLop = "";
-        public static string trinhDo = "A";
-        private static int lan = 1;
+        public static string trinhDo = "";
+        private static int lan;
         int vitri;
 
         public frmChuanBiThi()
@@ -168,7 +168,7 @@ namespace THITRACNGHIEM
 
         private void cmbTrinhDo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            trinhDo = cmbTrinhDo.GetItemText(cmbTrinhDo.SelectedItem);
+            trinhDo = cmbTrinhDo.SelectedItem.ToString();
         }
 
         private void btnSua_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -287,7 +287,7 @@ namespace THITRACNGHIEM
 
         private void cmbLan_SelectedIndexChanged(object sender, EventArgs e)
         {
-            lan = Int32.Parse(cmbLan.GetItemText(cmbLan.SelectedItem));
+            lan = Int32.Parse(cmbLan.SelectedItem.ToString());
         }
     }
 }
