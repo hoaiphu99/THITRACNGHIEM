@@ -155,10 +155,11 @@ namespace THITRACNGHIEM
         private void timer_Tick(object sender, EventArgs e)
         {
             giay--;
-            if(giay == 0)
+            if (giay == 0)
             {
                 phut--;
-                giay = 60;
+                if (phut != 0)
+                    giay = 60;
             }
             if (phut == 0 && giay == 0)
             {
